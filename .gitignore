@@ -15,3 +15,9 @@ node_modules/
 __pycache__/
 .env
 .env.*
+jobs/*/reel/out/*
+jobs/*/reel/assets/
+jobs/*/assets/
+jobs/*/voice_raw.wav
+jobs/*/tts_*.json
+jobs/*/req.json

@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #rq-wrap { position: absolute; left: 120px; width: 768px; top: 290px; }
+    #rq-card { position: relative; padding: 26px 30px 24px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+    #rq-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .16em; color: #F0EBD4B3; }
+    #rq-draw { display: block; width: 100%; height: 230px; margin-top: 10px; }
+    .rq-flag { position: absolute; font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 700; color: #F0EBD4; background: #C41E3A;
+               padding: 6px 14px; border-radius: 6px; }
+    #rq-f0 { left: 380px; top: 72px; } #rq-f1 { left: 470px; top: 218px; }
+    #rq-quote { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; padding: 18px 28px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); border-color: #C41E3A; }
+    #rq-q { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 46px; }
+    #rq-bars { display: flex; align-items: flex-end; gap: 8px; height: 60px; }
+    #rq-bars i { display: block; width: 16px; background: #6A6B71; transform-origin: bottom; }
+    #rq-bars i:last-child { background: #C41E3A; }
+  </style>
+  <div id="root" data-composition-id="rfq" data-width="1080" data-height="1920">
+    <div id="rq-wrap" class="clip" data-start="0" data-duration="5.809">
+      <div id="rq-card"><div id="rq-kicker">RFQ · INCOMING</div><svg id="rq-draw" viewBox="0 0 700 230" fill="none" stroke="#F0EBD4" stroke-width="2.5">
+        <rect id="rq-d0" x="40" y="40" width="300" height="150" rx="6" stroke-dasharray="900" stroke-dashoffset="900"/>
+        <circle id="rq-d1" cx="190" cy="115" r="42" stroke-dasharray="270" stroke-dashoffset="270"/>
+        <path id="rq-d2" d="M40 215 H340 M40 207 V223 M340 207 V223" stroke-dasharray="340" stroke-dashoffset="340" stroke-opacity=".6"/>
+        <rect id="rq-d3" x="420" y="70" width="230" height="90" rx="4" stroke-dasharray="640" stroke-dashoffset="640"/>
+        <path id="rq-d4" d="M420 115 H650" stroke-dasharray="230" stroke-dashoffset="230" stroke-opacity=".5"/>
+      </svg><div class="rq-flag" id="rq-f0">tolerance?</div><div class="rq-flag" id="rq-f1">finish?</div></div>
+      <div id="rq-quote"><div id="rq-q">Quote · draft</div><div id="rq-bars"><i id="rq-b0" style="height:38px"></i><i id="rq-b1" style="height:52px"></i><i id="rq-b2" style="height:30px"></i><i id="rq-b3" style="height:46px"></i><i id="rq-b4" style="height:58px"></i></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rq-card", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#rq-d0", { attr: { "stroke-dashoffset": 900 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 0.15);
+    tl.fromTo("#rq-d1", { attr: { "stroke-dashoffset": 270 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 0.23);
+    tl.fromTo("#rq-d2", { attr: { "stroke-dashoffset": 340 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 0.31);
+    tl.fromTo("#rq-d3", { attr: { "stroke-dashoffset": 640 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 0.39);
+    tl.fromTo("#rq-d4", { attr: { "stroke-dashoffset": 230 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 0.47);
+    tl.fromTo("#rq-f0", { scale: 0.6 }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 2.501);
+    tl.fromTo("#rq-f0", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, 2.501);
+    tl.fromTo("#rq-f1", { scale: 0.6 }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 3.098);
+    tl.fromTo("#rq-f1", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, 3.098);
+    tl.fromTo("#rq-quote", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 3.696);
+    tl.fromTo("#rq-b0", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "expo.out" }, 4.162);
+    tl.fromTo("#rq-b1", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "expo.out" }, 4.222);
+    tl.fromTo("#rq-b2", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "expo.out" }, 4.282);
+    tl.fromTo("#rq-b3", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "expo.out" }, 4.342);
+    tl.fromTo("#rq-b4", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "expo.out" }, 4.402);
+    tl.to("#rq-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 5.599);
+
+    window.__timelines["rfq"] = tl;
+  </script>
+</template>

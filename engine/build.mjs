@@ -1,0 +1,420 @@
+#!/usr/bin/env node
+// Reel engine v2: storyboard (word anchors) + words.json + palette -> edl.json + HyperFrames project.
+// Usage: node engine/build.mjs <job_dir>      (job_dir holds storyboard.json, words.json, assets/)
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from "node:fs";
+import { join, resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process";
+
+const ENGINE = dirname(fileURLToPath(import.meta.url));
+const JOB = resolve(process.argv[2] ?? ".");
+const sb = JSON.parse(readFileSync(join(JOB, "storyboard.json"), "utf8"));
+const words = JSON.parse(readFileSync(join(JOB, sb.words_file), "utf8")).words;
+const pal = JSON.parse(readFileSync(resolve(JOB, sb.palette), "utf8")).colors;
+const C = Object.fromEntries(Object.entries(pal).map(([k, v]) => [k, v.hex]));
+const W = 1080, H = 1920, FPS = 30;
+const r3 = (x) => Math.round(x * 1000) / 1000;
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const speechEnd = words.at(-1).end;
+const D = r3(speechEnd + 0.35 + (sb.tail_hold_sec ?? 0));
+
+// ---------- anchors ----------
+const byId = new Map(words.map((w) => [w.i, w]));
+function at(a) {
+  if (a === "end") return D;
+  if (typeof a === "number") return a;
+  const w = byId.get(a.w);
+  if (!w) throw new Error(`no word ${a.w}`);
+  return r3(Math.max(0, (a.e === "end" ? w.end : w.start) + (a.o ?? 0)));
+}
+const isAnchor = (v) => v === "end" || (v && typeof v === "object" && !Array.isArray(v) && typeof v.w === "number");
+function resolveDeep(v) {
+  if (isAnchor(v)) return at(v);
+  if (Array.isArray(v)) return v.map(resolveDeep);
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, resolveDeep(x)]));
+  return v;
+}
+const events = sb.events.map(resolveDeep);
+const camera = sb.camera.map(resolveDeep);
+
+// ---------- captions: auto groups (max N words, break on punctuation / pause / off-windows) ----------
+const off = sb.captions.off ?? [];
+const isOff = (id) => off.some(([a, b]) => id >= a && id <= b);
+const groups = [];
+let cur = [];
+for (const w of words) {
+  if (isOff(w.i)) { if (cur.length) groups.push(cur); cur = []; continue; }
+  const prev = cur.at(-1);
+  if (prev && (w.start - prev.end > 0.15 || /[.,?!]$/.test(prev.w) || cur.length >= sb.captions.max_words)) { groups.push(cur); cur = []; }
+  cur.push(w);
+}
+if (cur.length) groups.push(cur);
+const captions = groups.map((g, i) => {
+  const next = groups[i + 1];
+  const start = r3(Math.max(0.1, g[0].start - 0.06));
+  const end = r3(next ? Math.min(g.at(-1).end + 0.3, next[0].start - 0.06) : D - 0.05);
+  return { id: `cap${i}`, start, end, words: g.map((w) => ({ text: w.w, start: r3(w.start), end: r3(w.end) })) };
+});
+
+const sfx = events.flatMap((e) => (e.sfx ?? []).map(([name, t]) => ({ name, t: r3(t), ev: e.id })));
+const edl = { video_id: sb.video_id, duration: D, fps: FPS, camera, events, captions, sfx };
+writeFileSync(join(JOB, "edl.json"), JSON.stringify(edl, null, 1));
+
+// ---------- HyperFrames project ----------
+const OUT = join(JOB, "reel");
+mkdirSync(join(OUT, "compositions"), { recursive: true });
+mkdirSync(join(OUT, "assets"), { recursive: true });
+for (const f of ["avatar.png", "avatar.webm", "voice.wav"]) if (existsSync(join(JOB, "assets", f))) cpSync(join(JOB, "assets", f), join(OUT, "assets", f));
+cpSync(join(ENGINE, "sfx"), join(OUT, "assets", "sfx"), { recursive: true });
+
+const FACE = [540, 1150];
+const SAFE = { x0: 120, x1: 888, y0: 288, y1: 1248 };
+const SW = SAFE.x1 - SAFE.x0;
+const GY = 300; // graphics zone top
+const FONT = { display: "'Playfair Display', serif", serif: "'EB Garamond', serif", mono: "'IBM Plex Mono', monospace" };
+
+function scene(id, css, body, js) {
+  return `<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: ${FONT.serif}; color: ${C.vintage_cream}; }
+${css}
+  </style>
+  <div id="root" data-composition-id="${id}" data-width="${W}" data-height="${H}">
+${body}
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+${js}
+    window.__timelines["${id}"] = tl;
+  </script>
+</template>
+`;
+}
+// Standard in/out for a whole scene wrapper.
+const enter = (sel, t = 0) => `    tl.fromTo("${sel}", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, ${r3(t)});\n`;
+const leave = (sel, len) => `    tl.to("${sel}", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, ${r3(len - 0.21)});\n`;
+const pop = (sel, t, from = 0.7) => `    tl.fromTo("${sel}", { scale: ${from} }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, ${r3(t)});\n    tl.fromTo("${sel}", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, ${r3(t)});\n`;
+const panel = `background: ${C.midnight_ink}E6; border: 1.5px solid ${C.vintage_cream}33; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55);`;
+
+const FX = {
+  "title.hook"(e, L, len) {
+    const lines = e.lines.map((l, i) => `<div class="hk-line" id="hook-l${i}">${l.split(" ").map((w) => `<span class="${w.replace(/\W/g, "").toLowerCase() === e.accent_word ? "acc" : ""}">${esc(w)}</span>`).join(" ")}</div>`).join("");
+    const css = `    #hook-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: 470px; text-align: center; }
+    .hk-line { font-family: ${FONT.display}; font-weight: 900; font-size: 104px; line-height: 1.02; letter-spacing: -0.02em; text-shadow: 0 8px 40px rgba(0,0,0,.6); }
+    .hk-line .acc { color: ${C.crimson_rouge}; font-style: italic; }
+    #hook-rule { width: 120px; height: 4px; background: ${C.crimson_rouge}; margin: 26px auto 0; }`;
+    const body = `    <div id="hook-wrap" class="clip" data-start="0" data-duration="${len}">${lines}<div id="hook-rule"></div></div>`;
+    // Frame 0 already shows the title (thumbnail); it only settles slightly.
+    let js = `    tl.fromTo("#hook-wrap", { scale: 1.04 }, { scale: 1, duration: 0.6, ease: "expo.out" }, 0);\n`;
+    js += `    tl.fromTo("#hook-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.15);\n`;
+    js += leave("#hook-wrap", len);
+    return [css, body, js];
+  },
+
+  "card.counter"(e, L, len) {
+    const css = `    #pl-card { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY}px; padding: 34px 40px 30px; ${panel} }
+    #pl-kicker { font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}B3; }
+    #pl-title { font-family: ${FONT.display}; font-weight: 900; font-size: 60px; line-height: 1.05; margin-top: 12px; }
+    #pl-row { display: flex; align-items: baseline; gap: 20px; margin-top: 18px; }
+    #pl-num { font-family: ${FONT.display}; font-weight: 900; font-size: 150px; line-height: .9; color: ${C.crimson_rouge}; width: 190px; }
+    #pl-unit { font-style: italic; font-size: 48px; color: ${C.vintage_cream}; }`;
+    const body = `    <div id="pl-card" class="clip" data-start="0" data-duration="${len}">
+      <div id="pl-kicker">${esc(e.kicker)}</div>
+      <div id="pl-title">${esc(e.title)}</div>
+      <div id="pl-row"><div id="pl-num">${e.number}</div><div id="pl-unit">${esc(e.unit)}</div></div>
+    </div>`;
+    const counter = `    const n = { v: 0 }; const el = document.getElementById("pl-num");
+    tl.fromTo(n, { v: 0 }, { v: ${e.number}, duration: 0.55, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, ${r3(L(e.number_at))});
+    tl.set(n, { v: 0, onUpdate: () => { el.textContent = Math.round(n.v); } }, 0);\n`;
+    let js = enter("#pl-card");
+    js += `    tl.fromTo("#pl-title", { opacity: 0.15, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, ${r3(L(e.title_at))});\n`;
+    js += `    tl.fromTo("#pl-row", { opacity: 0 }, { opacity: 1, duration: 0.12 }, ${r3(L(e.number_at) - 0.05)});\n`;
+    js += counter + leave("#pl-card", len);
+    return [css, body, js];
+  },
+
+  "doc.ncr"(e, L, len) {
+    const css = `    #nc-bg { position: absolute; inset: 0; background: ${C.cobalt_night}; }
+    #nc-paper { position: absolute; left: 100px; top: 290px; width: 800px; height: 840px; background: ${C.vintage_cream}; color: ${C.midnight_ink};
+                border-radius: 6px; box-shadow: 0 40px 120px rgba(0,0,0,.6); padding: 44px 52px; transform-origin: 50% 30%; }
+    #nc-top { display: flex; justify-content: space-between; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .12em; color: ${C.crimson_rouge}; border-bottom: 2px solid ${C.midnight_ink}; padding-bottom: 16px; }
+    #nc-h { font-family: ${FONT.display}; font-weight: 900; font-size: 54px; line-height: 1.05; margin: 26px 0 16px; }
+    .nc-row { display: flex; gap: 22px; font-size: 34px; padding: 14px 0; border-bottom: 1px solid ${C.tweed_grey}66; }
+    .nc-row b { font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .08em; color: ${C.espresso_wood}; width: 150px; padding-top: 6px; font-weight: 500; flex: none; }
+    .nc-row .ok { color: ${C.crimson_rouge}; font-weight: 700; }
+    #nc-ct { font-style: italic; font-size: 38px; margin-top: 22px; color: ${C.espresso_wood}; }
+    .nc-c { font-size: 42px; padding: 6px 0; display: flex; gap: 22px; }
+    .nc-c i { font-family: ${FONT.display}; font-style: normal; font-weight: 900; color: ${C.crimson_rouge}; width: 40px; }
+    .stamp { display: inline-block; border: 6px solid ${C.crimson_rouge}; color: ${C.crimson_rouge}; font-family: ${FONT.mono}; font-weight: 700;
+             letter-spacing: .12em; padding: 12px 24px; border-radius: 8px; mix-blend-mode: multiply; }
+    #nc-s1 { font-size: 34px; margin-bottom: 10px; }
+    #nc-s2 { position: absolute; right: 50px; bottom: 70px; font-size: 44px; transform: rotate(-4deg); }`;
+    const rows = e.rows.map((r, i) => `<div class="nc-row" id="nc-r${i}"><b>${esc(r.label.toUpperCase())}</b><span><span class="ok">✓</span> ${esc(r.value)}</span></div>`).join("");
+    const causes = e.causes.map((c, i) => `<div class="nc-c" id="nc-c${i}"><i>${i + 1}</i>${esc(c)}</div>`).join("");
+    const body = `    <div id="nc-wrap" class="clip" data-start="0" data-duration="${len}">
+      <div id="nc-bg"></div>
+      <div id="nc-paper">
+        <div id="nc-top"><span>${esc(e.ref)}</span><span>QUALITY</span></div>
+        <div id="nc-h">${esc(e.header)}</div>
+        <div class="stamp" id="nc-s1">${esc(e.stamp.text)}</div>
+        ${rows}
+        <div id="nc-ct">${esc(e.causes_title)}</div>
+        ${causes}
+        <div class="stamp" id="nc-s2">${esc(e.stamp2.text)}</div>
+      </div>
+    </div>`;
+    let js = `    tl.fromTo("#nc-bg", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.inOut" }, 0);
+    tl.fromTo("#nc-paper", { y: 260, rotation: 3, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
+    tl.fromTo("#nc-paper", { scale: 1 }, { scale: 1.05, duration: ${r3(len - 0.9)}, ease: "none" }, 0.6);\n`;
+    const stampIn = (sel, t, rot) => `    tl.fromTo("${sel}", { opacity: 0, scale: 1.8, rotation: ${rot} }, { opacity: 1, scale: 1, rotation: ${rot}, duration: 0.16, ease: "power4.in" }, ${r3(t)});\n`;
+    js += stampIn("#nc-s1", L(e.stamp.at), -7);
+    e.rows.forEach((r, i) => { js += `    tl.fromTo("#nc-r${i}", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, ${r3(L(r.at))});\n`; });
+    js += `    tl.fromTo("#nc-ct", { opacity: 0 }, { opacity: 1, duration: 0.2 }, ${r3(L(e.causes_at) - 0.1)});\n`;
+    e.causes.forEach((_, i) => { js += `    tl.fromTo("#nc-c${i}", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.28, ease: "expo.out" }, ${r3(L(e.causes_at) + 0.12 * i)});\n`; });
+    js += stampIn("#nc-s2", L(e.stamp2.at), 5);
+    js += `    tl.to("#nc-paper", { opacity: 0, scale: 1.15, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, ${r3(len - 0.26)});
+    tl.to("#nc-bg", { opacity: 0, duration: 0.25, ease: "power2.in" }, ${r3(len - 0.26)});\n`;
+    return [css, body, js];
+  },
+
+  "card.signature"(e, L, len) {
+    const css = `    #sg-card { position: absolute; left: ${SAFE.x0 + 84}px; width: ${SW - 168}px; top: ${GY + 40}px; padding: 30px 40px; ${panel} }
+    #sg-label { font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .14em; color: ${C.vintage_cream}B3; }
+    #sg-line { font-style: italic; font-size: 46px; margin-top: 8px; }
+    #sg-svg { display: block; width: 100%; height: 120px; margin-top: 6px; }
+    #sg-base { height: 2px; background: ${C.vintage_cream}66; }`;
+    const body = `    <div id="sg-card" class="clip" data-start="0" data-duration="${len}">
+      <div id="sg-label">${esc(e.label.toUpperCase())}</div>
+      <div id="sg-line">${esc(e.line)}</div>
+      <svg id="sg-svg" viewBox="0 0 520 120"><path id="sg-path" d="M20 80 C 60 20, 90 110, 130 60 S 190 30, 210 85 S 270 40, 300 70 S 360 95, 400 50 L 500 45" fill="none" stroke="${C.crimson_rouge}" stroke-width="5" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700"/></svg>
+      <div id="sg-base"></div>
+    </div>`;
+    let js = enter("#sg-card");
+    js += `    tl.fromTo("#sg-path", { attr: { "stroke-dashoffset": 700 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.55, ease: "power1.inOut" }, ${r3(L(e.sign_at) - 0.05)});\n`;
+    js += leave("#sg-card", len);
+    return [css, body, js];
+  },
+
+  "card.rfq"(e, L, len) {
+    const css = `    #rq-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY - 10}px; }
+    #rq-card { position: relative; padding: 26px 30px 24px; ${panel} }
+    #rq-kicker { font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}B3; }
+    #rq-draw { display: block; width: 100%; height: 230px; margin-top: 10px; }
+    .rq-flag { position: absolute; font-family: ${FONT.mono}; font-size: 30px; font-weight: 700; color: ${C.vintage_cream}; background: ${C.crimson_rouge};
+               padding: 6px 14px; border-radius: 6px; }
+    #rq-f0 { left: 380px; top: 72px; } #rq-f1 { left: 470px; top: 218px; }
+    #rq-quote { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; padding: 18px 28px; ${panel} border-color: ${C.crimson_rouge}; }
+    #rq-q { font-family: ${FONT.display}; font-weight: 900; font-size: 46px; }
+    #rq-bars { display: flex; align-items: flex-end; gap: 8px; height: 60px; }
+    #rq-bars i { display: block; width: 16px; background: ${C.tweed_grey}; transform-origin: bottom; }
+    #rq-bars i:last-child { background: ${C.crimson_rouge}; }`;
+    const ink = C.vintage_cream;
+    const draw = `<svg id="rq-draw" viewBox="0 0 700 230" fill="none" stroke="${ink}" stroke-width="2.5">
+        <rect id="rq-d0" x="40" y="40" width="300" height="150" rx="6" stroke-dasharray="900" stroke-dashoffset="900"/>
+        <circle id="rq-d1" cx="190" cy="115" r="42" stroke-dasharray="270" stroke-dashoffset="270"/>
+        <path id="rq-d2" d="M40 215 H340 M40 207 V223 M340 207 V223" stroke-dasharray="340" stroke-dashoffset="340" stroke-opacity=".6"/>
+        <rect id="rq-d3" x="420" y="70" width="230" height="90" rx="4" stroke-dasharray="640" stroke-dashoffset="640"/>
+        <path id="rq-d4" d="M420 115 H650" stroke-dasharray="230" stroke-dashoffset="230" stroke-opacity=".5"/>
+      </svg>`;
+    const flags = e.flags.map((f, i) => `<div class="rq-flag" id="rq-f${i}">${esc(f.text)}</div>`).join("");
+    const bars = [38, 52, 30, 46, 58].map((h, i) => `<i id="rq-b${i}" style="height:${h}px"></i>`).join("");
+    const body = `    <div id="rq-wrap" class="clip" data-start="0" data-duration="${len}">
+      <div id="rq-card"><div id="rq-kicker">${esc(e.kicker)}</div>${draw}${flags}</div>
+      <div id="rq-quote"><div id="rq-q">${esc(e.quote)}</div><div id="rq-bars">${bars}</div></div>
+    </div>`;
+    let js = enter("#rq-card");
+    [900, 270, 340, 640, 230].forEach((n, i) => { js += `    tl.fromTo("#rq-d${i}", { attr: { "stroke-dashoffset": ${n} } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, ${r3(0.15 + i * 0.08)});\n`; });
+    e.flags.forEach((f, i) => { js += pop(`#rq-f${i}`, L(f.at), 0.6); });
+    js += enter("#rq-quote", L(e.quote_at));
+    [0, 1, 2, 3, 4].forEach((i) => { js += `    tl.fromTo("#rq-b${i}", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "expo.out" }, ${r3(L(e.history_at) - 0.6 + i * 0.06)});\n`; });
+    js += leave("#rq-wrap", len);
+    return [css, body, js];
+  },
+
+  "chips.connectors"(e, L, len) {
+    const css = `    #cn-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY + 10}px; text-align: center; }
+    #cn-kicker { font-family: ${FONT.mono}; font-size: 30px; letter-spacing: .2em; color: ${C.vintage_cream}B3; margin-bottom: 26px; }
+    #cn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .cn-chip { padding: 26px 10px; font-family: ${FONT.display}; font-weight: 700; font-size: 42px; ${panel} border-radius: 16px; }
+    .cn-chip::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: ${C.crimson_rouge}; margin-right: 14px; vertical-align: middle; }`;
+    const chips = e.chips.map((c, i) => `<div class="cn-chip" id="cn-c${i}">${esc(c.text)}</div>`).join("");
+    const body = `    <div id="cn-wrap" class="clip" data-start="0" data-duration="${len}"><div id="cn-kicker">${esc(e.kicker)}</div><div id="cn-grid">${chips}</div></div>`;
+    let js = `    tl.fromTo("#cn-kicker", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);\n`;
+    e.chips.forEach((c, i) => { js += pop(`#cn-c${i}`, L(c.at), 0.8); });
+    js += leave("#cn-wrap", len);
+    return [css, body, js];
+  },
+
+  "text.strike_affirm"(e, L, len) {
+    const css = `    #sa-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY + 30}px; text-align: center; }
+    #sa-strike { position: relative; display: inline-block; font-family: ${FONT.display}; font-weight: 900; font-size: 84px; color: ${C.tweed_grey}; }
+    #sa-line { position: absolute; left: -10px; right: -10px; top: 54%; height: 9px; background: ${C.crimson_rouge}; transform-origin: left; }
+    #sa-aff { font-style: italic; font-size: 74px; margin-top: 30px; }
+    #sa-aff span { color: ${C.crimson_rouge}; font-style: normal; font-family: ${FONT.display}; font-weight: 900; }`;
+    const body = `    <div id="sa-wrap" class="clip" data-start="0" data-duration="${len}">
+      <div id="sa-strike">${esc(e.strike)}<div id="sa-line"></div></div>
+      <div id="sa-aff"><span>✓</span> ${esc(e.affirm)}</div>
+    </div>`;
+    let js = enter("#sa-strike");
+    js += `    tl.fromTo("#sa-line", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.out" }, ${r3(L(e.strike_at))});\n`;
+    js += enter("#sa-aff", L(e.affirm_at));
+    js += leave("#sa-wrap", len);
+    return [css, body, js];
+  },
+
+  "doc.skillmd"(e, L, len) {
+    const css = `    #sk-bg { position: absolute; inset: 0; background: ${C.cobalt_night}; }
+    #sk-paper { position: absolute; left: 100px; top: 300px; width: 800px; height: 830px; background: ${C.vintage_cream}; color: ${C.midnight_ink};
+                border-radius: 6px; box-shadow: 0 40px 120px rgba(0,0,0,.6); padding: 44px 48px; font-family: ${FONT.mono}; font-size: 30px; line-height: 1.55; }
+    #sk-path { font-size: 28px; letter-spacing: .08em; color: ${C.crimson_rouge}; border-bottom: 2px solid ${C.midnight_ink}; padding-bottom: 14px; margin-bottom: 26px; }
+    .sk-dim { color: ${C.tweed_grey}; }
+    #sk-old { position: relative; display: inline-block; }
+    #sk-oline { position: absolute; left: 0; right: 0; top: 52%; height: 5px; background: ${C.crimson_rouge}; transform-origin: left; }
+    #sk-new { color: ${C.crimson_rouge}; font-weight: 700; }
+    #sk-hand { font-family: ${FONT.serif}; font-style: italic; font-size: 40px; color: ${C.crimson_rouge}; margin-top: 30px; }`;
+    const body = `    <div id="sk-wrap" class="clip" data-start="0" data-duration="${len}">
+      <div id="sk-bg"></div>
+      <div id="sk-paper">
+        <div id="sk-path">${esc(e.path)}</div>
+        <div class="sk-dim">---</div><div>name: ncr-report</div><div>description: Draft an NCR when a</div><div>&nbsp;&nbsp;part fails inspection.</div><div class="sk-dim">---</div>
+        <div>&nbsp;</div><div># Steps</div>
+        <div>1. <span id="sk-old">${esc(e.old)}<span id="sk-oline"></span></span></div>
+        <div id="sk-new">&nbsp;&nbsp;&nbsp;${esc(e.new)}</div>
+        <div>2. Search past NCRs for the defect.</div><div>3. Rank likely causes.</div>
+        <div id="sk-hand">← your team's procedure</div>
+      </div>
+    </div>`;
+    let js = `    tl.fromTo("#sk-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    tl.fromTo("#sk-paper", { y: 240, rotation: -2, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
+    tl.fromTo("#sk-oline", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, ${r3(L(e.rewrite_at))});
+    tl.fromTo("#sk-new", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, ${r3(L(e.rewrite_at) + 0.25)});
+    tl.fromTo("#sk-hand", { opacity: 0 }, { opacity: 1, duration: 0.3 }, ${r3(L(e.rewrite_at) + 0.55)});
+    tl.to("#sk-paper", { opacity: 0, scale: 1.12, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, ${r3(len - 0.26)});
+    tl.to("#sk-bg", { opacity: 0, duration: 0.25 }, ${r3(len - 0.26)});\n`;
+    return [css, body, js];
+  },
+
+  "cta.comment"(e, L, len) {
+    const css = `    #ct-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY + 40}px; text-align: center; }
+    #ct-line { font-style: italic; font-size: 54px; }
+    #ct-pill { display: inline-block; margin-top: 26px; padding: 18px 44px; border-radius: 60px; background: ${C.crimson_rouge}; font-family: ${FONT.display}; font-weight: 900; font-size: 72px; }
+    #ct-pill small { font-family: ${FONT.serif}; font-style: italic; font-weight: 400; font-size: 44px; margin-right: 14px; }`;
+    const letters = [...e.word].map((c, i) => `<span id="ct-k${i}" style="opacity:0">${esc(c)}</span>`).join("");
+    const body = `    <div id="ct-wrap" class="clip" data-start="0" data-duration="${len}"><div id="ct-line">${esc(e.line)}</div><div id="ct-pill"><small>Comment</small>${letters}</div></div>`;
+    let js = enter("#ct-line") + pop("#ct-pill", 0.3, 0.8);
+    [...e.word].forEach((_, i) => { js += `    tl.set("#ct-k${i}", { opacity: 1 }, ${r3(Math.max(0.35, L(e.word_at) - 0.25) + 0.06 * i)});\n`; });
+    return [css, body, js];
+  },
+};
+
+// Behind-subject text lives in the root (between plate and cutout), so it is not a scene.
+const behind = events.filter((e) => e.fx === "text.behind_subject");
+const scenes = events.filter((e) => e.fx !== "text.behind_subject");
+for (const e of scenes) {
+  const len = r3(e.to - e.from);
+  const L = (t) => r3(t - e.from);
+  if (!FX[e.fx]) throw new Error(`unknown fx ${e.fx}`);
+  const [css, body, js] = FX[e.fx](e, L, len);
+  writeFileSync(join(OUT, "compositions", `${e.id}.html`), scene(e.id, css, body, js));
+}
+
+// Captions: cream serif words, active word boxed in Midnight Ink, upcoming words Tweed Grey.
+{
+  const capTop = 735, capLow = 1162;
+  const docWins = events.filter((e) => e.fx.startsWith("doc.")).map((e) => [e.from, e.to]);
+  const onDoc = (c) => docWins.some(([a, z]) => c.start < z && c.end > a);
+  let body = "", js = "";
+  for (const c of captions) {
+    body += `    <div id="${c.id}" class="cap clip" data-start="${c.start}" data-duration="${r3(c.end - c.start)}" style="top:${onDoc(c) ? capLow : capTop}px">${c.words.map((w, i) => `<span id="${c.id}-w${i}" class="w">${esc(w.text)}</span>`).join("")}</div>\n`;
+    js += `    tl.fromTo("#${c.id}", { opacity: 0 }, { opacity: 1, duration: 0.08 }, ${c.start});\n`;
+    c.words.forEach((w, i) => {
+      js += `    tl.fromTo("#${c.id}-w${i}", { color: "#9A9AA2", backgroundColor: "rgba(26,27,34,0)" }, { color: "${C.vintage_cream}", backgroundColor: "rgba(26,27,34,0.92)", duration: 0.06 }, ${Math.max(c.start, w.start)});\n`;
+    });
+    js += `    tl.to("#${c.id}", { opacity: 0, duration: 0.08 }, ${r3(c.end - 0.08)});\n`;
+  }
+  const css = `    .cap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; text-align: center; font-family: ${FONT.serif}; font-size: 58px; line-height: 1.25; overflow: visible; }
+    .cap .w { display: inline-block; padding: 0 10px; margin: 0 1px; border-radius: 6px; }`;
+  writeFileSync(join(OUT, "compositions", "captions.html"), scene("captions", css, body, js));
+}
+
+// SFX lanes
+const SFX_LEN = { impact: 0.9, paper: 0.5, tick: 0.06, stamp: 0.35, whoosh: 0.45, pen: 0.6, slash: 0.3 };
+const SFX_VOL = { impact: 0.5, paper: 0.45, tick: 0.5, stamp: 0.55, whoosh: 0.45, pen: 0.35, slash: 0.45 };
+const lanes = [];
+const sfxTags = sfx.map((s, i) => {
+  const len = Math.min(SFX_LEN[s.name] ?? 0.5, D - s.t);
+  let lane = lanes.findIndex((end) => end <= s.t);
+  if (lane < 0) { lane = lanes.length; lanes.push(0); }
+  lanes[lane] = s.t + len;
+  return `      <audio id="sfx${i}" src="assets/sfx/${s.name}.wav" data-start="${s.t}" data-duration="${r3(len)}" data-volume="${SFX_VOL[s.name] ?? 0.5}" data-track-index="${6 + lane}"></audio>`;
+}).join("\n");
+
+const camJs = [`      tl.set("#cam", { scale: 1, transformOrigin: "${FACE[0]}px ${FACE[1]}px" }, 0);`, `      tl.set("#bgcam", { scale: 1, transformOrigin: "${FACE[0]}px ${FACE[1]}px" }, 0);`];
+for (const c of camera) {
+  const bg = r3(1 + (c.scale - 1) * 0.35);
+  if (c.type === "cut") camJs.push(`      tl.set("#cam", { scale: ${c.scale} }, ${c.at});`, `      tl.set("#bgcam", { scale: ${bg} }, ${c.at});`);
+  else camJs.push(`      tl.to("#cam", { scale: ${c.scale}, duration: ${c.dur}, ease: "power2.inOut" }, ${c.at});`, `      tl.to("#bgcam", { scale: ${bg}, duration: ${c.dur}, ease: "power2.inOut" }, ${c.at});`);
+}
+let behindHtml = "";
+for (const b of behind) {
+  const len = r3(b.to - b.from);
+  behindHtml += `        <div id="bh-${b.id}" class="clip bh" data-start="${b.from}" data-duration="${len}" data-layout-allow-overlap><div id="bh-${b.id}-t" class="bh-t">${esc(b.text)}</div></div>\n`;
+  camJs.push(`      tl.fromTo("#bh-${b.id}-t", { opacity: 0, y: 80, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, ${b.at});`);
+  camJs.push(`      tl.to("#bh-${b.id}-t", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, ${r3(b.to - 0.21)});`);
+}
+const av = sb.avatar;
+const avatarTag = av.kind === "video"
+  ? `<video id="avatar" class="clip" src="assets/avatar.webm" muted playsinline data-start="0" data-duration="${r3(speechEnd + 0.35)}" data-track-index="0" data-layout-allow-occlusion></video>`
+  : `<img id="avatar" class="clip" src="assets/avatar.png" alt="" data-start="0" data-duration="${D}" data-track-index="0" data-layout-allow-occlusion />`;
+const hosts = scenes.map((e) => `      <div id="${e.id}" data-composition-id="${e.id}" data-composition-src="compositions/${e.id}.html" data-start="${e.from}" data-duration="${r3(e.to - e.from)}" data-track-index="${e.fx.startsWith("doc.") ? 3 : 2}" data-track-kind="graphics" data-width="${W}" data-height="${H}" style="z-index:${e.fx.startsWith("doc.") ? 7 : 5}"></div>`).join("\n");
+
+const index = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=${W}, height=${H}" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <!-- GENERATED by engine/build.mjs from ${sb.video_id}/storyboard.json. Edit the storyboard, not this file. -->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: ${W}px; height: ${H}px; overflow: hidden; background: ${C.midnight_ink}; }
+      #root { position: relative; width: ${W}px; height: ${H}px; overflow: hidden; }
+      #ground { position: absolute; inset: 0; background:
+        radial-gradient(130% 75% at 50% 60%, rgba(0,0,0,0) 50%, rgba(0,0,0,.6) 100%),
+        linear-gradient(180deg, ${C.cobalt_night} 0%, ${C.midnight_ink} 48%, #121218 100%); }
+      #bgcam { position: absolute; inset: 0; }
+      #glow { position: absolute; left: ${FACE[0] - 560}px; top: ${FACE[1] - 660}px; width: 1120px; height: 1120px; border-radius: 50%;
+        background: radial-gradient(circle, ${C.espresso_wood}CC 0%, ${C.espresso_wood}55 38%, rgba(77,56,44,0) 70%); }
+      #lamp { position: absolute; left: 820px; top: 520px; width: 260px; height: 260px; border-radius: 50%;
+        background: radial-gradient(circle, ${C.vintage_cream}40 0%, rgba(240,235,212,0) 70%); }
+      #cam { position: absolute; inset: 0; }
+      .bh { position: absolute; inset: 0; z-index: 2; }
+      .bh-t { position: absolute; left: 0; width: 100%; top: 880px; text-align: center; font-family: 'Playfair Display', serif; font-weight: 900;
+        font-size: 230px; letter-spacing: -0.03em; color: ${C.crimson_rouge}; margin-left: -36px; }
+      #avatar { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; object-fit: contain; z-index: 3; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="${D}" data-width="${W}" data-height="${H}">
+      <div id="ground"></div>
+      <div id="bgcam"><div id="glow"></div></div>
+      <div id="cam">
+${behindHtml}        ${avatarTag}
+      </div>
+      <audio id="voice" src="assets/voice.wav" data-start="0" data-duration="${r3(Math.min(D, parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(OUT, "assets", "voice.wav")]).toString())))}" data-volume="1" data-track-index="5"></audio>
+${hosts}
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="${D}" data-track-index="4" data-track-kind="captions" data-width="${W}" data-height="${H}" style="z-index:8"></div>
+${sfxTags}
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+${camJs.join("\n")}
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
+`;
+writeFileSync(join(OUT, "index.html"), index);
+if (!existsSync(join(OUT, "meta.json"))) writeFileSync(join(OUT, "meta.json"), JSON.stringify({ id: sb.video_id, name: sb.video_id }, null, 2));
+console.log(`edl: ${events.length} events, ${captions.length} caption groups, ${sfx.length} sfx, ${D}s -> ${OUT}`);

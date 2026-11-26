@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #cn-wrap { position: absolute; left: 120px; width: 768px; top: 310px; text-align: center; }
+    #cn-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 30px; letter-spacing: .2em; color: #F0EBD4B3; margin-bottom: 26px; }
+    #cn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .cn-chip { padding: 26px 10px; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 42px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); border-radius: 16px; }
+    .cn-chip::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #C41E3A; margin-right: 14px; vertical-align: middle; }
+  </style>
+  <div id="root" data-composition-id="connect" data-width="1080" data-height="1920">
+    <div id="cn-wrap" class="clip" data-start="0" data-duration="5.691"><div id="cn-kicker">CONNECTS TO</div><div id="cn-grid"><div class="cn-chip" id="cn-c0">Autodesk Fusion</div><div class="cn-chip" id="cn-c1">Infor</div><div class="cn-chip" id="cn-c2">Microsoft 365</div><div class="cn-chip" id="cn-c3">NetSuite</div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cn-kicker", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    tl.fromTo("#cn-c0", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 0.775);
+    tl.fromTo("#cn-c0", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, 0.775);
+    tl.fromTo("#cn-c1", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 2.013);
+    tl.fromTo("#cn-c1", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, 2.013);
+    tl.fromTo("#cn-c2", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 2.866);
+    tl.fromTo("#cn-c2", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, 2.866);
+    tl.fromTo("#cn-c3", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 4.658);
+    tl.fromTo("#cn-c3", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, 4.658);
+    tl.to("#cn-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 5.481);
+
+    window.__timelines["connect"] = tl;
+  </script>
+</template>

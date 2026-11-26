@@ -1,0 +1,20 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #hook-wrap { position: absolute; left: 120px; width: 768px; top: 470px; text-align: center; }
+    .hk-line { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 104px; line-height: 1.02; letter-spacing: -0.02em; text-shadow: 0 8px 40px rgba(0,0,0,.6); }
+    .hk-line .acc { color: #C41E3A; font-style: italic; }
+    #hook-rule { width: 120px; height: 4px; background: #C41E3A; margin: 26px auto 0; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-wrap" class="clip" data-start="0" data-duration="2.725"><div class="hk-line" id="hook-l0"><span class="">Claude</span> <span class="">got</span></div><div class="hk-line" id="hook-l1"><span class="">a</span> <span class="acc">factory</span> <span class="">job.</span></div><div id="hook-rule"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hook-wrap", { scale: 1.04 }, { scale: 1, duration: 0.6, ease: "expo.out" }, 0);
+    tl.fromTo("#hook-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.15);
+    tl.to("#hook-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.515);
+
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

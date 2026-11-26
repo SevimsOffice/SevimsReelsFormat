@@ -1,0 +1,23 @@
+{
+  "name": "A Private Affair — Noir Cinema",
+  "source": "User reference stills + palette brief (2026-11-26)",
+  "colors": {
+    "midnight_ink": { "hex": "#1A1B22", "use": "deep backgrounds, caption boxes, dominant dark elements" },
+    "espresso_wood": { "hex": "#4D382C", "use": "warm shadows, warm glow behind the speaker, text panels" },
+    "cobalt_night": { "hex": "#0D0E44", "use": "atmospheric gradients, transitions (fade-to-cobalt)" },
+    "crimson_rouge": { "hex": "#C41E3A", "use": "PRIMARY ACCENT: numbers, stamps, strike lines, CTA. One accent moment per beat." },
+    "tweed_grey": { "hex": "#6A6B71", "use": "mid-tones, secondary text, upcoming caption words" },
+    "vintage_cream": { "hex": "#F0EBD4", "use": "titles, paper inserts, key light glow, borders" }
+  },
+  "type": {
+    "display": "Playfair Display 900 (titles, big numbers)",
+    "editorial": "EB Garamond (body, italic annotations, captions)",
+    "mono": "IBM Plex Mono (labels, file names, technical tags)"
+  },
+  "rules": [
+    "No neon/lime; accent is Crimson Rouge only.",
+    "Cream text on Midnight Ink; Midnight Ink text on Cream paper.",
+    "Transitions between worlds fade through Cobalt Night.",
+    "Warm Espresso glow behind the head acts as the key-light / subject separation."
+  ]
+}

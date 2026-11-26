@@ -1,0 +1,501 @@
+{
+  "$comment": "Anchors are word ids from words.json: {\"w\": id, \"e\": \"start|end\", \"o\": offset_sec}. Seconds never appear here.",
+  "video_id": "2026-11-26_claude-manufacturing",
+  "topic": "News: Anthropic launches Claude for Manufacturing (plugin, 17 skills, 4 connectors)",
+  "words_file": "words.json",
+  "voice": "assets/voice.wav",
+  "avatar": {
+    "kind": "still",
+    "src": "assets/avatar.png",
+    "$note": "Placeholder until the new HeyGen take arrives; set kind=video and src=avatar.webm then."
+  },
+  "tail_hold_sec": 1.8,
+  "palette": "../../style/palette-noir.json",
+  "captions": {
+    "max_words": 3,
+    "off": [
+      [
+        0,
+        8
+      ]
+    ]
+  },
+  "camera": [
+    {
+      "type": "cut",
+      "at": {
+        "w": 7
+      },
+      "scale": 1.12
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 9,
+        "o": -0.15
+      },
+      "scale": 1.0,
+      "dur": 0.6
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 45
+      },
+      "scale": 1.1
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 52,
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 82
+      },
+      "scale": 1.14
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 94,
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.6
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 110
+      },
+      "scale": 1.1
+    }
+  ],
+  "events": [
+    {
+      "id": "hook",
+      "fx": "title.hook",
+      "from": 0,
+      "to": {
+        "w": 8,
+        "e": "end",
+        "o": 0.25
+      },
+      "lines": [
+        "Claude got",
+        "a factory job."
+      ],
+      "accent_word": "factory",
+      "sfx": [
+        [
+          "impact",
+          0
+        ]
+      ]
+    },
+    {
+      "id": "plugin",
+      "fx": "card.counter",
+      "from": {
+        "w": 9,
+        "o": -0.05
+      },
+      "to": {
+        "w": 19,
+        "e": "end",
+        "o": 0.45
+      },
+      "kicker": "ANTHROPIC · NEW PLUGIN",
+      "title": "Claude for Manufacturing",
+      "title_at": {
+        "w": 11
+      },
+      "number": 17,
+      "number_at": {
+        "w": 17
+      },
+      "unit": "ready-made skills",
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 9
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 17
+          }
+        ]
+      ]
+    },
+    {
+      "id": "ncr",
+      "fx": "doc.ncr",
+      "from": {
+        "w": 25,
+        "o": -0.25
+      },
+      "to": {
+        "w": 44,
+        "e": "end",
+        "o": 0.35
+      },
+      "header": "NONCONFORMANCE REPORT",
+      "ref": "NCR · EXAMPLE",
+      "stamp": {
+        "text": "FAILED INSPECTION",
+        "at": {
+          "w": 27
+        }
+      },
+      "rows": [
+        {
+          "label": "Report",
+          "value": "Drafted against the requirement",
+          "at": {
+            "w": 30
+          }
+        },
+        {
+          "label": "History",
+          "value": "Past failures with the same defect",
+          "at": {
+            "w": 34
+          }
+        }
+      ],
+      "causes_title": "Likely causes, ranked",
+      "causes_at": {
+        "w": 37
+      },
+      "causes": [
+        "Tool wear",
+        "Fixture offset",
+        "Material lot"
+      ],
+      "stamp2": {
+        "text": "8D · DRAFT",
+        "at": {
+          "w": 42
+        }
+      },
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 25,
+            "o": -0.25
+          }
+        ],
+        [
+          "stamp",
+          {
+            "w": 27
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 30
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 34
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 37
+          }
+        ],
+        [
+          "stamp",
+          {
+            "w": 42
+          }
+        ],
+        [
+          "whoosh",
+          {
+            "w": 44,
+            "e": "end",
+            "o": 0.1
+          }
+        ]
+      ]
+    },
+    {
+      "id": "signoff",
+      "fx": "card.signature",
+      "from": {
+        "w": 45
+      },
+      "to": {
+        "w": 51,
+        "e": "end",
+        "o": 0.45
+      },
+      "label": "Quality engineer",
+      "line": "Reviewed & signed",
+      "sign_at": {
+        "w": 51
+      },
+      "sfx": [
+        [
+          "pen",
+          {
+            "w": 51
+          }
+        ]
+      ]
+    },
+    {
+      "id": "rfq",
+      "fx": "card.rfq",
+      "from": {
+        "w": 52,
+        "o": -0.05
+      },
+      "to": {
+        "w": 71,
+        "e": "end",
+        "o": 0.3
+      },
+      "kicker": "RFQ · INCOMING",
+      "flags": [
+        {
+          "text": "tolerance?",
+          "at": {
+            "w": 60
+          }
+        },
+        {
+          "text": "finish?",
+          "at": {
+            "w": 63
+          }
+        }
+      ],
+      "quote_at": {
+        "w": 65
+      },
+      "quote": "Quote · draft",
+      "history_at": {
+        "w": 70
+      },
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 52
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 57
+          }
+        ],
+        [
+          "stamp",
+          {
+            "w": 65
+          }
+        ]
+      ]
+    },
+    {
+      "id": "connect",
+      "fx": "chips.connectors",
+      "from": {
+        "w": 72,
+        "o": -0.05
+      },
+      "to": {
+        "w": 81,
+        "e": "end",
+        "o": 0.35
+      },
+      "kicker": "CONNECTS TO",
+      "chips": [
+        {
+          "text": "Autodesk Fusion",
+          "at": {
+            "w": 75
+          }
+        },
+        {
+          "text": "Infor",
+          "at": {
+            "w": 77
+          }
+        },
+        {
+          "text": "Microsoft 365",
+          "at": {
+            "w": 78
+          }
+        },
+        {
+          "text": "NetSuite",
+          "at": {
+            "w": 81
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 75
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 77
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 78
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 81
+          }
+        ]
+      ]
+    },
+    {
+      "id": "guard",
+      "fx": "text.strike_affirm",
+      "from": {
+        "w": 82,
+        "o": -0.05
+      },
+      "to": {
+        "w": 93,
+        "e": "end",
+        "o": 0.35
+      },
+      "strike": "Machine control",
+      "strike_at": {
+        "w": 84
+      },
+      "affirm": "Human sign-off",
+      "affirm_at": {
+        "w": 89
+      },
+      "sfx": [
+        [
+          "slash",
+          {
+            "w": 84
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 89
+          }
+        ]
+      ]
+    },
+    {
+      "id": "folders",
+      "fx": "text.behind_subject",
+      "from": {
+        "w": 97,
+        "o": -0.05
+      },
+      "to": {
+        "w": 100,
+        "e": "end",
+        "o": 0.5
+      },
+      "text": "FOLDERS",
+      "at": {
+        "w": 100
+      },
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 99
+          }
+        ]
+      ]
+    },
+    {
+      "id": "skillmd",
+      "fx": "doc.skillmd",
+      "from": {
+        "w": 101,
+        "o": -0.2
+      },
+      "to": {
+        "w": 109,
+        "e": "end",
+        "o": 0.35
+      },
+      "path": "skills/ncr-report/SKILL.md",
+      "rewrite_at": {
+        "w": 103
+      },
+      "old": "Use the standard NCR template.",
+      "new": "Use OUR template, cite the drawing rev.",
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 101,
+            "o": -0.2
+          }
+        ],
+        [
+          "slash",
+          {
+            "w": 103
+          }
+        ]
+      ]
+    },
+    {
+      "id": "cta",
+      "fx": "cta.comment",
+      "from": {
+        "w": 110,
+        "o": -0.05
+      },
+      "to": "end",
+      "line": "Want the build guide?",
+      "word": "SKILL",
+      "word_at": {
+        "w": 119
+      },
+      "sfx": [
+        [
+          "impact",
+          {
+            "w": 119
+          }
+        ]
+      ]
+    }
+  ]
+}

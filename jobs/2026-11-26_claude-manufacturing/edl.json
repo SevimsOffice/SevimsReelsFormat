@@ -1,0 +1,1311 @@
+{
+ "video_id": "2026-11-26_claude-manufacturing",
+ "duration": 46.524,
+ "fps": 30,
+ "camera": [
+  {
+   "type": "cut",
+   "at": 1.579,
+   "scale": 1.12
+  },
+  {
+   "type": "ease",
+   "at": 2.581,
+   "scale": 1,
+   "dur": 0.6
+  },
+  {
+   "type": "cut",
+   "at": 18.198,
+   "scale": 1.1
+  },
+  {
+   "type": "ease",
+   "at": 20.872,
+   "scale": 1,
+   "dur": 0.5
+  },
+  {
+   "type": "cut",
+   "at": 32.298,
+   "scale": 1.14
+  },
+  {
+   "type": "ease",
+   "at": 36.652,
+   "scale": 1,
+   "dur": 0.6
+  },
+  {
+   "type": "cut",
+   "at": 42.085,
+   "scale": 1.1
+  }
+ ],
+ "events": [
+  {
+   "id": "hook",
+   "fx": "title.hook",
+   "from": 0,
+   "to": 2.725,
+   "lines": [
+    "Claude got",
+    "a factory job."
+   ],
+   "accent_word": "factory",
+   "sfx": [
+    [
+     "impact",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "plugin",
+   "fx": "card.counter",
+   "from": 2.681,
+   "to": 8.173,
+   "kicker": "ANTHROPIC · NEW PLUGIN",
+   "title": "Claude for Manufacturing",
+   "title_at": 3.712,
+   "number": 17,
+   "number_at": 6.059,
+   "unit": "ready-made skills",
+   "sfx": [
+    [
+     "paper",
+     2.731
+    ],
+    [
+     "tick",
+     6.059
+    ]
+   ]
+  },
+  {
+   "id": "ncr",
+   "fx": "doc.ncr",
+   "from": 9.009,
+   "to": 18.292,
+   "header": "NONCONFORMANCE REPORT",
+   "ref": "NCR · EXAMPLE",
+   "stamp": {
+    "text": "FAILED INSPECTION",
+    "at": 10.027
+   },
+   "rows": [
+    {
+     "label": "Report",
+     "value": "Drafted against the requirement",
+     "at": 11.799
+    },
+    {
+     "label": "History",
+     "value": "Past failures with the same defect",
+     "at": 13.633
+    }
+   ],
+   "causes_title": "Likely causes, ranked",
+   "causes_at": 14.998,
+   "causes": [
+    "Tool wear",
+    "Fixture offset",
+    "Material lot"
+   ],
+   "stamp2": {
+    "text": "8D · DRAFT",
+    "at": 16.833
+   },
+   "sfx": [
+    [
+     "paper",
+     9.009
+    ],
+    [
+     "stamp",
+     10.027
+    ],
+    [
+     "tick",
+     11.799
+    ],
+    [
+     "tick",
+     13.633
+    ],
+    [
+     "tick",
+     14.998
+    ],
+    [
+     "stamp",
+     16.833
+    ],
+    [
+     "whoosh",
+     18.042
+    ]
+   ]
+  },
+  {
+   "id": "signoff",
+   "fx": "card.signature",
+   "from": 18.198,
+   "to": 21.166,
+   "label": "Quality engineer",
+   "line": "Reviewed & signed",
+   "sign_at": 20.119,
+   "sfx": [
+    [
+     "pen",
+     20.119
+    ]
+   ]
+  },
+  {
+   "id": "rfq",
+   "fx": "card.rfq",
+   "from": 20.922,
+   "to": 26.731,
+   "kicker": "RFQ · INCOMING",
+   "flags": [
+    {
+     "text": "tolerance?",
+     "at": 23.423
+    },
+    {
+     "text": "finish?",
+     "at": 24.02
+    }
+   ],
+   "quote_at": 24.618,
+   "quote": "Quote · draft",
+   "history_at": 25.684,
+   "sfx": [
+    [
+     "paper",
+     20.972
+    ],
+    [
+     "tick",
+     22.74
+    ],
+    [
+     "stamp",
+     24.618
+    ]
+   ]
+  },
+  {
+   "id": "connect",
+   "fx": "chips.connectors",
+   "from": 26.701,
+   "to": 32.392,
+   "kicker": "CONNECTS TO",
+   "chips": [
+    {
+     "text": "Autodesk Fusion",
+     "at": 27.476
+    },
+    {
+     "text": "Infor",
+     "at": 28.714
+    },
+    {
+     "text": "Microsoft 365",
+     "at": 29.567
+    },
+    {
+     "text": "NetSuite",
+     "at": 31.359
+    }
+   ],
+   "sfx": [
+    [
+     "tick",
+     27.476
+    ],
+    [
+     "tick",
+     28.714
+    ],
+    [
+     "tick",
+     29.567
+    ],
+    [
+     "tick",
+     31.359
+    ]
+   ]
+  },
+  {
+   "id": "guard",
+   "fx": "text.strike_affirm",
+   "from": 32.248,
+   "to": 36.825,
+   "strike": "Machine control",
+   "strike_at": 32.639,
+   "affirm": "Human sign-off",
+   "affirm_at": 34.32,
+   "sfx": [
+    [
+     "slash",
+     32.639
+    ],
+    [
+     "tick",
+     34.32
+    ]
+   ]
+  },
+  {
+   "id": "folders",
+   "fx": "text.behind_subject",
+   "from": 37.726,
+   "to": 39.599,
+   "text": "FOLDERS",
+   "at": 38.501,
+   "sfx": [
+    [
+     "whoosh",
+     38.331
+    ]
+   ]
+  },
+  {
+   "id": "skillmd",
+   "fx": "doc.skillmd",
+   "from": 39.112,
+   "to": 42.158,
+   "path": "skills/ncr-report/SKILL.md",
+   "rewrite_at": 39.824,
+   "old": "Use the standard NCR template.",
+   "new": "Use OUR template, cite the drawing rev.",
+   "sfx": [
+    [
+     "paper",
+     39.112
+    ],
+    [
+     "slash",
+     39.824
+    ]
+   ]
+  },
+  {
+   "id": "cta",
+   "fx": "cta.comment",
+   "from": 42.035,
+   "to": 46.524,
+   "line": "Want the build guide?",
+   "word": "SKILL",
+   "word_at": 43.579,
+   "sfx": [
+    [
+     "impact",
+     43.579
+    ]
+   ]
+  }
+ ],
+ "captions": [
+  {
+   "id": "cap0",
+   "start": 2.671,
+   "end": 4.079,
+   "words": [
+    {
+     "text": "Anthropic",
+     "start": 2.731,
+     "end": 3.285
+    },
+    {
+     "text": "launched",
+     "start": 3.328,
+     "end": 3.627
+    },
+    {
+     "text": "Claude",
+     "start": 3.712,
+     "end": 4.011
+    }
+   ]
+  },
+  {
+   "id": "cap1",
+   "start": 4.079,
+   "end": 5.231,
+   "words": [
+    {
+     "text": "for",
+     "start": 4.139,
+     "end": 4.224
+    },
+    {
+     "text": "Manufacturing,",
+     "start": 4.267,
+     "end": 5.099
+    }
+   ]
+  },
+  {
+   "id": "cap2",
+   "start": 5.231,
+   "end": 5.999,
+   "words": [
+    {
+     "text": "a",
+     "start": 5.291,
+     "end": 5.376
+    },
+    {
+     "text": "plugin",
+     "start": 5.419,
+     "end": 5.803
+    },
+    {
+     "text": "with",
+     "start": 5.888,
+     "end": 5.973
+    }
+   ]
+  },
+  {
+   "id": "cap3",
+   "start": 5.999,
+   "end": 8.004,
+   "words": [
+    {
+     "text": "seventeen",
+     "start": 6.059,
+     "end": 6.613
+    },
+    {
+     "text": "ready-made",
+     "start": 6.656,
+     "end": 7.04
+    },
+    {
+     "text": "skills.",
+     "start": 7.125,
+     "end": 7.723
+    }
+   ]
+  },
+  {
+   "id": "cap4",
+   "start": 8.004,
+   "end": 8.473,
+   "words": [
+    {
+     "text": "Here",
+     "start": 8.064,
+     "end": 8.235
+    },
+    {
+     "text": "is",
+     "start": 8.277,
+     "end": 8.32
+    },
+    {
+     "text": "what",
+     "start": 8.363,
+     "end": 8.491
+    }
+   ]
+  },
+  {
+   "id": "cap5",
+   "start": 8.473,
+   "end": 9.199,
+   "words": [
+    {
+     "text": "that",
+     "start": 8.533,
+     "end": 8.661
+    },
+    {
+     "text": "means.",
+     "start": 8.747,
+     "end": 9.067
+    }
+   ]
+  },
+  {
+   "id": "cap6",
+   "start": 9.199,
+   "end": 10.308,
+   "words": [
+    {
+     "text": "A",
+     "start": 9.259,
+     "end": 9.643
+    },
+    {
+     "text": "part",
+     "start": 9.685,
+     "end": 9.899
+    },
+    {
+     "text": "fails",
+     "start": 10.027,
+     "end": 10.24
+    }
+   ]
+  },
+  {
+   "id": "cap7",
+   "start": 10.308,
+   "end": 11.312,
+   "words": [
+    {
+     "text": "inspection.",
+     "start": 10.368,
+     "end": 11.041
+    }
+   ]
+  },
+  {
+   "id": "cap8",
+   "start": 11.312,
+   "end": 12.165,
+   "words": [
+    {
+     "text": "Claude",
+     "start": 11.372,
+     "end": 11.713
+    },
+    {
+     "text": "writes",
+     "start": 11.799,
+     "end": 11.969
+    },
+    {
+     "text": "the",
+     "start": 12.097,
+     "end": 12.182
+    }
+   ]
+  },
+  {
+   "id": "cap9",
+   "start": 12.165,
+   "end": 13.573,
+   "words": [
+    {
+     "text": "nonconformance",
+     "start": 12.225,
+     "end": 12.865
+    },
+    {
+     "text": "report,",
+     "start": 12.908,
+     "end": 13.335
+    }
+   ]
+  },
+  {
+   "id": "cap10",
+   "start": 13.573,
+   "end": 14.938,
+   "words": [
+    {
+     "text": "checks",
+     "start": 13.633,
+     "end": 13.889
+    },
+    {
+     "text": "past",
+     "start": 13.932,
+     "end": 14.145
+    },
+    {
+     "text": "failures,",
+     "start": 14.273,
+     "end": 14.828
+    }
+   ]
+  },
+  {
+   "id": "cap11",
+   "start": 14.938,
+   "end": 15.877,
+   "words": [
+    {
+     "text": "ranks",
+     "start": 14.998,
+     "end": 15.383
+    },
+    {
+     "text": "the",
+     "start": 15.511,
+     "end": 15.596
+    },
+    {
+     "text": "likely",
+     "start": 15.639,
+     "end": 15.767
+    }
+   ]
+  },
+  {
+   "id": "cap12",
+   "start": 15.877,
+   "end": 16.56,
+   "words": [
+    {
+     "text": "causes,",
+     "start": 15.937,
+     "end": 16.471
+    }
+   ]
+  },
+  {
+   "id": "cap13",
+   "start": 16.56,
+   "end": 17.285,
+   "words": [
+    {
+     "text": "and",
+     "start": 16.62,
+     "end": 16.791
+    },
+    {
+     "text": "drafts",
+     "start": 16.833,
+     "end": 17.132
+    },
+    {
+     "text": "the",
+     "start": 17.217,
+     "end": 17.302
+    }
+   ]
+  },
+  {
+   "id": "cap14",
+   "start": 17.285,
+   "end": 18.138,
+   "words": [
+    {
+     "text": "8D.",
+     "start": 17.345,
+     "end": 17.942
+    }
+   ]
+  },
+  {
+   "id": "cap15",
+   "start": 18.138,
+   "end": 19.205,
+   "words": [
+    {
+     "text": "Your",
+     "start": 18.198,
+     "end": 18.369
+    },
+    {
+     "text": "quality",
+     "start": 18.412,
+     "end": 18.668
+    },
+    {
+     "text": "engineer",
+     "start": 18.796,
+     "end": 19.18
+    }
+   ]
+  },
+  {
+   "id": "cap16",
+   "start": 19.205,
+   "end": 20.059,
+   "words": [
+    {
+     "text": "just",
+     "start": 19.265,
+     "end": 19.393
+    },
+    {
+     "text": "reviews",
+     "start": 19.436,
+     "end": 19.82
+    },
+    {
+     "text": "and",
+     "start": 19.948,
+     "end": 20.076
+    }
+   ]
+  },
+  {
+   "id": "cap17",
+   "start": 20.059,
+   "end": 20.912,
+   "words": [
+    {
+     "text": "signs.",
+     "start": 20.119,
+     "end": 20.716
+    }
+   ]
+  },
+  {
+   "id": "cap18",
+   "start": 20.912,
+   "end": 21.808,
+   "words": [
+    {
+     "text": "An",
+     "start": 20.972,
+     "end": 21.057
+    },
+    {
+     "text": "RFQ",
+     "start": 21.1,
+     "end": 21.569
+    },
+    {
+     "text": "comes",
+     "start": 21.612,
+     "end": 21.74
+    }
+   ]
+  },
+  {
+   "id": "cap19",
+   "start": 21.808,
+   "end": 22.296,
+   "words": [
+    {
+     "text": "in.",
+     "start": 21.868,
+     "end": 22.155
+    }
+   ]
+  },
+  {
+   "id": "cap20",
+   "start": 22.296,
+   "end": 23.235,
+   "words": [
+    {
+     "text": "Claude",
+     "start": 22.356,
+     "end": 22.655
+    },
+    {
+     "text": "flags",
+     "start": 22.74,
+     "end": 23.082
+    },
+    {
+     "text": "what",
+     "start": 23.167,
+     "end": 23.252
+    }
+   ]
+  },
+  {
+   "id": "cap21",
+   "start": 23.235,
+   "end": 23.662,
+   "words": [
+    {
+     "text": "is",
+     "start": 23.295,
+     "end": 23.338
+    },
+    {
+     "text": "missing",
+     "start": 23.423,
+     "end": 23.551
+    }
+   ]
+  },
+  {
+   "id": "cap22",
+   "start": 23.662,
+   "end": 24.344,
+   "words": [
+    {
+     "text": "from",
+     "start": 23.722,
+     "end": 23.85
+    },
+    {
+     "text": "the",
+     "start": 23.892,
+     "end": 23.978
+    },
+    {
+     "text": "drawing",
+     "start": 24.02,
+     "end": 24.276
+    }
+   ]
+  },
+  {
+   "id": "cap23",
+   "start": 24.344,
+   "end": 25.07,
+   "words": [
+    {
+     "text": "and",
+     "start": 24.404,
+     "end": 24.575
+    },
+    {
+     "text": "drafts",
+     "start": 24.618,
+     "end": 24.959
+    },
+    {
+     "text": "the",
+     "start": 25.002,
+     "end": 25.087
+    }
+   ]
+  },
+  {
+   "id": "cap24",
+   "start": 25.07,
+   "end": 25.624,
+   "words": [
+    {
+     "text": "quote",
+     "start": 25.13,
+     "end": 25.3
+    },
+    {
+     "text": "from",
+     "start": 25.386,
+     "end": 25.514
+    },
+    {
+     "text": "your",
+     "start": 25.556,
+     "end": 25.642
+    }
+   ]
+  },
+  {
+   "id": "cap25",
+   "start": 25.624,
+   "end": 26.691,
+   "words": [
+    {
+     "text": "cost",
+     "start": 25.684,
+     "end": 25.855
+    },
+    {
+     "text": "history.",
+     "start": 25.983,
+     "end": 26.431
+    }
+   ]
+  },
+  {
+   "id": "cap26",
+   "start": 26.691,
+   "end": 27.416,
+   "words": [
+    {
+     "text": "It",
+     "start": 26.751,
+     "end": 26.922
+    },
+    {
+     "text": "connects",
+     "start": 26.964,
+     "end": 27.263
+    },
+    {
+     "text": "to",
+     "start": 27.348,
+     "end": 27.434
+    }
+   ]
+  },
+  {
+   "id": "cap27",
+   "start": 27.416,
+   "end": 28.654,
+   "words": [
+    {
+     "text": "Autodesk",
+     "start": 27.476,
+     "end": 27.946
+    },
+    {
+     "text": "Fusion,",
+     "start": 27.988,
+     "end": 28.458
+    }
+   ]
+  },
+  {
+   "id": "cap28",
+   "start": 28.654,
+   "end": 29.507,
+   "words": [
+    {
+     "text": "Infor,",
+     "start": 28.714,
+     "end": 29.332
+    }
+   ]
+  },
+  {
+   "id": "cap29",
+   "start": 29.507,
+   "end": 31.086,
+   "words": [
+    {
+     "text": "Microsoft",
+     "start": 29.567,
+     "end": 30.079
+    },
+    {
+     "text": "365",
+     "start": 30.164,
+     "end": 30.89
+    }
+   ]
+  },
+  {
+   "id": "cap30",
+   "start": 31.086,
+   "end": 32.238,
+   "words": [
+    {
+     "text": "and",
+     "start": 31.146,
+     "end": 31.316
+    },
+    {
+     "text": "NetSuite.",
+     "start": 31.359,
+     "end": 32.042
+    }
+   ]
+  },
+  {
+   "id": "cap31",
+   "start": 32.238,
+   "end": 32.92,
+   "words": [
+    {
+     "text": "And",
+     "start": 32.298,
+     "end": 32.468
+    },
+    {
+     "text": "it",
+     "start": 32.511,
+     "end": 32.596
+    },
+    {
+     "text": "never",
+     "start": 32.639,
+     "end": 32.852
+    }
+   ]
+  },
+  {
+   "id": "cap32",
+   "start": 32.92,
+   "end": 34.047,
+   "words": [
+    {
+     "text": "runs",
+     "start": 32.98,
+     "end": 33.151
+    },
+    {
+     "text": "your",
+     "start": 33.194,
+     "end": 33.322
+    },
+    {
+     "text": "machines.",
+     "start": 33.364,
+     "end": 33.863
+    }
+   ]
+  },
+  {
+   "id": "cap33",
+   "start": 34.047,
+   "end": 35.028,
+   "words": [
+    {
+     "text": "A",
+     "start": 34.107,
+     "end": 34.277
+    },
+    {
+     "text": "human",
+     "start": 34.32,
+     "end": 34.619
+    },
+    {
+     "text": "signs",
+     "start": 34.747,
+     "end": 35.045
+    }
+   ]
+  },
+  {
+   "id": "cap34",
+   "start": 35.028,
+   "end": 36.692,
+   "words": [
+    {
+     "text": "off",
+     "start": 35.088,
+     "end": 35.259
+    },
+    {
+     "text": "on",
+     "start": 35.301,
+     "end": 35.429
+    },
+    {
+     "text": "everything.",
+     "start": 35.515,
+     "end": 36.475
+    }
+   ]
+  },
+  {
+   "id": "cap35",
+   "start": 36.692,
+   "end": 37.716,
+   "words": [
+    {
+     "text": "The",
+     "start": 36.752,
+     "end": 36.88
+    },
+    {
+     "text": "best",
+     "start": 36.923,
+     "end": 37.008
+    },
+    {
+     "text": "part?",
+     "start": 37.093,
+     "end": 37.52
+    }
+   ]
+  },
+  {
+   "id": "cap36",
+   "start": 37.716,
+   "end": 38.441,
+   "words": [
+    {
+     "text": "Skills",
+     "start": 37.776,
+     "end": 38.16
+    },
+    {
+     "text": "are",
+     "start": 38.245,
+     "end": 38.288
+    },
+    {
+     "text": "just",
+     "start": 38.331,
+     "end": 38.416
+    }
+   ]
+  },
+  {
+   "id": "cap37",
+   "start": 38.441,
+   "end": 39.252,
+   "words": [
+    {
+     "text": "folders.",
+     "start": 38.501,
+     "end": 39.099
+    }
+   ]
+  },
+  {
+   "id": "cap38",
+   "start": 39.252,
+   "end": 39.935,
+   "words": [
+    {
+     "text": "Your",
+     "start": 39.312,
+     "end": 39.483
+    },
+    {
+     "text": "team",
+     "start": 39.525,
+     "end": 39.781
+    },
+    {
+     "text": "can",
+     "start": 39.824,
+     "end": 39.952
+    }
+   ]
+  },
+  {
+   "id": "cap39",
+   "start": 39.935,
+   "end": 40.703,
+   "words": [
+    {
+     "text": "rewrite",
+     "start": 39.995,
+     "end": 40.379
+    },
+    {
+     "text": "them",
+     "start": 40.464,
+     "end": 40.592
+    },
+    {
+     "text": "for",
+     "start": 40.635,
+     "end": 40.72
+    }
+   ]
+  },
+  {
+   "id": "cap40",
+   "start": 40.703,
+   "end": 42.025,
+   "words": [
+    {
+     "text": "its",
+     "start": 40.763,
+     "end": 40.848
+    },
+    {
+     "text": "own",
+     "start": 40.891,
+     "end": 41.019
+    },
+    {
+     "text": "procedures.",
+     "start": 41.061,
+     "end": 41.808
+    }
+   ]
+  },
+  {
+   "id": "cap41",
+   "start": 42.025,
+   "end": 42.409,
+   "words": [
+    {
+     "text": "Want",
+     "start": 42.085,
+     "end": 42.256
+    },
+    {
+     "text": "me",
+     "start": 42.299,
+     "end": 42.341
+    },
+    {
+     "text": "to",
+     "start": 42.384,
+     "end": 42.427
+    }
+   ]
+  },
+  {
+   "id": "cap42",
+   "start": 42.409,
+   "end": 42.751,
+   "words": [
+    {
+     "text": "show",
+     "start": 42.469,
+     "end": 42.597
+    },
+    {
+     "text": "you",
+     "start": 42.64,
+     "end": 42.683
+    },
+    {
+     "text": "how",
+     "start": 42.725,
+     "end": 42.768
+    }
+   ]
+  },
+  {
+   "id": "cap43",
+   "start": 42.751,
+   "end": 43.519,
+   "words": [
+    {
+     "text": "to",
+     "start": 42.811,
+     "end": 42.853
+    },
+    {
+     "text": "build",
+     "start": 42.896,
+     "end": 43.024
+    },
+    {
+     "text": "one?",
+     "start": 43.109,
+     "end": 43.408
+    }
+   ]
+  },
+  {
+   "id": "cap44",
+   "start": 43.519,
+   "end": 46.474,
+   "words": [
+    {
+     "text": "Comment",
+     "start": 43.579,
+     "end": 43.877
+    },
+    {
+     "text": "SKILL.",
+     "start": 44.005,
+     "end": 44.374
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "name": "impact",
+   "t": 0,
+   "ev": "hook"
+  },
+  {
+   "name": "paper",
+   "t": 2.731,
+   "ev": "plugin"
+  },
+  {
+   "name": "tick",
+   "t": 6.059,
+   "ev": "plugin"
+  },
+  {
+   "name": "paper",
+   "t": 9.009,
+   "ev": "ncr"
+  },
+  {
+   "name": "stamp",
+   "t": 10.027,
+   "ev": "ncr"
+  },
+  {
+   "name": "tick",
+   "t": 11.799,
+   "ev": "ncr"
+  },
+  {
+   "name": "tick",
+   "t": 13.633,
+   "ev": "ncr"
+  },
+  {
+   "name": "tick",
+   "t": 14.998,
+   "ev": "ncr"
+  },
+  {
+   "name": "stamp",
+   "t": 16.833,
+   "ev": "ncr"
+  },
+  {
+   "name": "whoosh",
+   "t": 18.042,
+   "ev": "ncr"
+  },
+  {
+   "name": "pen",
+   "t": 20.119,
+   "ev": "signoff"
+  },
+  {
+   "name": "paper",
+   "t": 20.972,
+   "ev": "rfq"
+  },
+  {
+   "name": "tick",
+   "t": 22.74,
+   "ev": "rfq"
+  },
+  {
+   "name": "stamp",
+   "t": 24.618,
+   "ev": "rfq"
+  },
+  {
+   "name": "tick",
+   "t": 27.476,
+   "ev": "connect"
+  },
+  {
+   "name": "tick",
+   "t": 28.714,
+   "ev": "connect"
+  },
+  {
+   "name": "tick",
+   "t": 29.567,
+   "ev": "connect"
+  },
+  {
+   "name": "tick",
+   "t": 31.359,
+   "ev": "connect"
+  },
+  {
+   "name": "slash",
+   "t": 32.639,
+   "ev": "guard"
+  },
+  {
+   "name": "tick",
+   "t": 34.32,
+   "ev": "guard"
+  },
+  {
+   "name": "whoosh",
+   "t": 38.331,
+   "ev": "folders"
+  },
+  {
+   "name": "paper",
+   "t": 39.112,
+   "ev": "skillmd"
+  },
+  {
+   "name": "slash",
+   "t": 39.824,
+   "ev": "skillmd"
+  },
+  {
+   "name": "impact",
+   "t": 43.579,
+   "ev": "cta"
+  }
+ ]
+}

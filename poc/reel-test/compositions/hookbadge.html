@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: Inter, sans-serif; }
+    #hb-card { position: absolute; left: 304px; top: 390px; width: 400px; height: 150px; border-radius: 28px;
+               background: rgba(18,22,40,.78); border: 2px solid rgba(255,255,255,.14); box-shadow: 0 20px 60px rgba(0,0,0,.45);
+               display: flex; align-items: center; justify-content: center; gap: 22px; color: #FFFFFF; }
+    #hb-label { font-size: 40px; font-weight: 700; letter-spacing: .12em; opacity: .75; }
+    #hb-num { display: flex; align-items: center; font-size: 96px; font-weight: 900; color: #B6FF3B; }
+    #hb-win { height: 104px; overflow: hidden; }
+    #hb-strip div { height: 104px; line-height: 104px; }
+  </style>
+  <div id="root" data-composition-id="hookbadge" data-width="1080" data-height="1920">
+    <div id="hb-card" class="clip" data-start="0" data-duration="0.73">
+      <div id="hb-label">LOOK</div>
+      <div id="hb-num"><span>#0</span><div id="hb-win" data-layout-allow-overflow data-layout-ignore><div id="hb-strip"><div>0</div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div></div></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hb-card", { scale: 0.86 }, { scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 0);
+    tl.fromTo("#hb-card", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power2.out" }, 0);
+    tl.fromTo("#hb-strip", { y: 0 }, { y: -832, duration: 0.38, ease: "power3.out" }, 0.05);
+    tl.to("#hb-card", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power2.in" }, 0.56);
+    window.__timelines["hookbadge"] = tl;
+  </script>
+</template>

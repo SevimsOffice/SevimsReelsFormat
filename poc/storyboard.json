@@ -1,0 +1,344 @@
+{
+  "$comment": "PoC storyboard. Every event is anchored to transcript WORD IDS, never to seconds. scripts/resolve_edl.mjs turns anchors into composition times using words.json, so a re-generated avatar take does not break the plan.",
+  "video_id": "poc-2026-11-26-twin-ready",
+  "source": {
+    "clip": "assets/avatar.mp4",
+    "cutout": "assets/avatar_alpha.webm",
+    "source_offset_sec": 11.2,
+    "duration_sec": 9.4,
+    "words_file": "work/words.json",
+    "word_id_range": [
+      21,
+      46
+    ],
+    "tail_hold_sec": 1.4,
+    "$tail_comment": "After the last spoken word the final cutout frame is held (freeze still) so the closing line gets ~2 s on screen."
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "zones": {
+    "$comment": "Measured on the cutout at base framing: head top y=910, face y=960-1390. Reels safe band y=288-1248.",
+    "graphics": {
+      "y": [
+        300,
+        640
+      ]
+    },
+    "captions": {
+      "y": [
+        690,
+        850
+      ]
+    },
+    "face": {
+      "y": [
+        880,
+        1400
+      ],
+      "anchor": [
+        540,
+        1150
+      ]
+    }
+  },
+  "style": {
+    "accent": "#B6FF3B",
+    "ink": "#FFFFFF",
+    "ground_top": "#0E1430",
+    "ground_bottom": "#05060B",
+    "font": "Inter",
+    "caption_case": "upper"
+  },
+  "beats": [
+    {
+      "id": "hook",
+      "words": [
+        21,
+        23
+      ],
+      "intent": "Greeting hook: face on frame 0, tight punch-in on the name, ID counter on 'Eight'.",
+      "events": [
+        {
+          "effect": "camera.cut",
+          "anchor": {
+            "word": 22,
+            "edge": "start"
+          },
+          "params": {
+            "scale": 1.14
+          },
+          "sfx": "pop"
+        },
+        {
+          "effect": "badge.counter",
+          "anchor": {
+            "word": 23,
+            "edge": "start",
+            "offset": -0.15
+          },
+          "until": {
+            "word": 23,
+            "edge": "end",
+            "offset": 0.3
+          },
+          "params": {
+            "label": "LOOK",
+            "from": 0,
+            "to": 8,
+            "pad": 2
+          },
+          "sfx": "click"
+        }
+      ]
+    },
+    {
+      "id": "twin",
+      "words": [
+        24,
+        28
+      ],
+      "intent": "Reveal: camera pulls back while DIGITAL TWIN rises behind the speaker; READY badge lands on 'ready'. Captions pause because the headline carries the words.",
+      "captions": "off",
+      "events": [
+        {
+          "effect": "camera.ease",
+          "anchor": {
+            "word": 24,
+            "edge": "start",
+            "offset": -0.1
+          },
+          "params": {
+            "scale": 1.0,
+            "duration": 0.6,
+            "ease": "power2.inOut"
+          },
+          "sfx": "whoosh"
+        },
+        {
+          "effect": "text.behind_subject",
+          "anchor": {
+            "word": 25,
+            "edge": "start"
+          },
+          "until": {
+            "word": 28,
+            "edge": "end",
+            "offset": 0.15
+          },
+          "params": {
+            "lines": [
+              "DIGITAL",
+              "TWIN"
+            ]
+          }
+        },
+        {
+          "effect": "badge.check",
+          "anchor": {
+            "word": 28,
+            "edge": "start"
+          },
+          "until": {
+            "word": 29,
+            "edge": "start",
+            "offset": -0.04
+          },
+          "params": {
+            "text": "READY"
+          },
+          "sfx": "ding"
+        }
+      ]
+    },
+    {
+      "id": "flow",
+      "words": [
+        29,
+        33
+      ],
+      "intent": "Process: three nodes build one per spoken word (Script -> Avatar -> Reel).",
+      "events": [
+        {
+          "effect": "diagram.flow3",
+          "anchor": {
+            "word": 29,
+            "edge": "start"
+          },
+          "until": {
+            "word": 33,
+            "edge": "end",
+            "offset": 0.25
+          },
+          "params": {
+            "nodes": [
+              {
+                "label": "Script",
+                "icon": "doc",
+                "anchor": {
+                  "word": 29,
+                  "edge": "start"
+                }
+              },
+              {
+                "label": "Avatar",
+                "icon": "face",
+                "anchor": {
+                  "word": 30,
+                  "edge": "start"
+                }
+              },
+              {
+                "label": "Reel",
+                "icon": "play",
+                "anchor": {
+                  "word": 31,
+                  "edge": "start"
+                }
+              }
+            ]
+          },
+          "sfx": "click",
+          "sfx_on": "nodes"
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "words": [
+        34,
+        43
+      ],
+      "intent": "UI demo: punch in, a cursor travels to a real-looking button and presses it on 'button'; the reply types on 'share what you think'.",
+      "events": [
+        {
+          "effect": "camera.cut",
+          "anchor": {
+            "word": 34,
+            "edge": "start"
+          },
+          "params": {
+            "scale": 1.12
+          },
+          "sfx": "pop"
+        },
+        {
+          "effect": "ui.button_click",
+          "anchor": {
+            "word": 34,
+            "edge": "start",
+            "offset": 0.05
+          },
+          "until": {
+            "word": 44,
+            "edge": "start"
+          },
+          "params": {
+            "button": "Give feedback",
+            "press": {
+              "word": 38,
+              "edge": "start"
+            },
+            "reply": "Love it!",
+            "reply_from": {
+              "word": 40,
+              "edge": "start"
+            }
+          },
+          "sfx": "click",
+          "sfx_on": "press"
+        }
+      ]
+    },
+    {
+      "id": "outro",
+      "words": [
+        44,
+        46
+      ],
+      "intent": "Close: camera eases back, sign-off line with a light sweep.",
+      "events": [
+        {
+          "effect": "camera.ease",
+          "anchor": {
+            "word": 44,
+            "edge": "start",
+            "offset": -0.15
+          },
+          "params": {
+            "scale": 1.0,
+            "duration": 0.7,
+            "ease": "power2.inOut"
+          },
+          "sfx": "whoosh"
+        },
+        {
+          "effect": "title.signoff",
+          "anchor": {
+            "word": 44,
+            "edge": "start"
+          },
+          "until": "end",
+          "params": {
+            "text": "Built by my AI pipeline",
+            "handle": "SevimsOffice"
+          },
+          "sfx": "shimmer"
+        }
+      ]
+    }
+  ],
+  "captions": {
+    "$comment": "Groups of 2-3 words (high energy). Group ids reference word ids; resolver adds lead-in/out.",
+    "groups": [
+      [
+        21,
+        22
+      ],
+      [
+        23
+      ],
+      [
+        29,
+        30
+      ],
+      [
+        31,
+        32,
+        33
+      ],
+      [
+        34,
+        35
+      ],
+      [
+        36,
+        37,
+        38
+      ],
+      [
+        39,
+        40
+      ],
+      [
+        41,
+        42,
+        43
+      ],
+      [
+        44,
+        45,
+        46
+      ]
+    ],
+    "emphasis": [
+      22,
+      30,
+      37,
+      38,
+      46
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: Inter, sans-serif; }
+    #ou-wrap { position: absolute; left: 120px; width: 768px; top: 370px; text-align: center; }
+    #ou-line { color: #FFFFFF; font-size: 46px; font-weight: 700; opacity: .9; }
+    #ou-line span { display: inline-block; margin: 0 6px; }
+    #ou-handle { position: relative; margin-top: 18px; font-size: 92px; font-weight: 900; letter-spacing: -0.02em; color: #B6FF3B; display: inline-block; overflow: hidden; }
+    #ou-sweep { position: absolute; top: 0; left: 0; width: 40%; height: 100%;
+                background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.75) 50%, rgba(255,255,255,0) 100%); mix-blend-mode: overlay; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="ou-wrap" class="clip" data-start="0" data-duration="2.4" data-layout-allow-overflow>
+      <div id="ou-line"><span id="ou-w0">Built</span><span id="ou-w1">by</span><span id="ou-w2">my</span><span id="ou-w3">AI</span><span id="ou-w4">pipeline</span></div>
+      <div id="ou-handle">SevimsOffice<div id="ou-sweep"></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ou-w0", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0);
+    tl.fromTo("#ou-w1", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0.067);
+    tl.fromTo("#ou-w2", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0.134);
+    tl.fromTo("#ou-w3", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0.201);
+    tl.fromTo("#ou-w4", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0.268);
+    tl.fromTo("#ou-handle", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 0.385);
+    tl.fromTo("#ou-sweep", { x: -300 }, { x: 900, duration: 0.6, ease: "power2.inOut" }, 0.635);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

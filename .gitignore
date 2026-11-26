@@ -1,0 +1,17 @@
+# Binary media never goes into git (size + copyright); it lives in Drive / is regenerated.
+*.mp4
+*.mov
+*.webm
+*.wav
+*.mp3
+*.m4a
+poc/reel-test/assets/freeze.png
+poc/reel-test/out/*
+!poc/reel-test/out/qa-report.md
+
+# Tooling
+node_modules/
+.hyperframes/
+__pycache__/
+.env
+.env.*

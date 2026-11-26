@@ -1,0 +1,66 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: Inter, sans-serif; }
+    .cap { position: absolute; left: 0; width: 100%; padding: 0 192px 0 120px; text-align: center;
+           font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF; overflow: visible;
+           text-shadow: 0 4px 18px rgba(0,0,0,.55); }
+    .cap .w { display: inline-block; margin: 0 0.16em; }
+    .cap .w.em { color: #B6FF3B; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div id="cap0" class="cap clip" data-start="0.1" data-duration="1.18" style="top:719.6px;font-size:84px"><span id="cap0-w0" class="w">HEY</span><span id="cap0-w1" class="w em">SEVIM,</span></div>
+    <div id="cap1" class="cap clip" data-start="1.38" data-duration="0.58" style="top:719.6px;font-size:84px"><span id="cap1-w0" class="w">EIGHT,</span></div>
+    <div id="cap2" class="cap clip" data-start="3.52" data-duration="0.6" style="top:719.6px;font-size:84px"><span id="cap2-w0" class="w">TRY</span><span id="cap2-w1" class="w em">CREATING</span></div>
+    <div id="cap3" class="cap clip" data-start="4.12" data-duration="1.1" style="top:725px;font-size:75px"><span id="cap3-w0" class="w">VIDEOS</span><span id="cap3-w1" class="w">WITH</span><span id="cap3-w2" class="w">IT.</span></div>
+    <div id="cap4" class="cap clip" data-start="5.22" data-duration="0.82" style="top:719.6px;font-size:84px"><span id="cap4-w0" class="w">ALSO,</span><span id="cap4-w1" class="w">CLICK</span></div>
+    <div id="cap5" class="cap clip" data-start="6.04" data-duration="0.96" style="top:734.6px;font-size:59px"><span id="cap5-w0" class="w">THE</span><span id="cap5-w1" class="w em">FEEDBACK</span><span id="cap5-w2" class="w em">BUTTON</span></div>
+    <div id="cap6" class="cap clip" data-start="7" data-duration="0.44" style="top:719.6px;font-size:84px"><span id="cap6-w0" class="w">TO</span><span id="cap6-w1" class="w">SHARE</span></div>
+    <div id="cap7" class="cap clip" data-start="7.44" data-duration="0.88" style="top:725px;font-size:75px"><span id="cap7-w0" class="w">WHAT</span><span id="cap7-w1" class="w">YOU</span><span id="cap7-w2" class="w">THINK.</span></div>
+    <div id="cap8" class="cap clip" data-start="8.32" data-duration="2.43" style="top:725px;font-size:75px"><span id="cap8-w0" class="w">HOPE</span><span id="cap8-w1" class="w">YOU</span><span id="cap8-w2" class="w em">ENJOY.</span></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cap0", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 0.1);
+    tl.fromTo("#cap0-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 0.14);
+    tl.fromTo("#cap0-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1.1, duration: 0.08, ease: "power2.out" }, 0.42);
+    tl.to("#cap0", { opacity: 0, duration: 0.1, ease: "power2.in" }, 1.18);
+    tl.fromTo("#cap1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 1.38);
+    tl.fromTo("#cap1-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 1.46);
+    tl.to("#cap1", { opacity: 0, duration: 0.1, ease: "power2.in" }, 1.86);
+    tl.fromTo("#cap2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 3.52);
+    tl.fromTo("#cap2-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 3.6);
+    tl.fromTo("#cap2-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1.1, duration: 0.08, ease: "power2.out" }, 3.82);
+    tl.to("#cap2", { opacity: 0, duration: 0.1, ease: "power2.in" }, 4.02);
+    tl.fromTo("#cap3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 4.12);
+    tl.fromTo("#cap3-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 4.2);
+    tl.fromTo("#cap3-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 4.6);
+    tl.fromTo("#cap3-w2", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 4.84);
+    tl.to("#cap3", { opacity: 0, duration: 0.1, ease: "power2.in" }, 5.12);
+    tl.fromTo("#cap4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 5.22);
+    tl.fromTo("#cap4-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 5.3);
+    tl.fromTo("#cap4-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 5.92);
+    tl.to("#cap4", { opacity: 0, duration: 0.1, ease: "power2.in" }, 5.94);
+    tl.fromTo("#cap5", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 6.04);
+    tl.fromTo("#cap5-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 6.12);
+    tl.fromTo("#cap5-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1.1, duration: 0.08, ease: "power2.out" }, 6.36);
+    tl.fromTo("#cap5-w2", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1.1, duration: 0.08, ease: "power2.out" }, 6.6);
+    tl.to("#cap5", { opacity: 0, duration: 0.1, ease: "power2.in" }, 6.9);
+    tl.fromTo("#cap6", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 7);
+    tl.fromTo("#cap6-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 7.08);
+    tl.fromTo("#cap6-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 7.28);
+    tl.to("#cap6", { opacity: 0, duration: 0.1, ease: "power2.in" }, 7.34);
+    tl.fromTo("#cap7", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 7.44);
+    tl.fromTo("#cap7-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 7.52);
+    tl.fromTo("#cap7-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 7.7);
+    tl.fromTo("#cap7-w2", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 7.88);
+    tl.to("#cap7", { opacity: 0, duration: 0.1, ease: "power2.in" }, 8.22);
+    tl.fromTo("#cap8", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" }, 8.32);
+    tl.fromTo("#cap8-w0", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 8.4);
+    tl.fromTo("#cap8-w1", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1, duration: 0.08, ease: "power2.out" }, 8.56);
+    tl.fromTo("#cap8-w2", { opacity: 0.38, scale: 1 }, { opacity: 1, scale: 1.1, duration: 0.08, ease: "power2.out" }, 8.74);
+    tl.to("#cap8", { opacity: 0, duration: 0.1, ease: "power2.in" }, 10.65);
+
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

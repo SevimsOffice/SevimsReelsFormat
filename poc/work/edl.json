@@ -1,0 +1,681 @@
+{
+ "video_id": "poc-2026-11-26-twin-ready",
+ "generated_from": "storyboard.json",
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30
+ },
+ "duration": 10.8,
+ "source_duration": 9.4,
+ "frames": 324,
+ "source": {
+  "clip": "assets/avatar.mp4",
+  "cutout": "assets/avatar_alpha.webm",
+  "source_offset_sec": 11.2,
+  "duration_sec": 9.4,
+  "words_file": "work/words.json",
+  "word_id_range": [
+   21,
+   46
+  ],
+  "tail_hold_sec": 1.4,
+  "$tail_comment": "After the last spoken word the final cutout frame is held (freeze still) so the closing line gets ~2 s on screen."
+ },
+ "zones": {
+  "$comment": "Measured on the cutout at base framing: head top y=910, face y=960-1390. Reels safe band y=288-1248.",
+  "graphics": {
+   "y": [
+    300,
+    640
+   ]
+  },
+  "captions": {
+   "y": [
+    690,
+    850
+   ]
+  },
+  "face": {
+   "y": [
+    880,
+    1400
+   ],
+   "anchor": [
+    540,
+    1150
+   ]
+  }
+ },
+ "style": {
+  "accent": "#B6FF3B",
+  "ink": "#FFFFFF",
+  "ground_top": "#0E1430",
+  "ground_bottom": "#05060B",
+  "font": "Inter",
+  "caption_case": "upper"
+ },
+ "camera": [
+  {
+   "type": "cut",
+   "t": 0.42,
+   "frame": 13,
+   "scale": 1.14
+  },
+  {
+   "type": "ease",
+   "t": 2,
+   "frame": 60,
+   "scale": 1,
+   "duration": 0.6,
+   "ease": "power2.inOut"
+  },
+  {
+   "type": "cut",
+   "t": 5.3,
+   "frame": 159,
+   "scale": 1.12
+  },
+  {
+   "type": "ease",
+   "t": 8.25,
+   "frame": 248,
+   "scale": 1,
+   "duration": 0.7,
+   "ease": "power2.inOut"
+  }
+ ],
+ "graphics": [
+  {
+   "id": "hook-badge-counter-1",
+   "effect": "badge.counter",
+   "beat": "hook",
+   "start": 1.31,
+   "end": 2.04,
+   "frames": [
+    39,
+    61
+   ],
+   "params": {
+    "label": "LOOK",
+    "from": 0,
+    "to": 8,
+    "pad": 2
+   }
+  },
+  {
+   "id": "twin-text-behind_subject-1",
+   "effect": "text.behind_subject",
+   "beat": "twin",
+   "start": 2.26,
+   "end": 3.47,
+   "frames": [
+    68,
+    104
+   ],
+   "params": {
+    "lines": [
+     "DIGITAL",
+     "TWIN"
+    ]
+   }
+  },
+  {
+   "id": "twin-badge-check-2",
+   "effect": "badge.check",
+   "beat": "twin",
+   "start": 3.08,
+   "end": 3.56,
+   "frames": [
+    92,
+    107
+   ],
+   "params": {
+    "text": "READY"
+   }
+  },
+  {
+   "id": "flow-diagram-flow3-0",
+   "effect": "diagram.flow3",
+   "beat": "flow",
+   "start": 3.6,
+   "end": 5.25,
+   "frames": [
+    108,
+    158
+   ],
+   "params": {
+    "nodes": [
+     {
+      "label": "Script",
+      "icon": "doc",
+      "t": 3.6
+     },
+     {
+      "label": "Avatar",
+      "icon": "face",
+      "t": 3.82
+     },
+     {
+      "label": "Reel",
+      "icon": "play",
+      "t": 4.2
+     }
+    ]
+   }
+  },
+  {
+   "id": "feedback-ui-button_click-1",
+   "effect": "ui.button_click",
+   "beat": "feedback",
+   "start": 5.35,
+   "end": 8.4,
+   "frames": [
+    161,
+    252
+   ],
+   "params": {
+    "button": "Give feedback",
+    "press": 6.6,
+    "reply": "Love it!",
+    "reply_from": 7.28
+   }
+  },
+  {
+   "id": "outro-title-signoff-1",
+   "effect": "title.signoff",
+   "beat": "outro",
+   "start": 8.4,
+   "end": 10.8,
+   "frames": [
+    252,
+    324
+   ],
+   "params": {
+    "text": "Built by my AI pipeline",
+    "handle": "SevimsOffice"
+   }
+  }
+ ],
+ "captions": [
+  {
+   "id": "cap0",
+   "start": 0.1,
+   "end": 1.28,
+   "frames": [
+    3,
+    38
+   ],
+   "words": [
+    {
+     "id": 21,
+     "text": "HEY",
+     "start": 0.14,
+     "end": 0.42,
+     "emphasis": false
+    },
+    {
+     "id": 22,
+     "text": "SEVIM,",
+     "start": 0.42,
+     "end": 1.06,
+     "emphasis": true
+    }
+   ]
+  },
+  {
+   "id": "cap1",
+   "start": 1.38,
+   "end": 1.96,
+   "frames": [
+    41,
+    59
+   ],
+   "words": [
+    {
+     "id": 23,
+     "text": "EIGHT,",
+     "start": 1.46,
+     "end": 1.74,
+     "emphasis": false
+    }
+   ]
+  },
+  {
+   "id": "cap2",
+   "start": 3.52,
+   "end": 4.12,
+   "frames": [
+    106,
+    124
+   ],
+   "words": [
+    {
+     "id": 29,
+     "text": "TRY",
+     "start": 3.6,
+     "end": 3.82,
+     "emphasis": false
+    },
+    {
+     "id": 30,
+     "text": "CREATING",
+     "start": 3.82,
+     "end": 4.2,
+     "emphasis": true
+    }
+   ]
+  },
+  {
+   "id": "cap3",
+   "start": 4.12,
+   "end": 5.22,
+   "frames": [
+    124,
+    157
+   ],
+   "words": [
+    {
+     "id": 31,
+     "text": "VIDEOS",
+     "start": 4.2,
+     "end": 4.6,
+     "emphasis": false
+    },
+    {
+     "id": 32,
+     "text": "WITH",
+     "start": 4.6,
+     "end": 4.84,
+     "emphasis": false
+    },
+    {
+     "id": 33,
+     "text": "IT.",
+     "start": 4.84,
+     "end": 5,
+     "emphasis": false
+    }
+   ]
+  },
+  {
+   "id": "cap4",
+   "start": 5.22,
+   "end": 6.04,
+   "frames": [
+    157,
+    181
+   ],
+   "words": [
+    {
+     "id": 34,
+     "text": "ALSO,",
+     "start": 5.3,
+     "end": 5.62,
+     "emphasis": false
+    },
+    {
+     "id": 35,
+     "text": "CLICK",
+     "start": 5.92,
+     "end": 6.12,
+     "emphasis": false
+    }
+   ]
+  },
+  {
+   "id": "cap5",
+   "start": 6.04,
+   "end": 7,
+   "frames": [
+    181,
+    210
+   ],
+   "words": [
+    {
+     "id": 36,
+     "text": "THE",
+     "start": 6.12,
+     "end": 6.36,
+     "emphasis": false
+    },
+    {
+     "id": 37,
+     "text": "FEEDBACK",
+     "start": 6.36,
+     "end": 6.6,
+     "emphasis": true
+    },
+    {
+     "id": 38,
+     "text": "BUTTON",
+     "start": 6.6,
+     "end": 7.08,
+     "emphasis": true
+    }
+   ]
+  },
+  {
+   "id": "cap6",
+   "start": 7,
+   "end": 7.44,
+   "frames": [
+    210,
+    223
+   ],
+   "words": [
+    {
+     "id": 39,
+     "text": "TO",
+     "start": 7.08,
+     "end": 7.28,
+     "emphasis": false
+    },
+    {
+     "id": 40,
+     "text": "SHARE",
+     "start": 7.28,
+     "end": 7.52,
+     "emphasis": false
+    }
+   ]
+  },
+  {
+   "id": "cap7",
+   "start": 7.44,
+   "end": 8.32,
+   "frames": [
+    223,
+    250
+   ],
+   "words": [
+    {
+     "id": 41,
+     "text": "WHAT",
+     "start": 7.52,
+     "end": 7.7,
+     "emphasis": false
+    },
+    {
+     "id": 42,
+     "text": "YOU",
+     "start": 7.7,
+     "end": 7.88,
+     "emphasis": false
+    },
+    {
+     "id": 43,
+     "text": "THINK.",
+     "start": 7.88,
+     "end": 8.14,
+     "emphasis": false
+    }
+   ]
+  },
+  {
+   "id": "cap8",
+   "start": 8.32,
+   "end": 10.75,
+   "frames": [
+    250,
+    323
+   ],
+   "words": [
+    {
+     "id": 44,
+     "text": "HOPE",
+     "start": 8.4,
+     "end": 8.56,
+     "emphasis": false
+    },
+    {
+     "id": 45,
+     "text": "YOU",
+     "start": 8.56,
+     "end": 8.74,
+     "emphasis": false
+    },
+    {
+     "id": 46,
+     "text": "ENJOY.",
+     "start": 8.74,
+     "end": 9.08,
+     "emphasis": true
+    }
+   ]
+  }
+ ],
+ "captions_off": [
+  [
+   2.05,
+   3.37
+  ]
+ ],
+ "words": [
+  {
+   "id": 21,
+   "text": "Hey",
+   "start": 0.14,
+   "end": 0.42
+  },
+  {
+   "id": 22,
+   "text": "Sevim,",
+   "start": 0.42,
+   "end": 1.06
+  },
+  {
+   "id": 23,
+   "text": "Eight,",
+   "start": 1.46,
+   "end": 1.74
+  },
+  {
+   "id": 24,
+   "text": "your",
+   "start": 2.1,
+   "end": 2.26
+  },
+  {
+   "id": 25,
+   "text": "digital",
+   "start": 2.26,
+   "end": 2.66
+  },
+  {
+   "id": 26,
+   "text": "twin",
+   "start": 2.66,
+   "end": 2.92
+  },
+  {
+   "id": 27,
+   "text": "is",
+   "start": 2.92,
+   "end": 3.08
+  },
+  {
+   "id": 28,
+   "text": "ready.",
+   "start": 3.08,
+   "end": 3.32
+  },
+  {
+   "id": 29,
+   "text": "Try",
+   "start": 3.6,
+   "end": 3.82
+  },
+  {
+   "id": 30,
+   "text": "creating",
+   "start": 3.82,
+   "end": 4.2
+  },
+  {
+   "id": 31,
+   "text": "videos",
+   "start": 4.2,
+   "end": 4.6
+  },
+  {
+   "id": 32,
+   "text": "with",
+   "start": 4.6,
+   "end": 4.84
+  },
+  {
+   "id": 33,
+   "text": "it.",
+   "start": 4.84,
+   "end": 5
+  },
+  {
+   "id": 34,
+   "text": "Also,",
+   "start": 5.3,
+   "end": 5.62
+  },
+  {
+   "id": 35,
+   "text": "click",
+   "start": 5.92,
+   "end": 6.12
+  },
+  {
+   "id": 36,
+   "text": "the",
+   "start": 6.12,
+   "end": 6.36
+  },
+  {
+   "id": 37,
+   "text": "feedback",
+   "start": 6.36,
+   "end": 6.6
+  },
+  {
+   "id": 38,
+   "text": "button",
+   "start": 6.6,
+   "end": 7.08
+  },
+  {
+   "id": 39,
+   "text": "to",
+   "start": 7.08,
+   "end": 7.28
+  },
+  {
+   "id": 40,
+   "text": "share",
+   "start": 7.28,
+   "end": 7.52
+  },
+  {
+   "id": 41,
+   "text": "what",
+   "start": 7.52,
+   "end": 7.7
+  },
+  {
+   "id": 42,
+   "text": "you",
+   "start": 7.7,
+   "end": 7.88
+  },
+  {
+   "id": 43,
+   "text": "think.",
+   "start": 7.88,
+   "end": 8.14
+  },
+  {
+   "id": 44,
+   "text": "Hope",
+   "start": 8.4,
+   "end": 8.56
+  },
+  {
+   "id": 45,
+   "text": "you",
+   "start": 8.56,
+   "end": 8.74
+  },
+  {
+   "id": 46,
+   "text": "enjoy.",
+   "start": 8.74,
+   "end": 9.08
+  }
+ ],
+ "sfx": [
+  {
+   "name": "pop",
+   "t": 0.42,
+   "frame": 13,
+   "beat": "hook"
+  },
+  {
+   "name": "click",
+   "t": 1.31,
+   "frame": 39,
+   "beat": "hook"
+  },
+  {
+   "name": "whoosh",
+   "t": 2,
+   "frame": 60,
+   "beat": "twin"
+  },
+  {
+   "name": "ding",
+   "t": 3.08,
+   "frame": 92,
+   "beat": "twin"
+  },
+  {
+   "name": "click",
+   "t": 3.6,
+   "frame": 108,
+   "beat": "flow"
+  },
+  {
+   "name": "click",
+   "t": 3.82,
+   "frame": 115,
+   "beat": "flow"
+  },
+  {
+   "name": "click",
+   "t": 4.2,
+   "frame": 126,
+   "beat": "flow"
+  },
+  {
+   "name": "pop",
+   "t": 5.3,
+   "frame": 159,
+   "beat": "feedback"
+  },
+  {
+   "name": "click",
+   "t": 6.6,
+   "frame": 198,
+   "beat": "feedback"
+  },
+  {
+   "name": "whoosh",
+   "t": 8.25,
+   "frame": 248,
+   "beat": "outro"
+  },
+  {
+   "name": "shimmer",
+   "t": 8.4,
+   "frame": 252,
+   "beat": "outro"
+  }
+ ],
+ "warnings": []
+}

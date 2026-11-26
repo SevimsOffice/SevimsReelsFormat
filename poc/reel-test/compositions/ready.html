@@ -1,0 +1,22 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: Inter, sans-serif; }
+    #rd-pill { position: absolute; left: 314px; top: 410px; width: 380px; height: 120px; border-radius: 60px;
+               background: #B6FF3B; color: #0A0F05; display: flex; align-items: center; justify-content: center; gap: 18px;
+               font-size: 58px; font-weight: 900; letter-spacing: .04em; box-shadow: 0 18px 50px rgba(182,255,59,.35); }
+    #rd-pill svg { width: 58px; height: 58px; }
+  </style>
+  <div id="root" data-composition-id="ready" data-width="1080" data-height="1920">
+    <div id="rd-pill" class="clip" data-start="0" data-duration="0.48">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0A0F05" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path id="rd-check" d="M4 12.5l5 5L20 6.5" stroke-dasharray="24" stroke-dashoffset="24"/></svg>
+      <span>READY</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rd-pill", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.8)" }, 0);
+    tl.fromTo("#rd-check", { attr: { "stroke-dashoffset": 24 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.22, ease: "power2.out" }, 0.08);
+    tl.to("#rd-pill", { opacity: 0, y: -20, filter: "blur(6px)", duration: 0.14, ease: "power2.in" }, 0.33);
+    window.__timelines["ready"] = tl;
+  </script>
+</template>

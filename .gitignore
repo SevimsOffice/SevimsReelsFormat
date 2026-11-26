@@ -21,3 +21,5 @@ jobs/*/assets/
 jobs/*/voice_raw.wav
 jobs/*/tts_*.json
 jobs/*/req.json
+jobs/*/avreq.json
+jobs/*/avresp.json

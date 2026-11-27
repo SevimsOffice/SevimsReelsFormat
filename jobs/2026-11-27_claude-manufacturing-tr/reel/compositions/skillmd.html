@@ -1,0 +1,40 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #sk-bg { position: absolute; inset: 0; background: #0D0E44; }
+    #sk-paper { position: absolute; left: 100px; top: 300px; width: 800px; height: 830px; background: #F0EBD4; color: #1A1B22;
+                border-radius: 6px; box-shadow: 0 40px 120px rgba(0,0,0,.6); padding: 44px 48px; font-family: 'IBM Plex Mono', monospace; font-size: 30px; line-height: 1.55; }
+    #sk-path { font-size: 28px; letter-spacing: .08em; color: #C41E3A; border-bottom: 2px solid #1A1B22; padding-bottom: 14px; margin-bottom: 26px; }
+    .sk-dim { color: #6A6B71; }
+    #sk-old { position: relative; display: inline-block; }
+    #sk-oline { position: absolute; left: 0; right: 0; top: 52%; height: 5px; background: #C41E3A; transform-origin: left; }
+    #sk-new { color: #C41E3A; font-weight: 700; }
+    #sk-hand { font-family: 'EB Garamond', serif; font-style: italic; font-size: 40px; color: #C41E3A; margin-top: 30px; }
+  </style>
+  <div id="root" data-composition-id="skillmd" data-width="1080" data-height="1920">
+    <div id="sk-wrap" class="clip" data-start="0" data-duration="3.61">
+      <div id="sk-bg"></div>
+      <div id="sk-paper">
+        <div id="sk-path">skills/ncr-report/SKILL.md</div>
+        <div class="sk-dim">---</div><div>name: ncr-report</div><div>description: Draft an NCR when a</div><div>&nbsp;&nbsp;part fails inspection.</div><div class="sk-dim">---</div>
+        <div>&nbsp;</div><div># Steps</div>
+        <div>1. <span id="sk-old">Use the standard NCR template.<span id="sk-oline"></span></span></div>
+        <div id="sk-new">&nbsp;&nbsp;&nbsp;Use OUR template, cite the drawing rev.</div>
+        <div>2. Search past NCRs for the defect.</div><div>3. Rank likely causes.</div>
+        <div id="sk-hand">← ekibinizin prosedürü</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sk-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    tl.fromTo("#sk-paper", { y: 240, rotation: -2, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
+    tl.fromTo("#sk-oline", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, 2.32);
+    tl.fromTo("#sk-new", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 2.57);
+    tl.fromTo("#sk-hand", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.87);
+    tl.to("#sk-paper", { opacity: 0, scale: 1.12, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 3.35);
+    tl.to("#sk-bg", { opacity: 0, duration: 0.25 }, 3.35);
+
+    window.__timelines["skillmd"] = tl;
+  </script>
+</template>

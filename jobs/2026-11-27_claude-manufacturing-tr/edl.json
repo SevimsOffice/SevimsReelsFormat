@@ -1,0 +1,1273 @@
+{
+ "video_id": "2026-11-27_claude-manufacturing-tr",
+ "duration": 56.19,
+ "fps": 30,
+ "camera": [
+  {
+   "type": "cut",
+   "at": 2.02,
+   "scale": 1.12
+  },
+  {
+   "type": "ease",
+   "at": 3.71,
+   "scale": 1,
+   "dur": 0.6
+  },
+  {
+   "type": "cut",
+   "at": 22,
+   "scale": 1.1
+  },
+  {
+   "type": "ease",
+   "at": 25.26,
+   "scale": 1,
+   "dur": 0.5
+  },
+  {
+   "type": "cut",
+   "at": 38.86,
+   "scale": 1.14
+  },
+  {
+   "type": "ease",
+   "at": 43.5,
+   "scale": 1,
+   "dur": 0.6
+  },
+  {
+   "type": "cut",
+   "at": 51.84,
+   "scale": 1.1
+  }
+ ],
+ "events": [
+  {
+   "id": "hook",
+   "fx": "title.hook",
+   "from": 0,
+   "to": 3.61,
+   "lines": [
+    "Claude'a",
+    "fabrikada iş çıktı."
+   ],
+   "accent_word": "fabrikada",
+   "bg_photo": "factory-hall.jpg",
+   "sfx": [
+    [
+     "impact",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "plugin",
+   "fx": "card.counter",
+   "from": 3.81,
+   "to": 9.63,
+   "logo": "claude.svg",
+   "kicker": "ANTHROPIC · YENİ PLUGIN",
+   "title": "Claude for Manufacturing",
+   "title_at": 4.32,
+   "number": 17,
+   "number_at": 7.06,
+   "unit": "hazır skill",
+   "sfx": [
+    [
+     "paper",
+     3.86
+    ],
+    [
+     "tick",
+     7.06
+    ]
+   ]
+  },
+  {
+   "id": "factory",
+   "fx": "photo.card",
+   "from": 9.59,
+   "to": 14.26,
+   "src": "factory-floor.jpg",
+   "kicker": "HAT 3 · KALİTE KONTROL",
+   "stamp": {
+    "text": "RED",
+    "at": 13.32
+   },
+   "sfx": [
+    [
+     "whoosh",
+     9.59
+    ],
+    [
+     "stamp",
+     13.32
+    ]
+   ]
+  },
+  {
+   "id": "ncr",
+   "fx": "doc.ncr",
+   "from": 14.28,
+   "to": 21.69,
+   "header": "UYGUNSUZLUK RAPORU",
+   "ref": "NCR · ÖRNEK",
+   "stamp": {
+    "text": "KONTROLDEN GEÇEMEDİ",
+    "at": 14.38
+   },
+   "rows": [
+    {
+     "label": "RAPOR",
+     "value": "Gereksinime göre yazıldı",
+     "at": 15.76
+    },
+    {
+     "label": "GEÇMİŞ",
+     "value": "Aynı hatanın eski kayıtları",
+     "at": 17.36
+    }
+   ],
+   "causes_title": "Olası nedenler, sıralı",
+   "causes_at": 19.02,
+   "causes": [
+    "Takım aşınması",
+    "Fikstür kayması",
+    "Malzeme partisi"
+   ],
+   "stamp2": {
+    "text": "8D · TASLAK",
+    "at": 19.94
+   },
+   "sfx": [
+    [
+     "paper",
+     14.28
+    ],
+    [
+     "stamp",
+     14.53
+    ],
+    [
+     "tick",
+     15.76
+    ],
+    [
+     "tick",
+     17.36
+    ],
+    [
+     "tick",
+     19.02
+    ],
+    [
+     "stamp",
+     19.94
+    ],
+    [
+     "whoosh",
+     21.44
+    ]
+   ]
+  },
+  {
+   "id": "signoff",
+   "fx": "card.signature",
+   "from": 22,
+   "to": 25.51,
+   "label": "KALİTE MÜHENDİSİ",
+   "line": "Kontrol edildi ve imzalandı",
+   "sign_at": 24.42,
+   "sfx": [
+    [
+     "pen",
+     24.42
+    ]
+   ]
+  },
+  {
+   "id": "rfq",
+   "fx": "doc.rfq",
+   "from": 25.26,
+   "to": 33.07,
+   "flags": [
+    {
+     "at": 28.32
+    },
+    {
+     "at": 29.06
+    }
+   ],
+   "quote": "Teklif · taslak",
+   "quote_at": 31.84,
+   "sfx": [
+    [
+     "paper",
+     25.26
+    ],
+    [
+     "tick",
+     28.32
+    ],
+    [
+     "tick",
+     29.06
+    ],
+    [
+     "stamp",
+     31.84
+    ]
+   ]
+  },
+  {
+   "id": "connect",
+   "fx": "logos.saas",
+   "from": 33.31,
+   "to": 38.88,
+   "kicker": "BAĞLANDIĞI SİSTEMLER",
+   "apps": [
+    {
+     "name": "Autodesk Fusion",
+     "url": "autodesk.com/fusion",
+     "logo": "autodesk.svg",
+     "shot": "broll/autodesk-ui.jpg",
+     "at": 33.36
+    },
+    {
+     "name": "Infor",
+     "url": "infor.com",
+     "logo": "infor.svg",
+     "shot": "infor.png",
+     "at": 34.7
+    },
+    {
+     "name": "Microsoft 365",
+     "url": "microsoft.com/microsoft-365",
+     "logo": "microsoft.svg",
+     "shot": "m365.png",
+     "at": 35.54
+    },
+    {
+     "name": "NetSuite",
+     "url": "netsuite.com",
+     "shot": "broll/netsuite-ui.jpg",
+     "at": 37.24
+    }
+   ],
+   "sfx": [
+    [
+     "tick",
+     33.36
+    ],
+    [
+     "tick",
+     34.7
+    ],
+    [
+     "tick",
+     35.54
+    ],
+    [
+     "tick",
+     37.24
+    ]
+   ]
+  },
+  {
+   "id": "guard",
+   "fx": "text.strike_affirm",
+   "from": 38.81,
+   "to": 43.11,
+   "strike": "Makine kontrolü",
+   "strike_at": 39.7,
+   "affirm": "Son onay insanda",
+   "affirm_at": 41.94,
+   "sfx": [
+    [
+     "slash",
+     39.7
+    ],
+    [
+     "tick",
+     41.94
+    ]
+   ]
+  },
+  {
+   "id": "folders",
+   "fx": "text.behind_subject",
+   "from": 45.73,
+   "to": 48.18,
+   "text": "KLASÖR",
+   "at": 47.12,
+   "sfx": [
+    [
+     "whoosh",
+     46.7
+    ]
+   ]
+  },
+  {
+   "id": "skillmd",
+   "fx": "doc.skillmd",
+   "from": 47.92,
+   "to": 51.53,
+   "path": "skills/ncr-report/SKILL.md",
+   "rewrite_at": 50.24,
+   "old": "Use the standard NCR template.",
+   "new": "Use OUR template, cite the drawing rev.",
+   "sfx": [
+    [
+     "paper",
+     47.92
+    ],
+    [
+     "slash",
+     50.24
+    ]
+   ]
+  },
+  {
+   "id": "cta",
+   "fx": "cta.comment",
+   "from": 51.79,
+   "to": 56.19,
+   "line": "Nasıl yapıldığını görmek ister misin?",
+   "word": "SKILL",
+   "word_at": 54.74,
+   "sfx": [
+    [
+     "impact",
+     54.74
+    ]
+   ]
+  }
+ ],
+ "captions": [
+  {
+   "id": "cap0",
+   "start": 3.8,
+   "end": 5.04,
+   "words": [
+    {
+     "text": "Anthropic",
+     "start": 3.86,
+     "end": 4.32
+    },
+    {
+     "text": "Claude",
+     "start": 4.32,
+     "end": 4.86
+    },
+    {
+     "text": "for",
+     "start": 4.86,
+     "end": 5.1
+    }
+   ]
+  },
+  {
+   "id": "cap1",
+   "start": 5.04,
+   "end": 6.62,
+   "words": [
+    {
+     "text": "Manufacturing'i",
+     "start": 5.1,
+     "end": 5.76
+    },
+    {
+     "text": "duyurdu.",
+     "start": 5.9,
+     "end": 6.32
+    }
+   ]
+  },
+  {
+   "id": "cap2",
+   "start": 7,
+   "end": 8.12,
+   "words": [
+    {
+     "text": "17",
+     "start": 7.06,
+     "end": 7.46
+    },
+    {
+     "text": "hazır",
+     "start": 7.46,
+     "end": 7.88
+    },
+    {
+     "text": "skill",
+     "start": 7.88,
+     "end": 8.18
+    }
+   ]
+  },
+  {
+   "id": "cap3",
+   "start": 8.12,
+   "end": 8.86,
+   "words": [
+    {
+     "text": "ile",
+     "start": 8.18,
+     "end": 8.34
+    },
+    {
+     "text": "gelen",
+     "start": 8.34,
+     "end": 8.56
+    },
+    {
+     "text": "bir",
+     "start": 8.56,
+     "end": 8.92
+    }
+   ]
+  },
+  {
+   "id": "cap4",
+   "start": 8.86,
+   "end": 9.48,
+   "words": [
+    {
+     "text": "plugin.",
+     "start": 8.92,
+     "end": 9.18
+    }
+   ]
+  },
+  {
+   "id": "cap5",
+   "start": 9.58,
+   "end": 11.04,
+   "words": [
+    {
+     "text": "Örnek",
+     "start": 9.64,
+     "end": 9.92
+    },
+    {
+     "text": "verecek",
+     "start": 9.92,
+     "end": 10.34
+    },
+    {
+     "text": "olursak,",
+     "start": 10.34,
+     "end": 10.98
+    }
+   ]
+  },
+  {
+   "id": "cap6",
+   "start": 11.04,
+   "end": 12.06,
+   "words": [
+    {
+     "text": "diyelim",
+     "start": 11.1,
+     "end": 11.44
+    },
+    {
+     "text": "ki",
+     "start": 11.44,
+     "end": 11.9
+    },
+    {
+     "text": "bir",
+     "start": 11.9,
+     "end": 12.12
+    }
+   ]
+  },
+  {
+   "id": "cap7",
+   "start": 12.06,
+   "end": 13.26,
+   "words": [
+    {
+     "text": "parça",
+     "start": 12.12,
+     "end": 12.44
+    },
+    {
+     "text": "kalite",
+     "start": 12.44,
+     "end": 12.78
+    },
+    {
+     "text": "kontrolden",
+     "start": 12.78,
+     "end": 13.32
+    }
+   ]
+  },
+  {
+   "id": "cap8",
+   "start": 13.26,
+   "end": 14.26,
+   "words": [
+    {
+     "text": "geçemiyor.",
+     "start": 13.32,
+     "end": 13.96
+    }
+   ]
+  },
+  {
+   "id": "cap9",
+   "start": 14.32,
+   "end": 15.7,
+   "words": [
+    {
+     "text": "Claude",
+     "start": 14.38,
+     "end": 14.66
+    },
+    {
+     "text": "uygunsuzluk",
+     "start": 14.66,
+     "end": 15.36
+    },
+    {
+     "text": "raporunu",
+     "start": 15.36,
+     "end": 15.76
+    }
+   ]
+  },
+  {
+   "id": "cap10",
+   "start": 15.7,
+   "end": 16.56,
+   "words": [
+    {
+     "text": "yazıyor,",
+     "start": 15.76,
+     "end": 16.28
+    }
+   ]
+  },
+  {
+   "id": "cap11",
+   "start": 16.56,
+   "end": 18.16,
+   "words": [
+    {
+     "text": "geçmiş",
+     "start": 16.62,
+     "end": 16.9
+    },
+    {
+     "text": "hataları",
+     "start": 16.9,
+     "end": 17.36
+    },
+    {
+     "text": "tarıyor,",
+     "start": 17.36,
+     "end": 17.92
+    }
+   ]
+  },
+  {
+   "id": "cap12",
+   "start": 18.16,
+   "end": 19.56,
+   "words": [
+    {
+     "text": "olası",
+     "start": 18.22,
+     "end": 18.5
+    },
+    {
+     "text": "nedenleri",
+     "start": 18.5,
+     "end": 19.02
+    },
+    {
+     "text": "sıralıyor",
+     "start": 19.02,
+     "end": 19.62
+    }
+   ]
+  },
+  {
+   "id": "cap13",
+   "start": 19.56,
+   "end": 20.86,
+   "words": [
+    {
+     "text": "ve",
+     "start": 19.62,
+     "end": 19.94
+    },
+    {
+     "text": "8D",
+     "start": 19.94,
+     "end": 20.44
+    },
+    {
+     "text": "taslağını",
+     "start": 20.44,
+     "end": 20.92
+    }
+   ]
+  },
+  {
+   "id": "cap14",
+   "start": 20.86,
+   "end": 21.64,
+   "words": [
+    {
+     "text": "hazırlıyor.",
+     "start": 20.92,
+     "end": 21.34
+    }
+   ]
+  },
+  {
+   "id": "cap15",
+   "start": 21.94,
+   "end": 23.7,
+   "words": [
+    {
+     "text": "Kalite",
+     "start": 22,
+     "end": 22.32
+    },
+    {
+     "text": "mühendisi",
+     "start": 22.32,
+     "end": 23.14
+    },
+    {
+     "text": "sadece",
+     "start": 23.14,
+     "end": 23.76
+    }
+   ]
+  },
+  {
+   "id": "cap16",
+   "start": 23.7,
+   "end": 25.3,
+   "words": [
+    {
+     "text": "kontrol",
+     "start": 23.76,
+     "end": 24.2
+    },
+    {
+     "text": "edip",
+     "start": 24.2,
+     "end": 24.42
+    },
+    {
+     "text": "imzalıyor.",
+     "start": 24.42,
+     "end": 25.06
+    }
+   ]
+  },
+  {
+   "id": "cap17",
+   "start": 25.3,
+   "end": 26.08,
+   "words": [
+    {
+     "text": "Bir",
+     "start": 25.36,
+     "end": 25.54
+    },
+    {
+     "text": "teklif",
+     "start": 25.54,
+     "end": 25.82
+    },
+    {
+     "text": "talebi",
+     "start": 25.82,
+     "end": 26.14
+    }
+   ]
+  },
+  {
+   "id": "cap18",
+   "start": 26.08,
+   "end": 26.38,
+   "words": [
+    {
+     "text": "geliyor.",
+     "start": 26.14,
+     "end": 26.44
+    }
+   ]
+  },
+  {
+   "id": "cap19",
+   "start": 26.38,
+   "end": 28.26,
+   "words": [
+    {
+     "text": "Claude",
+     "start": 26.44,
+     "end": 27.42
+    },
+    {
+     "text": "teknik",
+     "start": 27.42,
+     "end": 27.82
+    },
+    {
+     "text": "resimde",
+     "start": 27.82,
+     "end": 28.32
+    }
+   ]
+  },
+  {
+   "id": "cap20",
+   "start": 28.26,
+   "end": 29.68,
+   "words": [
+    {
+     "text": "eksik",
+     "start": 28.32,
+     "end": 28.72
+    },
+    {
+     "text": "olanları",
+     "start": 28.72,
+     "end": 29.06
+    },
+    {
+     "text": "işaretliyor",
+     "start": 29.06,
+     "end": 29.74
+    }
+   ]
+  },
+  {
+   "id": "cap21",
+   "start": 29.68,
+   "end": 31.42,
+   "words": [
+    {
+     "text": "ve",
+     "start": 29.74,
+     "end": 30.18
+    },
+    {
+     "text": "geçmiş",
+     "start": 30.18,
+     "end": 30.56
+    },
+    {
+     "text": "maliyetlerinizden",
+     "start": 30.56,
+     "end": 31.48
+    }
+   ]
+  },
+  {
+   "id": "cap22",
+   "start": 31.42,
+   "end": 33.02,
+   "words": [
+    {
+     "text": "teklif",
+     "start": 31.48,
+     "end": 31.84
+    },
+    {
+     "text": "taslağını",
+     "start": 31.84,
+     "end": 32.32
+    },
+    {
+     "text": "çıkarıyor.",
+     "start": 32.32,
+     "end": 32.72
+    }
+   ]
+  },
+  {
+   "id": "cap23",
+   "start": 33.3,
+   "end": 34.6,
+   "words": [
+    {
+     "text": "Autodesk",
+     "start": 33.36,
+     "end": 33.88
+    },
+    {
+     "text": "Fusion,",
+     "start": 33.88,
+     "end": 34.3
+    }
+   ]
+  },
+  {
+   "id": "cap24",
+   "start": 34.64,
+   "end": 35.48,
+   "words": [
+    {
+     "text": "Infor,",
+     "start": 34.7,
+     "end": 35.24
+    }
+   ]
+  },
+  {
+   "id": "cap25",
+   "start": 35.48,
+   "end": 37.18,
+   "words": [
+    {
+     "text": "Microsoft",
+     "start": 35.54,
+     "end": 36.02
+    },
+    {
+     "text": "365",
+     "start": 36.02,
+     "end": 36.88
+    },
+    {
+     "text": "ve",
+     "start": 36.88,
+     "end": 37.24
+    }
+   ]
+  },
+  {
+   "id": "cap26",
+   "start": 37.18,
+   "end": 38.78,
+   "words": [
+    {
+     "text": "NetSuite'e",
+     "start": 37.24,
+     "end": 37.68
+    },
+    {
+     "text": "bağlanıyor.",
+     "start": 37.84,
+     "end": 38.48
+    }
+   ]
+  },
+  {
+   "id": "cap27",
+   "start": 38.8,
+   "end": 40.02,
+   "words": [
+    {
+     "text": "Ve",
+     "start": 38.86,
+     "end": 39.04
+    },
+    {
+     "text": "makinelerinizi",
+     "start": 39.04,
+     "end": 39.7
+    },
+    {
+     "text": "asla",
+     "start": 39.7,
+     "end": 40.08
+    }
+   ]
+  },
+  {
+   "id": "cap28",
+   "start": 40.02,
+   "end": 41.2,
+   "words": [
+    {
+     "text": "çalıştırmıyor.",
+     "start": 40.08,
+     "end": 40.9
+    }
+   ]
+  },
+  {
+   "id": "cap29",
+   "start": 41.24,
+   "end": 42.02,
+   "words": [
+    {
+     "text": "Her",
+     "start": 41.3,
+     "end": 41.54
+    },
+    {
+     "text": "şeyin",
+     "start": 41.54,
+     "end": 41.94
+    },
+    {
+     "text": "son",
+     "start": 41.94,
+     "end": 42.08
+    }
+   ]
+  },
+  {
+   "id": "cap30",
+   "start": 42.02,
+   "end": 43.06,
+   "words": [
+    {
+     "text": "onayı",
+     "start": 42.08,
+     "end": 42.36
+    },
+    {
+     "text": "insanda.",
+     "start": 42.36,
+     "end": 42.76
+    }
+   ]
+  },
+  {
+   "id": "cap31",
+   "start": 43.54,
+   "end": 44.38,
+   "words": [
+    {
+     "text": "En",
+     "start": 43.6,
+     "end": 43.8
+    },
+    {
+     "text": "güzel",
+     "start": 43.8,
+     "end": 44.08
+    },
+    {
+     "text": "kısmı",
+     "start": 44.08,
+     "end": 44.44
+    }
+   ]
+  },
+  {
+   "id": "cap32",
+   "start": 44.38,
+   "end": 45.72,
+   "words": [
+    {
+     "text": "ne",
+     "start": 44.44,
+     "end": 44.54
+    },
+    {
+     "text": "biliyor",
+     "start": 44.54,
+     "end": 44.74
+    },
+    {
+     "text": "musunuz?",
+     "start": 44.74,
+     "end": 45.54
+    }
+   ]
+  },
+  {
+   "id": "cap33",
+   "start": 45.72,
+   "end": 47.06,
+   "words": [
+    {
+     "text": "Skill'ler",
+     "start": 45.78,
+     "end": 46.3
+    },
+    {
+     "text": "aslında",
+     "start": 46.3,
+     "end": 46.7
+    },
+    {
+     "text": "sadece",
+     "start": 46.7,
+     "end": 47.12
+    }
+   ]
+  },
+  {
+   "id": "cap34",
+   "start": 47.06,
+   "end": 47.98,
+   "words": [
+    {
+     "text": "klasör.",
+     "start": 47.12,
+     "end": 47.68
+    }
+   ]
+  },
+  {
+   "id": "cap35",
+   "start": 48.06,
+   "end": 49.2,
+   "words": [
+    {
+     "text": "Ekibiniz",
+     "start": 48.12,
+     "end": 48.54
+    },
+    {
+     "text": "onları",
+     "start": 48.54,
+     "end": 48.94
+    },
+    {
+     "text": "kendi",
+     "start": 48.94,
+     "end": 49.26
+    }
+   ]
+  },
+  {
+   "id": "cap36",
+   "start": 49.2,
+   "end": 50.56,
+   "words": [
+    {
+     "text": "prosedürlerine",
+     "start": 49.26,
+     "end": 50.06
+    },
+    {
+     "text": "göre",
+     "start": 50.06,
+     "end": 50.24
+    },
+    {
+     "text": "yeniden",
+     "start": 50.24,
+     "end": 50.62
+    }
+   ]
+  },
+  {
+   "id": "cap37",
+   "start": 50.56,
+   "end": 51.48,
+   "words": [
+    {
+     "text": "yazabiliyor.",
+     "start": 50.62,
+     "end": 51.18
+    }
+   ]
+  },
+  {
+   "id": "cap38",
+   "start": 51.78,
+   "end": 53.1,
+   "words": [
+    {
+     "text": "Nasıl",
+     "start": 51.84,
+     "end": 52.12
+    },
+    {
+     "text": "yapıldığını",
+     "start": 52.12,
+     "end": 52.56
+    },
+    {
+     "text": "göstermemi",
+     "start": 52.56,
+     "end": 53.16
+    }
+   ]
+  },
+  {
+   "id": "cap39",
+   "start": 53.1,
+   "end": 54.24,
+   "words": [
+    {
+     "text": "ister",
+     "start": 53.16,
+     "end": 53.42
+    },
+    {
+     "text": "misiniz?",
+     "start": 53.42,
+     "end": 53.94
+    }
+   ]
+  },
+  {
+   "id": "cap40",
+   "start": 54.24,
+   "end": 56.14,
+   "words": [
+    {
+     "text": "Yorumlara",
+     "start": 54.3,
+     "end": 54.74
+    },
+    {
+     "text": "SKILL",
+     "start": 54.74,
+     "end": 55.04
+    },
+    {
+     "text": "yazın.",
+     "start": 55.04,
+     "end": 55.44
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "name": "impact",
+   "t": 0,
+   "ev": "hook"
+  },
+  {
+   "name": "paper",
+   "t": 3.86,
+   "ev": "plugin"
+  },
+  {
+   "name": "tick",
+   "t": 7.06,
+   "ev": "plugin"
+  },
+  {
+   "name": "whoosh",
+   "t": 9.59,
+   "ev": "factory"
+  },
+  {
+   "name": "stamp",
+   "t": 13.32,
+   "ev": "factory"
+  },
+  {
+   "name": "paper",
+   "t": 14.28,
+   "ev": "ncr"
+  },
+  {
+   "name": "stamp",
+   "t": 14.53,
+   "ev": "ncr"
+  },
+  {
+   "name": "tick",
+   "t": 15.76,
+   "ev": "ncr"
+  },
+  {
+   "name": "tick",
+   "t": 17.36,
+   "ev": "ncr"
+  },
+  {
+   "name": "tick",
+   "t": 19.02,
+   "ev": "ncr"
+  },
+  {
+   "name": "stamp",
+   "t": 19.94,
+   "ev": "ncr"
+  },
+  {
+   "name": "whoosh",
+   "t": 21.44,
+   "ev": "ncr"
+  },
+  {
+   "name": "pen",
+   "t": 24.42,
+   "ev": "signoff"
+  },
+  {
+   "name": "paper",
+   "t": 25.26,
+   "ev": "rfq"
+  },
+  {
+   "name": "tick",
+   "t": 28.32,
+   "ev": "rfq"
+  },
+  {
+   "name": "tick",
+   "t": 29.06,
+   "ev": "rfq"
+  },
+  {
+   "name": "stamp",
+   "t": 31.84,
+   "ev": "rfq"
+  },
+  {
+   "name": "tick",
+   "t": 33.36,
+   "ev": "connect"
+  },
+  {
+   "name": "tick",
+   "t": 34.7,
+   "ev": "connect"
+  },
+  {
+   "name": "tick",
+   "t": 35.54,
+   "ev": "connect"
+  },
+  {
+   "name": "tick",
+   "t": 37.24,
+   "ev": "connect"
+  },
+  {
+   "name": "slash",
+   "t": 39.7,
+   "ev": "guard"
+  },
+  {
+   "name": "tick",
+   "t": 41.94,
+   "ev": "guard"
+  },
+  {
+   "name": "whoosh",
+   "t": 46.7,
+   "ev": "folders"
+  },
+  {
+   "name": "paper",
+   "t": 47.92,
+   "ev": "skillmd"
+  },
+  {
+   "name": "slash",
+   "t": 50.24,
+   "ev": "skillmd"
+  },
+  {
+   "name": "impact",
+   "t": 54.74,
+   "ev": "cta"
+  }
+ ]
+}

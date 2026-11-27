@@ -467,7 +467,7 @@ for (const e of scenes) {
 {
   const capTop = 700, capLow = 1162;
   const docWins = events.filter((e) => e.fx.startsWith("doc.")).map((e) => [e.from, e.to]);
-  const onDoc = (c) => docWins.some(([a, z]) => c.start < z && c.end > a);
+  const onDoc = (c) => docWins.some(([a, z]) => c.start >= a - 0.1 && c.start < z);
   let body = "", js = "";
   for (const c of captions) {
     body += `    <div id="${c.id}" class="cap clip" data-start="${c.start}" data-duration="${r3(c.end - c.start)}" style="top:${onDoc(c) ? capLow : capTop}px">${c.words.map((w, i) => `<span id="${c.id}-w${i}" class="w">${esc(w.text)}</span>`).join("")}</div>\n`;

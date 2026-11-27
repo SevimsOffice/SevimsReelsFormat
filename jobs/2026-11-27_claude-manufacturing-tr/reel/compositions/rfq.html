@@ -1,0 +1,55 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #rf-bg { position: absolute; inset: 0; background: #0D0E44; }
+    #rf-paper { position: absolute; left: 100px; top: 290px; width: 800px; height: 840px; background: #F0EBD4; color: #1A1B22;
+                border-radius: 6px; box-shadow: 0 40px 120px rgba(0,0,0,.6); padding: 40px 50px; }
+    #rf-top { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .1em; color: #C41E3A; border-bottom: 2px solid #1A1B22; padding-bottom: 12px; }
+    #rf-h { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 52px; margin: 18px 0 10px; }
+    .rf-f { display: flex; font-size: 32px; padding: 7px 0; border-bottom: 1px solid #6A6B7155; }
+    .rf-f b { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 28px; color: #4D382C; width: 230px; flex: none; padding-top: 3px; }
+    .rf-miss { color: #C41E3A; font-weight: 700; font-style: italic; }
+    #rf-draw { display: block; width: 100%; height: 190px; margin-top: 12px; }
+    #rf-q { position: absolute; left: 50px; right: 50px; bottom: 40px; display: flex; justify-content: space-between; align-items: center;
+            background: #1A1B22; color: #F0EBD4; padding: 18px 26px; border-radius: 10px; }
+    #rf-q b { font-family: 'Playfair Display', serif; font-size: 40px; }
+    #rf-q span { font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #F0EBD4C0; }
+    .rf-flag { position: absolute; font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 700; color: #F0EBD4; background: #C41E3A; padding: 4px 12px; border-radius: 6px; }
+  </style>
+  <div id="root" data-composition-id="rfq" data-width="1080" data-height="1920">
+    <div id="rf-wrap" class="clip" data-start="0" data-duration="7.81">
+      <div id="rf-bg"></div>
+      <div id="rf-paper">
+        <div id="rf-top"><span>RFQ · ÖRNEK</span><span>GELEN</span></div>
+        <div id="rf-h">TEKLİF TALEBİ</div>
+        <div class="rf-f"><b>PARÇA</b>Braket, talaşlı imalat</div>
+        <div class="rf-f"><b>MALZEME</b>Alüminyum 6061</div>
+        <div class="rf-f"><b>ADET</b>500</div>
+        <div class="rf-f" id="rf-f0"><b>TOLERANS</b><span class="rf-miss">eksik</span></div>
+        <div class="rf-f" id="rf-f1"><b>YÜZEY</b><span class="rf-miss">eksik</span></div>
+        <svg id="rf-draw" viewBox="0 0 700 190" fill="none" stroke="#1A1B22" stroke-width="2.5">
+          <rect id="rf-d0" x="30" y="20" width="300" height="140" rx="6" stroke-dasharray="900" stroke-dashoffset="900"/>
+          <circle id="rf-d1" cx="180" cy="90" r="40" stroke-dasharray="260" stroke-dashoffset="260"/>
+          <path id="rf-d2" d="M30 180 H330 M400 40 H660 V140 H400 Z" stroke-dasharray="1000" stroke-dashoffset="1000" stroke-opacity=".7"/>
+        </svg>
+        <div id="rf-q"><b>Teklif · taslak</b><span>geçmiş maliyetlerden</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rf-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    tl.fromTo("#rf-paper", { y: 260, rotation: -3, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
+    tl.fromTo("#rf-paper", { scale: 1 }, { scale: 1.04, duration: 6.91, ease: "none" }, 0.6);
+    tl.fromTo("#rf-d0", { attr: { "stroke-dashoffset": 900 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.4);
+    tl.fromTo("#rf-d1", { attr: { "stroke-dashoffset": 260 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.5);
+    tl.fromTo("#rf-d2", { attr: { "stroke-dashoffset": 1000 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.6);
+    tl.fromTo("#rf-f0", { backgroundColor: "rgba(196,30,58,0)" }, { backgroundColor: "rgba(196,30,58,0.14)", duration: 0.2 }, 3.06);
+    tl.fromTo("#rf-f1", { backgroundColor: "rgba(196,30,58,0)" }, { backgroundColor: "rgba(196,30,58,0.14)", duration: 0.2 }, 3.8);
+    tl.fromTo("#rf-q", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 6.58);
+    tl.to("#rf-paper", { opacity: 0, scale: 1.12, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 7.55);
+    tl.to("#rf-bg", { opacity: 0, duration: 0.25 }, 7.55);
+
+    window.__timelines["rfq"] = tl;
+  </script>
+</template>

@@ -1,0 +1,126 @@
+{
+  "series": "claude-for-manufacturing",
+  "total": 17,
+  "avatar_look": {
+    "name": "Sevim -- 12",
+    "id": "2299a2b6fe7d460f92ebe1bd0e6acb0f"
+  },
+  "order": "12 atomic skills first, then 5 chains",
+  "episodes": [
+    {
+      "no": 1,
+      "slug": "onboarding",
+      "name": "Onboarding",
+      "dept_tr": "IT ve veri",
+      "dept_en": "IT & data",
+      "thumb_tr": "Claude fabrikanızı hiç tanımıyorsa?",
+      "thumb_en": "What if Claude doesn't know your plant?"
+    },
+    {
+      "no": 2,
+      "slug": "data-consolidate",
+      "name": "Data Consolidate",
+      "dept_tr": "IT ve veri",
+      "dept_en": "IT & data",
+      "thumb_tr": "Veriniz beş ayrı sistemde mi?",
+      "thumb_en": "Is your data stuck in five systems?"
+    },
+    {
+      "no": 3,
+      "slug": "custom-connector",
+      "name": "Custom Connector",
+      "dept_tr": "IT ve veri",
+      "dept_en": "IT & data",
+      "thumb_tr": "Eski sisteminizin bağlantısı yok mu?",
+      "thumb_en": "No connector for your old system?"
+    },
+    {
+      "no": 4,
+      "slug": "customer-inquiry-intake",
+      "name": "Customer Inquiry Intake",
+      "dept_tr": "Satış ve teklif",
+      "dept_en": "Sales & quoting",
+      "thumb_tr": "Teklif talebindeki eksikleri kim yakalıyor?",
+      "thumb_en": "Who catches what's missing in an RFQ?"
+    },
+    {
+      "no": 5,
+      "slug": "quote-build",
+      "name": "Quote Build",
+      "dept_tr": "Satış ve teklif",
+      "dept_en": "Sales & quoting",
+      "thumb_tr": "Bir teklif neden üç gün sürüyor?",
+      "thumb_en": "Why does one quote take three days?"
+    },
+    {
+      "no": 6,
+      "slug": "ncr-writeup",
+      "name": "NCR Write-up",
+      "dept_tr": "Kalite",
+      "dept_en": "Quality",
+      "thumb_tr": "NCR yazmak saatinizi mi alıyor?",
+      "thumb_en": "Is writing NCRs eating your day?"
+    },
+    {
+      "no": 7,
+      "slug": "root-cause-capa",
+      "name": "Root Cause & CAPA",
+      "dept_tr": "Kalite",
+      "dept_en": "Quality",
+      "thumb_tr": "Aynı hata neden hep geri dönüyor?",
+      "thumb_en": "Why does the same defect keep coming back?"
+    },
+    {
+      "no": 8,
+      "slug": "supplier-quote-request",
+      "name": "Supplier Quote Request",
+      "dept_tr": "Satın alma",
+      "dept_en": "Purchasing",
+      "thumb_tr": "Tedarikçilere aynı maili kaç kez yazıyorsunuz?",
+      "thumb_en": "How many times do you write the same RFQ?"
+    },
+    {
+      "no": 9,
+      "slug": "breakdown-diagnosis",
+      "name": "Breakdown Diagnosis",
+      "dept_tr": "Üretim ve bakım",
+      "dept_en": "Production & maintenance",
+      "thumb_tr": "Makine durdu. Nedenini kim bulacak?",
+      "thumb_en": "The machine stopped. Who finds out why?"
+    },
+    {
+      "no": 10,
+      "slug": "daily-production-report",
+      "name": "Daily Production Report",
+      "dept_tr": "Üretim ve bakım",
+      "dept_en": "Production & maintenance",
+      "thumb_tr": "Sabah raporu bir saatinizi mi alıyor?",
+      "thumb_en": "Does the morning report take an hour?"
+    },
+    {
+      "no": 11,
+      "slug": "design-space-explore",
+      "name": "Design Space Explore",
+      "dept_tr": "Mühendislik",
+      "dept_en": "Engineering",
+      "thumb_tr": "Tek tasarım yerine on alternatif?",
+      "thumb_en": "Ten design options instead of one?"
+    },
+    {
+      "no": 12,
+      "slug": "trade-study-report",
+      "name": "Trade Study Report",
+      "dept_tr": "Mühendislik",
+      "dept_en": "Engineering",
+      "thumb_tr": "Hangi tasarım gerçekten daha iyi?",
+      "thumb_en": "Which design is actually better?"
+    }
+  ],
+  "chains_next": [
+    "rfq-to-quote",
+    "inspection-to-capa",
+    "morning-plant-pulse",
+    "breakdown-to-next-report",
+    "supplier-escape-to-alternate-source"
+  ]
+}

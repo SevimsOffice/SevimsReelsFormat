@@ -1,0 +1,4 @@
+parca,ozellik,nominal_mm,tolerans_mm,olculen_mm,durum,makine,vardiya,lot
+BRK-210,delik_cap,12.00,+/-0.05,12.11,RED,CNC-3,B,L-5521
+BRK-210,delik_cap,12.00,+/-0.05,12.09,RED,CNC-3,B,L-5521
+BRK-210,delik_cap,12.00,+/-0.05,12.02,KABUL,CNC-3,A,L-5520

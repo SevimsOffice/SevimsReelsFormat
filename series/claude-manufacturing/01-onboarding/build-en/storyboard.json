@@ -1,0 +1,523 @@
+{
+  "video_id": "ep01-onboarding-en",
+  "topic": "Claude for Manufacturing · 01/17 Onboarding (EN)",
+  "words_file": "words.json",
+  "voice": "assets/voice.wav",
+  "avatar": {
+    "kind": "video",
+    "src": "assets/avatar.webm",
+    "y": 0
+  },
+  "tail_hold_sec": 0.2,
+  "palette": "../../../../style/palette-noir.json",
+  "captions": {
+    "max_words": 3,
+    "off": [
+      [
+        0,
+        11
+      ]
+    ],
+    "low": [
+      [
+        49,
+        102
+      ]
+    ],
+    "low_y": 1290
+  },
+  "camera": [
+    {
+      "type": "cut",
+      "at": {
+        "w": 3,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.1
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 12,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 27,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.08
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 33,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 49,
+        "e": "start",
+        "o": -0.35
+      },
+      "scale": 0.42,
+      "x": 330,
+      "y": 520,
+      "dur": 0.5
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 103,
+        "e": "start",
+        "o": -0.35
+      },
+      "scale": 1.0,
+      "x": 0,
+      "y": 0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 115,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.1
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 134,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 150,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.12
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 153,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    }
+  ],
+  "events": [
+    {
+      "id": "hook",
+      "fx": "title.hook",
+      "from": 0,
+      "to": {
+        "w": 11,
+        "e": "end",
+        "o": 0.35
+      },
+      "lines": [
+        "What if Claude",
+        "doesn't know your plant?"
+      ],
+      "accent_word": "plant",
+      "sfx": [
+        [
+          "impact",
+          0
+        ]
+      ]
+    },
+    {
+      "id": "episode",
+      "fx": "badge.episode",
+      "from": {
+        "w": 18,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 48,
+        "e": "end",
+        "o": 0.3
+      },
+      "kicker": "EPISODE 01/17 · CLAUDE FOR MANUFACTURING",
+      "title": "Onboarding",
+      "dept": "IT & DATA",
+      "name": "Sevim",
+      "role": "Industrial engineer · AI trainer & consultant",
+      "name_at": {
+        "w": 22,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 18,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 22,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "screen",
+      "fx": "screen.recording",
+      "from": {
+        "w": 49,
+        "e": "start",
+        "o": -0.3
+      },
+      "to": {
+        "w": 102,
+        "e": "end",
+        "o": 0.2
+      },
+      "src": "screen.mp4",
+      "rate": 1.06,
+      "tag": "WHERE TO START",
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 49,
+            "e": "start",
+            "o": -0.3
+          }
+        ]
+      ]
+    },
+    {
+      "id": "asks",
+      "fx": "list.check",
+      "from": {
+        "w": 110,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 129,
+        "e": "end",
+        "o": 0.4
+      },
+      "kicker": "\"SET US UP\" · CLAUDE ASKS",
+      "items": [
+        {
+          "text": "Which ERP",
+          "at": {
+            "w": 116,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "Which CAD",
+          "at": {
+            "w": 118,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "Which maintenance system",
+          "at": {
+            "w": 120,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "How your shifts run",
+          "at": {
+            "w": 124,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "What your terms mean",
+          "at": {
+            "w": 128,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 110,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 116,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 118,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 120,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 124,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 128,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "connect",
+      "fx": "chips.connectors",
+      "from": {
+        "w": 130,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 135,
+        "e": "end",
+        "o": 0.2
+      },
+      "kicker": "TESTS EACH CONNECTION",
+      "chips": [
+        {
+          "text": "Microsoft 365",
+          "at": {
+            "w": 131,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "NetSuite",
+          "at": {
+            "w": 132,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "Infor M3",
+          "at": {
+            "w": 133,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "Autodesk Fusion",
+          "at": {
+            "w": 133,
+            "e": "start",
+            "o": 0.3
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 131,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 132,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 133,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 133,
+            "e": "start",
+            "o": 0.3
+          }
+        ]
+      ]
+    },
+    {
+      "id": "result",
+      "fx": "card.counter",
+      "from": {
+        "w": 136,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 144,
+        "e": "end",
+        "o": 0.3
+      },
+      "logo": "claude.svg",
+      "kicker": "THE RESULT",
+      "title": "Your plant's language",
+      "title_at": {
+        "w": 142,
+        "e": "start",
+        "o": 0
+      },
+      "number": 16,
+      "number_at": {
+        "w": 138,
+        "e": "start",
+        "o": 0
+      },
+      "unit": "other skills",
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 138,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "guard",
+      "fx": "text.strike_affirm",
+      "from": {
+        "w": 145,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 152,
+        "e": "end",
+        "o": 0.4
+      },
+      "strike": "Guessing",
+      "strike_at": {
+        "w": 151,
+        "e": "start",
+        "o": 0
+      },
+      "affirm": "Your context",
+      "affirm_at": {
+        "w": 152,
+        "e": "start",
+        "o": 0.1
+      },
+      "sfx": [
+        [
+          "slash",
+          {
+            "w": 151,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 152,
+            "e": "start",
+            "o": 0.1
+          }
+        ]
+      ]
+    },
+    {
+      "id": "cta",
+      "fx": "cta.comment",
+      "from": {
+        "w": 153,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": "end",
+      "line": "Want the link?",
+      "word": "SKILL",
+      "word_at": {
+        "w": 160,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "impact",
+          {
+            "w": 160,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    }
+  ]
+}

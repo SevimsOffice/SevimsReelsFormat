@@ -439,6 +439,53 @@ const FX = {
     return [css, body, js];
   },
 
+  "screen.recording"(e, L, len) {
+    // User's screen recording, full frame on black, muted, time-stretched to the spoken window.
+    const css = `    #sr-bg { position: absolute; inset: 0; background: #000; }
+    #sr-vid { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; object-fit: contain; }
+    #sr-tag { position: absolute; left: ${SAFE.x0}px; top: 250px; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}; background: ${C.crimson_rouge}; padding: 6px 16px; border-radius: 6px; }`;
+    const body = `    <div id="sr-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-occlusion>
+      <div id="sr-bg"></div>
+      <video id="sr-vid" class="clip" src="assets/broll/${e.src}" muted playsinline data-start="0" data-duration="${len}" data-playback-rate="${e.rate ?? 1}"></video>
+      ${e.tag ? `<div id="sr-tag">${esc(e.tag)}</div>` : ""}
+    </div>`;
+    let js = `    tl.fromTo("#sr-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    tl.fromTo("#sr-vid", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out" }, 0.05);\n`;
+    if (e.tag) js += `    tl.fromTo("#sr-tag", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.25 }, 0.3);\n`;
+    js += `    tl.to(["#sr-vid", "#sr-bg"], { opacity: 0, duration: 0.25, ease: "power2.in" }, ${r3(len - 0.26)});\n`;
+    return [css, body, js];
+  },
+
+  "badge.episode"(e, L, len) {
+    const css = `    #ep-card { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY}px; padding: 30px 36px; ${panel} }
+    #ep-k { font-family: ${FONT.mono}; font-size: 30px; letter-spacing: .18em; color: ${C.crimson_rouge}; }
+    #ep-t { font-family: ${FONT.display}; font-weight: 900; font-size: 76px; line-height: 1.02; margin-top: 10px; }
+    #ep-d { font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .14em; color: ${C.vintage_cream}B3; margin-top: 12px; }
+    #ep-name { margin-top: 22px; padding-top: 18px; border-top: 1.5px solid ${C.vintage_cream}33; font-style: italic; font-size: 42px; }
+    #ep-name b { font-style: normal; font-family: ${FONT.display}; font-weight: 900; color: ${C.vintage_cream}; margin-right: 12px; }`;
+    const body = `    <div id="ep-card" class="clip" data-start="0" data-duration="${len}">
+      <div id="ep-k">${esc(e.kicker)}</div><div id="ep-t">${esc(e.title)}</div><div id="ep-d">${esc(e.dept)}</div>
+      <div id="ep-name"><b>${esc(e.name)}</b>${esc(e.role)}</div>
+    </div>`;
+    let js = enter("#ep-card");
+    js += `    tl.fromTo("#ep-name", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, ${r3(L(e.name_at))});\n`;
+    js += leave("#ep-card", len);
+    return [css, body, js];
+  },
+
+  "list.check"(e, L, len) {
+    const css = `    #lc-card { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY - 10}px; padding: 26px 34px; ${panel} }
+    #lc-k { font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}B3; margin-bottom: 8px; }
+    .lc-i { display: flex; align-items: center; gap: 18px; font-size: 44px; padding: 7px 0; }
+    .lc-i i { font-style: normal; display: inline-flex; width: 44px; height: 44px; border-radius: 50%; border: 3px solid ${C.crimson_rouge}; align-items: center; justify-content: center; color: ${C.crimson_rouge}; font-size: 28px; font-weight: 900; }`;
+    const items = e.items.map((it, i) => `<div class="lc-i" id="lc-i${i}"><i>✓</i>${esc(it.text)}</div>`).join("");
+    const body = `    <div id="lc-card" class="clip" data-start="0" data-duration="${len}"><div id="lc-k">${esc(e.kicker)}</div>${items}</div>`;
+    let js = enter("#lc-card");
+    e.items.forEach((it, i) => { js += `    tl.fromTo("#lc-i${i}", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, ${r3(L(it.at))});\n`; });
+    js += leave("#lc-card", len);
+    return [css, body, js];
+  },
+
   "cta.comment"(e, L, len) {
     const css = `    #ct-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY + 40}px; text-align: center; }
     #ct-line { font-style: italic; font-size: 54px; }
@@ -468,9 +515,12 @@ for (const e of scenes) {
   const capTop = 700, capLow = 1162;
   const docWins = events.filter((e) => e.fx.startsWith("doc.")).map((e) => [e.from, e.to]);
   const onDoc = (c) => docWins.some(([a, z]) => c.start >= a - 0.1 && c.start < z);
+  // storyboard.captions.low: [[firstWordId, lastWordId]] windows where captions sit low (e.g. over a screen recording).
+  const lowWins = (sb.captions.low ?? []).map(([a, z]) => [byId.get(a).start - 0.1, byId.get(z).end + 0.1]);
+  const isLow = (c) => lowWins.some(([a, z]) => c.start >= a && c.start < z);
   let body = "", js = "";
   for (const c of captions) {
-    body += `    <div id="${c.id}" class="cap clip" data-start="${c.start}" data-duration="${r3(c.end - c.start)}" style="top:${onDoc(c) ? capLow : capTop}px">${c.words.map((w, i) => `<span id="${c.id}-w${i}" class="w">${esc(w.text)}</span>`).join("")}</div>\n`;
+    body += `    <div id="${c.id}" class="cap clip" data-start="${c.start}" data-duration="${r3(c.end - c.start)}" style="top:${isLow(c) ? (sb.captions.low_y ?? 1290) : onDoc(c) ? capLow : capTop}px">${c.words.map((w, i) => `<span id="${c.id}-w${i}" class="w">${esc(w.text)}</span>`).join("")}</div>\n`;
     js += `    tl.fromTo("#${c.id}", { opacity: 0 }, { opacity: 1, duration: 0.08 }, ${c.start});\n`;
     c.words.forEach((w, i) => {
       js += `    tl.fromTo("#${c.id}-w${i}", { color: "#9A9AA2", backgroundColor: "rgba(26,27,34,0)" }, { color: "${C.vintage_cream}", backgroundColor: "rgba(26,27,34,0.92)", duration: 0.06 }, ${Math.max(c.start, w.start)});\n`;
@@ -497,8 +547,9 @@ const sfxTags = sfx.map((s, i) => {
 const camJs = [`      tl.set("#cam", { scale: 1, transformOrigin: "${FACE[0]}px ${FACE[1]}px" }, 0);`, `      tl.set("#bgcam", { scale: 1, transformOrigin: "${FACE[0]}px ${FACE[1]}px" }, 0);`];
 for (const c of camera) {
   const bg = r3(1 + (c.scale - 1) * 0.35);
-  if (c.type === "cut") camJs.push(`      tl.set("#cam", { scale: ${c.scale} }, ${c.at});`, `      tl.set("#bgcam", { scale: ${bg} }, ${c.at});`);
-  else camJs.push(`      tl.to("#cam", { scale: ${c.scale}, duration: ${c.dur}, ease: "power2.inOut" }, ${c.at});`, `      tl.to("#bgcam", { scale: ${bg}, duration: ${c.dur}, ease: "power2.inOut" }, ${c.at});`);
+  const xy = `, x: ${c.x ?? 0}, y: ${c.y ?? 0}`; // x/y let the speaker shrink into a corner (picture-in-picture)
+  if (c.type === "cut") camJs.push(`      tl.set("#cam", { scale: ${c.scale}${xy} }, ${c.at});`, `      tl.set("#bgcam", { scale: ${bg} }, ${c.at});`);
+  else camJs.push(`      tl.to("#cam", { scale: ${c.scale}${xy}, duration: ${c.dur}, ease: "power2.inOut" }, ${c.at});`, `      tl.to("#bgcam", { scale: ${bg}, duration: ${c.dur}, ease: "power2.inOut" }, ${c.at});`);
 }
 let behindHtml = "";
 for (const b of behind) {
@@ -512,7 +563,7 @@ const avatarTag0 = 0;
 const avatarTag = av.kind === "video"
   ? `<video id="avatar" class="clip" src="assets/avatar.webm" muted playsinline data-start="0" data-duration="${r3(Math.min(D, parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(JOB, "assets", "avatar.webm")]).toString())))}" data-track-index="0" data-layout-allow-occlusion></video>`
   : `<img id="avatar" class="clip" src="assets/avatar.png" alt="" data-start="0" data-duration="${D}" data-track-index="0" data-layout-allow-occlusion />`;
-const hosts = scenes.map((e) => `      <div id="${e.id}" data-composition-id="${e.id}" data-composition-src="compositions/${e.id}.html" data-start="${e.from}" data-duration="${r3(e.to - e.from)}" data-track-index="${e.fx.startsWith("doc.") ? 3 : 2}" data-track-kind="graphics" data-width="${W}" data-height="${H}" style="z-index:${e.fx.startsWith("doc.") ? 7 : 5}"></div>`).join("\n");
+const hosts = scenes.map((e) => `      <div id="${e.id}" data-composition-id="${e.id}" data-composition-src="compositions/${e.id}.html" data-start="${e.from}" data-duration="${r3(e.to - e.from)}" data-track-index="${e.fx.startsWith("doc.") ? 3 : 2}" data-track-kind="graphics" data-width="${W}" data-height="${H}" style="z-index:${e.fx.startsWith("doc.") ? 7 : e.fx === "screen.recording" ? 2 : 5}"></div>`).join("\n");
 
 const index = `<!doctype html>
 <html lang="en">
@@ -533,7 +584,7 @@ const index = `<!doctype html>
         background: radial-gradient(circle, ${C.espresso_wood}CC 0%, ${C.espresso_wood}55 38%, rgba(77,56,44,0) 70%); }
       #lamp { position: absolute; left: 820px; top: 520px; width: 260px; height: 260px; border-radius: 50%;
         background: radial-gradient(circle, ${C.vintage_cream}40 0%, rgba(240,235,212,0) 70%); }
-      #cam { position: absolute; inset: 0; }
+      #cam { position: absolute; inset: 0; z-index: 4; }
       .bh { position: absolute; inset: 0; z-index: 2; }
       .bh-t { position: absolute; left: 0; width: 100%; top: 880px; text-align: center; font-family: 'Playfair Display', serif; font-weight: 900;
         font-size: 230px; letter-spacing: -0.03em; color: ${C.crimson_rouge}; margin-left: -36px; }

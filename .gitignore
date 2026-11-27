@@ -23,3 +23,6 @@ jobs/*/tts_*.json
 jobs/*/req.json
 jobs/*/avreq.json
 jobs/*/avresp.json
+series/*/*/build-*/assets/
+series/*/*/build-*/reel/out/
+series/*/*/build-*/reel/assets/

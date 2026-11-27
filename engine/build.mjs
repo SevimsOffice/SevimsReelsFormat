@@ -16,7 +16,12 @@ const W = 1080, H = 1920, FPS = 30;
 const r3 = (x) => Math.round(x * 1000) / 1000;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const speechEnd = words.at(-1).end;
-const D = r3(speechEnd + 0.35 + (sb.tail_hold_sec ?? 0));
+let D = r3(speechEnd + 0.35 + (sb.tail_hold_sec ?? 0));
+// Never outlast the avatar footage: the speaker must not vanish before the last frame.
+if (sb.avatar?.kind === "video") {
+  const avDur = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(JOB, "assets", "avatar.webm")]).toString());
+  D = r3(Math.min(D, avDur - 0.05));
+}
 
 // ---------- anchors ----------
 const byId = new Map(words.map((w) => [w.i, w]));
@@ -441,10 +446,11 @@ const FX = {
 
   "screen.recording"(e, L, len) {
     // User's screen recording, full frame on black, muted, time-stretched to the spoken window.
-    const css = `    #sr-bg { position: absolute; inset: 0; background: #000; }
+    const css = `    #sr-wrap { position: absolute; inset: 0; }
+    #sr-bg { position: absolute; inset: 0; background: #000; }
     #sr-vid { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; object-fit: contain; }
     #sr-tag { position: absolute; left: ${SAFE.x0}px; top: 250px; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}; background: ${C.crimson_rouge}; padding: 6px 16px; border-radius: 6px; }`;
-    const body = `    <div id="sr-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-occlusion>
+    const body = `    <div id="sr-wrap" data-layout-allow-occlusion>
       <div id="sr-bg"></div>
       <video id="sr-vid" class="clip" src="assets/broll/${e.src}" muted playsinline data-start="0" data-duration="${len}" data-playback-rate="${e.rate ?? 1}"></video>
       ${e.tag ? `<div id="sr-tag">${esc(e.tag)}</div>` : ""}
@@ -452,6 +458,8 @@ const FX = {
     let js = `    tl.fromTo("#sr-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
     tl.fromTo("#sr-vid", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out" }, 0.05);\n`;
     if (e.tag) js += `    tl.fromTo("#sr-tag", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.25 }, 0.3);\n`;
+    // Optional zooms into the recording when the UI gets small: [{at, scale, ox, oy, dur}]
+    for (const z of e.zooms ?? []) js += `    tl.to("#sr-vid", { scale: ${z.scale}, transformOrigin: "${z.ox ?? 540}px ${z.oy ?? 960}px", duration: ${z.dur ?? 0.5}, ease: "power2.inOut" }, ${r3(L(z.at))});\n`;
     js += `    tl.to(["#sr-vid", "#sr-bg"], { opacity: 0, duration: 0.25, ease: "power2.in" }, ${r3(len - 0.26)});\n`;
     return [css, body, js];
   },
@@ -588,7 +596,7 @@ const index = `<!doctype html>
       .bh { position: absolute; inset: 0; z-index: 2; }
       .bh-t { position: absolute; left: 0; width: 100%; top: 880px; text-align: center; font-family: 'Playfair Display', serif; font-weight: 900;
         font-size: 230px; letter-spacing: -0.03em; color: ${C.crimson_rouge}; margin-left: -36px; }
-      #avatar { position: absolute; left: 0; top: ${av.y ?? 0}px; width: ${W}px; height: ${H}px; object-fit: contain; z-index: 3; }
+      #avatar { position: absolute; left: 0; top: ${av.y ?? 0}px; width: ${W}px; height: ${H}px; object-fit: contain; z-index: 3; -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%); mask-image: linear-gradient(180deg, #000 86%, transparent 100%); }
     </style>
   </head>
   <body>

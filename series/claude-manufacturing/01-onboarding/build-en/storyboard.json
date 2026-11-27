@@ -8,7 +8,7 @@
     "src": "assets/avatar.webm",
     "y": 0
   },
-  "tail_hold_sec": 0.2,
+  "tail_hold_sec": 0.3,
   "palette": "../../../../style/palette-noir.json",
   "captions": {
     "max_words": 3,
@@ -163,7 +163,7 @@
         "e": "end",
         "o": 0.3
       },
-      "kicker": "EPISODE 01/17 · CLAUDE FOR MANUFACTURING",
+      "kicker": "EPISODE 01/17",
       "title": "Onboarding",
       "dept": "IT & DATA",
       "name": "Sevim",
@@ -217,6 +217,19 @@
             "o": -0.3
           }
         ]
+      ],
+      "zooms": [
+        {
+          "at": {
+            "w": 78,
+            "e": "start",
+            "o": -0.2
+          },
+          "scale": 1.45,
+          "ox": 540,
+          "oy": 960,
+          "dur": 0.5
+        }
       ]
     },
     {

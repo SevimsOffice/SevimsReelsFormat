@@ -9,8 +9,8 @@
     #pl-unit { font-style: italic; font-size: 48px; color: #F0EBD4; }
   </style>
   <div id="root" data-composition-id="plugin" data-width="1080" data-height="1920">
-    <div id="pl-card" class="clip" data-start="0" data-duration="5.492">
-      <div id="pl-kicker">ANTHROPIC · NEW PLUGIN</div>
+    <div id="pl-card" class="clip" data-start="0" data-duration="5.34">
+      <div id="pl-kicker"><img src="assets/brand/logos/claude.svg" alt="" style="height:30px;vertical-align:-6px;margin-right:12px">ANTHROPIC · NEW PLUGIN</div>
       <div id="pl-title">Claude for Manufacturing</div>
       <div id="pl-row"><div id="pl-num">17</div><div id="pl-unit">ready-made skills</div></div>
     </div>
@@ -18,12 +18,12 @@
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#pl-card", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
-    tl.fromTo("#pl-title", { opacity: 0.15, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.031);
-    tl.fromTo("#pl-row", { opacity: 0 }, { opacity: 1, duration: 0.12 }, 3.328);
+    tl.fromTo("#pl-title", { opacity: 0.15, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.01);
+    tl.fromTo("#pl-row", { opacity: 0 }, { opacity: 1, duration: 0.12 }, 3.5);
     const n = { v: 0 }; const el = document.getElementById("pl-num");
-    tl.fromTo(n, { v: 0 }, { v: 17, duration: 0.55, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, 3.378);
+    tl.fromTo(n, { v: 0 }, { v: 17, duration: 0.55, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, 3.55);
     tl.set(n, { v: 0, onUpdate: () => { el.textContent = Math.round(n.v); } }, 0);
-    tl.to("#pl-card", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 5.282);
+    tl.to("#pl-card", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 5.13);
 
     window.__timelines["plugin"] = tl;
   </script>

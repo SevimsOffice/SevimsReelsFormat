@@ -12,7 +12,7 @@
     #sk-hand { font-family: 'EB Garamond', serif; font-style: italic; font-size: 40px; color: #C41E3A; margin-top: 30px; }
   </style>
   <div id="root" data-composition-id="skillmd" data-width="1080" data-height="1920">
-    <div id="sk-wrap" class="clip" data-start="0" data-duration="3.046">
+    <div id="sk-wrap" class="clip" data-start="0" data-duration="2.61">
       <div id="sk-bg"></div>
       <div id="sk-paper">
         <div id="sk-path">skills/ncr-report/SKILL.md</div>
@@ -29,11 +29,11 @@
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#sk-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
     tl.fromTo("#sk-paper", { y: 240, rotation: -2, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
-    tl.fromTo("#sk-oline", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, 0.712);
-    tl.fromTo("#sk-new", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 0.962);
-    tl.fromTo("#sk-hand", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.262);
-    tl.to("#sk-paper", { opacity: 0, scale: 1.12, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 2.786);
-    tl.to("#sk-bg", { opacity: 0, duration: 0.25 }, 2.786);
+    tl.fromTo("#sk-oline", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, 0.56);
+    tl.fromTo("#sk-new", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 0.81);
+    tl.fromTo("#sk-hand", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.11);
+    tl.to("#sk-paper", { opacity: 0, scale: 1.12, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 2.35);
+    tl.to("#sk-bg", { opacity: 0, duration: 0.25 }, 2.35);
 
     window.__timelines["skillmd"] = tl;
   </script>

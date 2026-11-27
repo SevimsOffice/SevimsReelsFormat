@@ -49,8 +49,9 @@ for (const w of words) {
   cur.push(w);
 }
 if (cur.length) groups.push(cur);
-const captions = groups.map((g, i) => {
-  const next = groups[i + 1];
+for (const g of groups) for (let k = g.length - 1; k >= 0; k--) if (!g[k].w) g.splice(k, 1);
+const captions = groups.filter((g) => g.length).map((g, i, all) => {
+  const next = all[i + 1];
   const start = r3(Math.max(0.1, g[0].start - 0.06));
   const end = r3(next ? Math.min(g.at(-1).end + 0.3, next[0].start - 0.06) : D - 0.05);
   return { id: `cap${i}`, start, end, words: g.map((w) => ({ text: w.w, start: r3(w.start), end: r3(w.end) })) };
@@ -66,6 +67,7 @@ mkdirSync(join(OUT, "compositions"), { recursive: true });
 mkdirSync(join(OUT, "assets"), { recursive: true });
 for (const f of ["avatar.png", "avatar.webm", "voice.wav"]) if (existsSync(join(JOB, "assets", f))) cpSync(join(JOB, "assets", f), join(OUT, "assets", f));
 cpSync(join(ENGINE, "sfx"), join(OUT, "assets", "sfx"), { recursive: true });
+cpSync(join(ENGINE, "assets"), join(OUT, "assets", "brand"), { recursive: true });
 
 const FACE = [540, 1150];
 const SAFE = { x0: 120, x1: 888, y0: 288, y1: 1248 };
@@ -119,7 +121,7 @@ const FX = {
     #pl-num { font-family: ${FONT.display}; font-weight: 900; font-size: 150px; line-height: .9; color: ${C.crimson_rouge}; width: 190px; }
     #pl-unit { font-style: italic; font-size: 48px; color: ${C.vintage_cream}; }`;
     const body = `    <div id="pl-card" class="clip" data-start="0" data-duration="${len}">
-      <div id="pl-kicker">${esc(e.kicker)}</div>
+      <div id="pl-kicker">${e.logo ? `<img src="assets/brand/logos/${e.logo}" alt="" style="height:30px;vertical-align:-6px;margin-right:12px">` : ""}${esc(e.kicker)}</div>
       <div id="pl-title">${esc(e.title)}</div>
       <div id="pl-row"><div id="pl-num">${e.number}</div><div id="pl-unit">${esc(e.unit)}</div></div>
     </div>`;
@@ -294,6 +296,121 @@ const FX = {
     return [css, body, js];
   },
 
+  "scene.factory"(e, L, len) {
+    // Line-art machine shop drawn in the palette: CNC cell, conveyor of parts, gauge. One part fails (crimson X).
+    const ink = C.vintage_cream, acc = C.crimson_rouge;
+    const parts = [0, 1, 2, 3, 4, 5].map((i) => `<g id="fa-p${i}" transform="translate(${-120 - i * 150} 0)"><rect x="0" y="440" width="96" height="60" rx="6" fill="${C.espresso_wood}" stroke="${ink}" stroke-width="3"/><circle cx="48" cy="470" r="14" fill="none" stroke="${ink}" stroke-width="3"/></g>`).join("");
+    const css = `    #fa-wrap { position: absolute; left: ${SAFE.x0 - 20}px; width: ${SW + 40}px; top: ${GY - 20}px; height: 640px; ${panel} overflow: hidden; }
+    #fa-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #fa-kicker { position: absolute; left: 34px; top: 26px; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${ink}B3; }
+    #fa-x { opacity: 0; }`;
+    const body = `    <div id="fa-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-overflow>
+      <svg id="fa-svg" viewBox="0 0 808 640" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <g stroke="${ink}" stroke-width="3">
+          <path id="fa-m0" d="M90 120 H420 V400 H90 Z" stroke-dasharray="1300" stroke-dashoffset="1300"/>
+          <path id="fa-m1" d="M120 150 H390 V300 H120 Z" stroke-dasharray="840" stroke-dashoffset="840" stroke-opacity=".7"/>
+          <path id="fa-m2" d="M255 150 V230 M235 230 H275 L262 262 H248 Z" stroke-dasharray="260" stroke-dashoffset="260"/>
+          <path id="fa-m3" d="M140 335 H220 M140 360 H190 M300 330 h60 v40 h-60 z" stroke-dasharray="400" stroke-dashoffset="400" stroke-opacity=".7"/>
+          <path id="fa-c0" d="M20 500 H790 M20 520 H790" stroke-dasharray="1600" stroke-dashoffset="1600"/>
+          <path id="fa-g0" d="M560 160 H720 V300 H560 Z M600 300 V430 M680 300 V430 M590 200 H690" stroke-dasharray="900" stroke-dashoffset="900"/>
+        </g>
+        <path id="fa-beam" d="M640 300 V432" stroke="${acc}" stroke-width="4" stroke-dasharray="8 8" opacity="0"/>
+        <text x="572" y="250" fill="${ink}" font-family="IBM Plex Mono" font-size="28" opacity=".8">GAUGE</text>
+        ${parts}
+        <g id="fa-x" stroke="${acc}" stroke-width="10"><path d="M600 430 L680 510 M680 430 L600 510"/></g>
+      </svg>
+      <div id="fa-kicker">LINE 3 · INSPECTION</div>
+    </div>`;
+    let js = enter("#fa-wrap");
+    [["#fa-m0", 1300], ["#fa-m1", 840], ["#fa-m2", 260], ["#fa-m3", 400], ["#fa-c0", 1600], ["#fa-g0", 900]].forEach(([s, n], i) => {
+      js += `    tl.fromTo("${s}", { attr: { "stroke-dashoffset": ${n} } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, ${r3(0.1 + i * 0.07)});\n`;
+    });
+    // Parts move steadily along the conveyor; the one under the gauge at the "fails" word gets the X.
+    const failT = L(e.fail_at);
+    [0, 1, 2, 3, 4, 5].forEach((i) => { js += `    tl.fromTo("#fa-p${i}", { x: ${-120 - i * 150} }, { x: ${-120 - i * 150 + 760}, duration: ${r3(Math.max(failT, 0.5))}, ease: "power1.out" }, 0);\n`; });
+    js += `    tl.fromTo("#fa-beam", { opacity: 0 }, { opacity: 1, duration: 0.1 }, ${r3(failT - 0.3)});\n`;
+    js += `    tl.fromTo("#fa-x", { opacity: 0, scale: 1.6, transformOrigin: "640px 470px" }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.in" }, ${r3(failT)});\n`;
+    js += leave("#fa-wrap", len);
+    return [css, body, js];
+  },
+
+  "doc.rfq"(e, L, len) {
+    const css = `    #rf-bg { position: absolute; inset: 0; background: ${C.cobalt_night}; }
+    #rf-paper { position: absolute; left: 100px; top: 290px; width: 800px; height: 840px; background: ${C.vintage_cream}; color: ${C.midnight_ink};
+                border-radius: 6px; box-shadow: 0 40px 120px rgba(0,0,0,.6); padding: 40px 50px; }
+    #rf-top { display: flex; justify-content: space-between; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .1em; color: ${C.crimson_rouge}; border-bottom: 2px solid ${C.midnight_ink}; padding-bottom: 12px; }
+    #rf-h { font-family: ${FONT.display}; font-weight: 900; font-size: 52px; margin: 18px 0 10px; }
+    .rf-f { display: flex; font-size: 32px; padding: 7px 0; border-bottom: 1px solid ${C.tweed_grey}55; }
+    .rf-f b { font-family: ${FONT.mono}; font-weight: 500; font-size: 28px; color: ${C.espresso_wood}; width: 230px; flex: none; padding-top: 3px; }
+    .rf-miss { color: ${C.crimson_rouge}; font-weight: 700; font-style: italic; }
+    #rf-draw { display: block; width: 100%; height: 190px; margin-top: 12px; }
+    #rf-q { position: absolute; left: 50px; right: 50px; bottom: 40px; display: flex; justify-content: space-between; align-items: center;
+            background: ${C.midnight_ink}; color: ${C.vintage_cream}; padding: 18px 26px; border-radius: 10px; }
+    #rf-q b { font-family: ${FONT.display}; font-size: 40px; }
+    #rf-q span { font-family: ${FONT.mono}; font-size: 28px; color: ${C.vintage_cream}C0; }
+    .rf-flag { position: absolute; font-family: ${FONT.mono}; font-size: 28px; font-weight: 700; color: ${C.vintage_cream}; background: ${C.crimson_rouge}; padding: 4px 12px; border-radius: 6px; }`;
+    const ink = C.midnight_ink;
+    const body = `    <div id="rf-wrap" class="clip" data-start="0" data-duration="${len}">
+      <div id="rf-bg"></div>
+      <div id="rf-paper">
+        <div id="rf-top"><span>RFQ · EXAMPLE</span><span>INBOX</span></div>
+        <div id="rf-h">REQUEST FOR QUOTATION</div>
+        <div class="rf-f"><b>PART</b>Bracket, machined</div>
+        <div class="rf-f"><b>MATERIAL</b>Aluminium 6061</div>
+        <div class="rf-f"><b>QUANTITY</b>500 pcs</div>
+        <div class="rf-f" id="rf-f0"><b>TOLERANCE</b><span class="rf-miss">missing</span></div>
+        <div class="rf-f" id="rf-f1"><b>FINISH</b><span class="rf-miss">missing</span></div>
+        <svg id="rf-draw" viewBox="0 0 700 190" fill="none" stroke="${ink}" stroke-width="2.5">
+          <rect id="rf-d0" x="30" y="20" width="300" height="140" rx="6" stroke-dasharray="900" stroke-dashoffset="900"/>
+          <circle id="rf-d1" cx="180" cy="90" r="40" stroke-dasharray="260" stroke-dashoffset="260"/>
+          <path id="rf-d2" d="M30 180 H330 M400 40 H660 V140 H400 Z" stroke-dasharray="1000" stroke-dashoffset="1000" stroke-opacity=".7"/>
+        </svg>
+        <div id="rf-q"><b>${esc(e.quote)}</b><span>from cost history</span></div>
+      </div>
+    </div>`;
+    let js = `    tl.fromTo("#rf-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    tl.fromTo("#rf-paper", { y: 260, rotation: -3, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
+    tl.fromTo("#rf-paper", { scale: 1 }, { scale: 1.04, duration: ${r3(len - 0.9)}, ease: "none" }, 0.6);\n`;
+    [["#rf-d0", 900], ["#rf-d1", 260], ["#rf-d2", 1000]].forEach(([s, n], i) => { js += `    tl.fromTo("${s}", { attr: { "stroke-dashoffset": ${n} } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, ${r3(0.4 + i * 0.1)});\n`; });
+    e.flags.forEach((f, i) => { js += `    tl.fromTo("#rf-f${i}", { backgroundColor: "rgba(196,30,58,0)" }, { backgroundColor: "rgba(196,30,58,0.14)", duration: 0.2 }, ${r3(L(f.at))});\n`; });
+    js += `    tl.fromTo("#rf-q", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, ${r3(L(e.quote_at))});\n`;
+    js += `    tl.to("#rf-paper", { opacity: 0, scale: 1.12, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, ${r3(len - 0.26)});
+    tl.to("#rf-bg", { opacity: 0, duration: 0.25 }, ${r3(len - 0.26)});\n`;
+    return [css, body, js];
+  },
+
+  "logos.saas"(e, L, len) {
+    // One card per app, swapped on its spoken name: browser frame with the real page (when we have it) + logo.
+    const css = `    #ls-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY - 10}px; height: 620px; }
+    #ls-kicker { font-family: ${FONT.mono}; font-size: 30px; letter-spacing: .2em; color: ${C.vintage_cream}B3; text-align: center; margin-bottom: 16px; }
+    .ls-card { position: absolute; left: 0; top: 50px; width: 100%; ${panel} padding: 0 0 22px; overflow: hidden; }
+    .ls-bar { height: 40px; background: #26272F; display: flex; align-items: center; gap: 9px; padding-left: 18px; }
+    .ls-bar i { width: 13px; height: 13px; border-radius: 50%; background: ${C.tweed_grey}; display: block; }
+    .ls-bar span { margin-left: 16px; font-family: ${FONT.mono}; font-size: 22px; color: ${C.vintage_cream}99; }
+    .ls-shot { display: block; width: 100%; height: 230px; object-fit: cover; object-position: top; }
+    .ls-hero { height: 230px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, ${C.espresso_wood} 0%, ${C.midnight_ink} 75%); }
+    .ls-hero img { height: 110px; }
+    .ls-hero .wm { font-family: ${FONT.display}; font-weight: 900; font-size: 76px; color: ${C.vintage_cream}; letter-spacing: -0.01em; }
+    .ls-foot { display: flex; align-items: center; gap: 18px; padding: 16px 26px 0; }
+    .ls-foot img { height: 52px; }
+    .ls-foot b { font-family: ${FONT.display}; font-size: 46px; font-weight: 900; }
+    .ls-dots { position: absolute; left: 0; right: 0; top: 0px; display: none; text-align: center; }
+    .ls-dots i { display: inline-block; width: 14px; height: 14px; margin: 0 7px; border-radius: 50%; background: ${C.tweed_grey}; }`;
+    let cards = "", js = `    tl.fromTo("#ls-kicker", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);\n`;
+    e.apps.forEach((a, i) => {
+      const hero = a.shot ? `<img class="ls-shot" src="assets/brand/shots/${a.shot}" alt="">` : `<div class="ls-hero">${a.hero_logo ? `<img src="assets/brand/logos/${a.hero_logo}" alt="">` : ""}<div class="wm">${esc(a.wordmark ?? "")}</div></div>`;
+      cards += `<div class="ls-card" id="ls-c${i}"><div class="ls-bar"><i></i><i></i><i></i><span>${esc(a.url)}</span></div>${hero}<div class="ls-foot">${a.logo ? `<img src="assets/brand/logos/${a.logo}" alt="">` : ""}<b>${esc(a.name)}</b></div></div>`;
+      const t = L(a.at), next = i + 1 < e.apps.length ? L(e.apps[i + 1].at) : len;
+      js += `    tl.fromTo("#ls-c${i}", { opacity: 0, y: 40, scale: 0.94, filter: "blur(8px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, ${r3(Math.max(0, t - 0.08))});\n`;
+      js += `    tl.fromTo("#ls-d${i}", { backgroundColor: "${C.tweed_grey}" }, { backgroundColor: "${C.crimson_rouge}", duration: 0.1 }, ${r3(Math.max(0, t - 0.08))});\n`;
+      if (i + 1 < e.apps.length) js += `    tl.to("#ls-c${i}", { opacity: 0, y: -30, filter: "blur(8px)", duration: 0.18, ease: "power2.in" }, ${r3(next - 0.1)});\n`;
+    });
+    const dots = e.apps.map((_, i) => `<i id="ls-d${i}"></i>`).join("");
+    const body = `    <div id="ls-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-overlap data-layout-allow-occlusion><div id="ls-kicker">${esc(e.kicker)}</div>${cards}<div class="ls-dots">${dots}</div></div>`;
+    js += leave("#ls-wrap", len);
+    return [css, body, js];
+  },
+
   "cta.comment"(e, L, len) {
     const css = `    #ct-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY + 40}px; text-align: center; }
     #ct-line { font-style: italic; font-size: 54px; }
@@ -363,6 +480,7 @@ for (const b of behind) {
   camJs.push(`      tl.to("#bh-${b.id}-t", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, ${r3(b.to - 0.21)});`);
 }
 const av = sb.avatar;
+const avatarTag0 = 0;
 const avatarTag = av.kind === "video"
   ? `<video id="avatar" class="clip" src="assets/avatar.webm" muted playsinline data-start="0" data-duration="${r3(speechEnd + 0.35)}" data-track-index="0" data-layout-allow-occlusion></video>`
   : `<img id="avatar" class="clip" src="assets/avatar.png" alt="" data-start="0" data-duration="${D}" data-track-index="0" data-layout-allow-occlusion />`;
@@ -391,7 +509,7 @@ const index = `<!doctype html>
       .bh { position: absolute; inset: 0; z-index: 2; }
       .bh-t { position: absolute; left: 0; width: 100%; top: 880px; text-align: center; font-family: 'Playfair Display', serif; font-weight: 900;
         font-size: 230px; letter-spacing: -0.03em; color: ${C.crimson_rouge}; margin-left: -36px; }
-      #avatar { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; object-fit: contain; z-index: 3; }
+      #avatar { position: absolute; left: 0; top: ${av.y ?? 0}px; width: ${W}px; height: ${H}px; object-fit: contain; z-index: 3; }
     </style>
   </head>
   <body>

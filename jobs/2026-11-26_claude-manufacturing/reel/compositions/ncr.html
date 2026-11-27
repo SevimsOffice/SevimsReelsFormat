@@ -18,7 +18,7 @@
     #nc-s2 { position: absolute; right: 50px; bottom: 70px; font-size: 44px; transform: rotate(-4deg); }
   </style>
   <div id="root" data-composition-id="ncr" data-width="1080" data-height="1920">
-    <div id="nc-wrap" class="clip" data-start="0" data-duration="9.283">
+    <div id="nc-wrap" class="clip" data-start="0" data-duration="8.07">
       <div id="nc-bg"></div>
       <div id="nc-paper">
         <div id="nc-top"><span>NCR · EXAMPLE</span><span>QUALITY</span></div>
@@ -35,17 +35,17 @@
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#nc-bg", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.inOut" }, 0);
     tl.fromTo("#nc-paper", { y: 260, rotation: 3, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
-    tl.fromTo("#nc-paper", { scale: 1 }, { scale: 1.05, duration: 8.383, ease: "none" }, 0.6);
-    tl.fromTo("#nc-s1", { opacity: 0, scale: 1.8, rotation: -7 }, { opacity: 1, scale: 1, rotation: -7, duration: 0.16, ease: "power4.in" }, 1.018);
-    tl.fromTo("#nc-r0", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 2.79);
-    tl.fromTo("#nc-r1", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 4.624);
-    tl.fromTo("#nc-ct", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 5.889);
-    tl.fromTo("#nc-c0", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.28, ease: "expo.out" }, 5.989);
-    tl.fromTo("#nc-c1", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.28, ease: "expo.out" }, 6.109);
-    tl.fromTo("#nc-c2", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.28, ease: "expo.out" }, 6.229);
-    tl.fromTo("#nc-s2", { opacity: 0, scale: 1.8, rotation: 5 }, { opacity: 1, scale: 1, rotation: 5, duration: 0.16, ease: "power4.in" }, 7.824);
-    tl.to("#nc-paper", { opacity: 0, scale: 1.15, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 9.023);
-    tl.to("#nc-bg", { opacity: 0, duration: 0.25, ease: "power2.in" }, 9.023);
+    tl.fromTo("#nc-paper", { scale: 1 }, { scale: 1.05, duration: 7.17, ease: "none" }, 0.6);
+    tl.fromTo("#nc-s1", { opacity: 0, scale: 1.8, rotation: -7 }, { opacity: 1, scale: 1, rotation: -7, duration: 0.16, ease: "power4.in" }, 0.1);
+    tl.fromTo("#nc-r0", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 1.64);
+    tl.fromTo("#nc-r1", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 3.62);
+    tl.fromTo("#nc-ct", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 5.02);
+    tl.fromTo("#nc-c0", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.28, ease: "expo.out" }, 5.12);
+    tl.fromTo("#nc-c1", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.28, ease: "expo.out" }, 5.24);
+    tl.fromTo("#nc-c2", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.28, ease: "expo.out" }, 5.36);
+    tl.fromTo("#nc-s2", { opacity: 0, scale: 1.8, rotation: 5 }, { opacity: 1, scale: 1, rotation: 5, duration: 0.16, ease: "power4.in" }, 6.82);
+    tl.to("#nc-paper", { opacity: 0, scale: 1.15, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 7.81);
+    tl.to("#nc-bg", { opacity: 0, duration: 0.25, ease: "power2.in" }, 7.81);
 
     window.__timelines["ncr"] = tl;
   </script>

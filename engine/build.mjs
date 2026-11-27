@@ -35,6 +35,8 @@ function resolveDeep(v) {
   return v;
 }
 const events = sb.events.map(resolveDeep);
+// UI strings: English defaults, overridable per job via storyboard.labels (e.g. Turkish).
+const T = (k, d) => esc((sb.labels ?? {})[k] ?? d);
 const camera = sb.camera.map(resolveDeep);
 
 // ---------- captions: auto groups (max N words, break on punctuation / pause / off-windows) ----------
@@ -161,7 +163,7 @@ const FX = {
     const body = `    <div id="nc-wrap" class="clip" data-start="0" data-duration="${len}">
       <div id="nc-bg"></div>
       <div id="nc-paper">
-        <div id="nc-top"><span>${esc(e.ref)}</span><span>QUALITY</span></div>
+        <div id="nc-top"><span>${esc(e.ref)}</span><span>${T("quality", "QUALITY")}</span></div>
         <div id="nc-h">${esc(e.header)}</div>
         <div class="stamp" id="nc-s1">${esc(e.stamp.text)}</div>
         ${rows}
@@ -288,7 +290,7 @@ const FX = {
         <div>1. <span id="sk-old">${esc(e.old)}<span id="sk-oline"></span></span></div>
         <div id="sk-new">&nbsp;&nbsp;&nbsp;${esc(e.new)}</div>
         <div>2. Search past NCRs for the defect.</div><div>3. Rank likely causes.</div>
-        <div id="sk-hand">← your team's procedure</div>
+        <div id="sk-hand">${T("team_procedure", "← your team's procedure")}</div>
       </div>
     </div>`;
     let js = `    tl.fromTo("#sk-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
@@ -358,19 +360,19 @@ const FX = {
     const body = `    <div id="rf-wrap" class="clip" data-start="0" data-duration="${len}">
       <div id="rf-bg"></div>
       <div id="rf-paper">
-        <div id="rf-top"><span>RFQ · EXAMPLE</span><span>INBOX</span></div>
-        <div id="rf-h">REQUEST FOR QUOTATION</div>
-        <div class="rf-f"><b>PART</b>Bracket, machined</div>
-        <div class="rf-f"><b>MATERIAL</b>Aluminium 6061</div>
-        <div class="rf-f"><b>QUANTITY</b>500 pcs</div>
-        <div class="rf-f" id="rf-f0"><b>TOLERANCE</b><span class="rf-miss">missing</span></div>
-        <div class="rf-f" id="rf-f1"><b>FINISH</b><span class="rf-miss">missing</span></div>
+        <div id="rf-top"><span>${T("rfq_ref", "RFQ · EXAMPLE")}</span><span>${T("inbox", "INBOX")}</span></div>
+        <div id="rf-h">${T("rfq_title", "REQUEST FOR QUOTATION")}</div>
+        <div class="rf-f"><b>${T("part", "PART")}</b>${T("part_v", "Bracket, machined")}</div>
+        <div class="rf-f"><b>${T("material", "MATERIAL")}</b>${T("material_v", "Aluminium 6061")}</div>
+        <div class="rf-f"><b>${T("qty", "QUANTITY")}</b>${T("qty_v", "500 pcs")}</div>
+        <div class="rf-f" id="rf-f0"><b>${T("tolerance", "TOLERANCE")}</b><span class="rf-miss">${T("missing", "missing")}</span></div>
+        <div class="rf-f" id="rf-f1"><b>${T("finish", "FINISH")}</b><span class="rf-miss">${T("missing", "missing")}</span></div>
         <svg id="rf-draw" viewBox="0 0 700 190" fill="none" stroke="${ink}" stroke-width="2.5">
           <rect id="rf-d0" x="30" y="20" width="300" height="140" rx="6" stroke-dasharray="900" stroke-dashoffset="900"/>
           <circle id="rf-d1" cx="180" cy="90" r="40" stroke-dasharray="260" stroke-dashoffset="260"/>
           <path id="rf-d2" d="M30 180 H330 M400 40 H660 V140 H400 Z" stroke-dasharray="1000" stroke-dashoffset="1000" stroke-opacity=".7"/>
         </svg>
-        <div id="rf-q"><b>${esc(e.quote)}</b><span>from cost history</span></div>
+        <div id="rf-q"><b>${esc(e.quote)}</b><span>${T("from_history", "from cost history")}</span></div>
       </div>
     </div>`;
     let js = `    tl.fromTo("#rf-bg", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
@@ -443,7 +445,7 @@ const FX = {
     #ct-pill { display: inline-block; margin-top: 26px; padding: 18px 44px; border-radius: 60px; background: ${C.crimson_rouge}; font-family: ${FONT.display}; font-weight: 900; font-size: 72px; }
     #ct-pill small { font-family: ${FONT.serif}; font-style: italic; font-weight: 400; font-size: 44px; margin-right: 14px; }`;
     const letters = [...e.word].map((c, i) => `<span id="ct-k${i}" style="opacity:0">${esc(c)}</span>`).join("");
-    const body = `    <div id="ct-wrap" class="clip" data-start="0" data-duration="${len}"><div id="ct-line">${esc(e.line)}</div><div id="ct-pill"><small>Comment</small>${letters}</div></div>`;
+    const body = `    <div id="ct-wrap" class="clip" data-start="0" data-duration="${len}"><div id="ct-line">${esc(e.line)}</div><div id="ct-pill"><small>${T("comment", "Comment")}</small>${letters}</div></div>`;
     let js = enter("#ct-line") + pop("#ct-pill", 0.3, 0.8);
     [...e.word].forEach((_, i) => { js += `    tl.set("#ct-k${i}", { opacity: 1 }, ${r3(Math.max(0.35, L(e.word_at) - 0.25) + 0.06 * i)});\n`; });
     return [css, body, js];

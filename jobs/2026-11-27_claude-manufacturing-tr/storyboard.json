@@ -1,0 +1,679 @@
+{
+  "video_id": "2026-11-27_claude-manufacturing-tr",
+  "topic": "Claude for Manufacturing (TR)",
+  "words_file": "words.json",
+  "voice": "assets/voice.wav",
+  "avatar": {
+    "kind": "video",
+    "src": "assets/avatar.webm",
+    "y": 420,
+    "$note": "HeyGen Turkish take (16:9) cropped to a square, background removed"
+  },
+  "tail_hold_sec": 0.4,
+  "palette": "../../style/palette-noir.json",
+  "captions": {
+    "max_words": 3,
+    "off": [
+      [
+        0,
+        3
+      ]
+    ]
+  },
+  "labels": {
+    "quality": "KALİTE",
+    "team_procedure": "← ekibinizin prosedürü",
+    "rfq_ref": "RFQ · ÖRNEK",
+    "inbox": "GELEN",
+    "rfq_title": "TEKLİF TALEBİ",
+    "part": "PARÇA",
+    "part_v": "Braket, talaşlı imalat",
+    "material": "MALZEME",
+    "material_v": "Alüminyum 6061",
+    "qty": "ADET",
+    "qty_v": "500",
+    "tolerance": "TOLERANS",
+    "finish": "YÜZEY",
+    "missing": "eksik",
+    "from_history": "geçmiş maliyetlerden",
+    "comment": "Yorumlara yaz:"
+  },
+  "camera": [
+    {
+      "type": "cut",
+      "at": {
+        "w": 2,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.12
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 4,
+        "e": "start",
+        "o": -0.15
+      },
+      "scale": 1.0,
+      "dur": 0.6
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 41,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.1
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 47,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 72,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.14
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 81,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.6
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 98,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.1
+    }
+  ],
+  "events": [
+    {
+      "id": "hook",
+      "fx": "title.hook",
+      "from": 0,
+      "to": {
+        "w": 3,
+        "e": "end",
+        "o": 0.25
+      },
+      "lines": [
+        "Claude'a",
+        "fabrikada iş çıktı."
+      ],
+      "accent_word": "fabrikada",
+      "bg_photo": "factory-hall.jpg",
+      "sfx": [
+        [
+          "impact",
+          0
+        ]
+      ]
+    },
+    {
+      "id": "plugin",
+      "fx": "card.counter",
+      "from": {
+        "w": 4,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 16,
+        "e": "end",
+        "o": 0.45
+      },
+      "logo": "claude.svg",
+      "kicker": "ANTHROPIC · YENİ PLUGIN",
+      "title": "Claude for Manufacturing",
+      "title_at": {
+        "w": 5,
+        "e": "start",
+        "o": 0
+      },
+      "number": 17,
+      "number_at": {
+        "w": 10,
+        "e": "start",
+        "o": 0
+      },
+      "unit": "hazır skill",
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 4,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 10,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "factory",
+      "fx": "photo.card",
+      "from": {
+        "w": 17,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 26,
+        "e": "end",
+        "o": 0.3
+      },
+      "src": "factory-floor.jpg",
+      "kicker": "HAT 3 · KALİTE KONTROL",
+      "stamp": {
+        "text": "RED",
+        "at": {
+          "w": 26,
+          "e": "start",
+          "o": 0
+        }
+      },
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 17,
+            "e": "start",
+            "o": -0.05
+          }
+        ],
+        [
+          "stamp",
+          {
+            "w": 26,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "ncr",
+      "fx": "doc.ncr",
+      "from": {
+        "w": 27,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 40,
+        "e": "end",
+        "o": 0.35
+      },
+      "header": "UYGUNSUZLUK RAPORU",
+      "ref": "NCR · ÖRNEK",
+      "stamp": {
+        "text": "KONTROLDEN GEÇEMEDİ",
+        "at": {
+          "w": 27,
+          "e": "start",
+          "o": 0
+        }
+      },
+      "rows": [
+        {
+          "label": "RAPOR",
+          "value": "Gereksinime göre yazıldı",
+          "at": {
+            "w": 30,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "label": "GEÇMİŞ",
+          "value": "Aynı hatanın eski kayıtları",
+          "at": {
+            "w": 33,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "causes_title": "Olası nedenler, sıralı",
+      "causes_at": {
+        "w": 36,
+        "e": "start",
+        "o": 0
+      },
+      "causes": [
+        "Takım aşınması",
+        "Fikstür kayması",
+        "Malzeme partisi"
+      ],
+      "stamp2": {
+        "text": "8D · TASLAK",
+        "at": {
+          "w": 38,
+          "e": "start",
+          "o": 0
+        }
+      },
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 27,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "stamp",
+          {
+            "w": 27,
+            "e": "start",
+            "o": 0.15
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 30,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 33,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 36,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "stamp",
+          {
+            "w": 38,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "whoosh",
+          {
+            "w": 40,
+            "e": "end",
+            "o": 0.1
+          }
+        ]
+      ]
+    },
+    {
+      "id": "signoff",
+      "fx": "card.signature",
+      "from": {
+        "w": 41,
+        "e": "start",
+        "o": 0
+      },
+      "to": {
+        "w": 46,
+        "e": "end",
+        "o": 0.45
+      },
+      "label": "KALİTE MÜHENDİSİ",
+      "line": "Kontrol edildi ve imzalandı",
+      "sign_at": {
+        "w": 46,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "pen",
+          {
+            "w": 46,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "rfq",
+      "fx": "doc.rfq",
+      "from": {
+        "w": 47,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 62,
+        "e": "end",
+        "o": 0.35
+      },
+      "flags": [
+        {
+          "at": {
+            "w": 54,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "at": {
+            "w": 56,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "quote": "Teklif · taslak",
+      "quote_at": {
+        "w": 61,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 47,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 54,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 56,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "stamp",
+          {
+            "w": 61,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "connect",
+      "fx": "logos.saas",
+      "from": {
+        "w": 63,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 71,
+        "e": "end",
+        "o": 0.4
+      },
+      "kicker": "BAĞLANDIĞI SİSTEMLER",
+      "apps": [
+        {
+          "name": "Autodesk Fusion",
+          "url": "autodesk.com/fusion",
+          "logo": "autodesk.svg",
+          "shot": "broll/autodesk-ui.jpg",
+          "at": {
+            "w": 63,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "name": "Infor",
+          "url": "infor.com",
+          "logo": "infor.svg",
+          "shot": "infor.png",
+          "at": {
+            "w": 65,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "name": "Microsoft 365",
+          "url": "microsoft.com/microsoft-365",
+          "logo": "microsoft.svg",
+          "shot": "m365.png",
+          "at": {
+            "w": 66,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "name": "NetSuite",
+          "url": "netsuite.com",
+          "shot": "broll/netsuite-ui.jpg",
+          "at": {
+            "w": 69,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 63,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 65,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 66,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 69,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "guard",
+      "fx": "text.strike_affirm",
+      "from": {
+        "w": 72,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 80,
+        "e": "end",
+        "o": 0.35
+      },
+      "strike": "Makine kontrolü",
+      "strike_at": {
+        "w": 74,
+        "e": "start",
+        "o": 0
+      },
+      "affirm": "Son onay insanda",
+      "affirm_at": {
+        "w": 78,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "slash",
+          {
+            "w": 74,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 78,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "folders",
+      "fx": "text.behind_subject",
+      "from": {
+        "w": 87,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 90,
+        "e": "end",
+        "o": 0.5
+      },
+      "text": "KLASÖR",
+      "at": {
+        "w": 90,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 89,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "skillmd",
+      "fx": "doc.skillmd",
+      "from": {
+        "w": 91,
+        "e": "start",
+        "o": -0.2
+      },
+      "to": {
+        "w": 97,
+        "e": "end",
+        "o": 0.35
+      },
+      "path": "skills/ncr-report/SKILL.md",
+      "rewrite_at": {
+        "w": 96,
+        "e": "start",
+        "o": 0
+      },
+      "old": "Use the standard NCR template.",
+      "new": "Use OUR template, cite the drawing rev.",
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 91,
+            "e": "start",
+            "o": -0.2
+          }
+        ],
+        [
+          "slash",
+          {
+            "w": 96,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "cta",
+      "fx": "cta.comment",
+      "from": {
+        "w": 98,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": "end",
+      "line": "Nasıl yapıldığını görmek ister misin?",
+      "word": "SKILL",
+      "word_at": {
+        "w": 104,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "impact",
+          {
+            "w": 104,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    }
+  ]
+}

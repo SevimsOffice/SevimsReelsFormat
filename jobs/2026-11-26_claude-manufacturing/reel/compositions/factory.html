@@ -1,48 +1,27 @@
 <template>
   <style>
     #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
-    #fa-wrap { position: absolute; left: 100px; width: 808px; top: 280px; height: 640px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); overflow: hidden; }
-    #fa-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    #fa-kicker { position: absolute; left: 34px; top: 26px; font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .16em; color: #F0EBD4B3; }
-    #fa-x { opacity: 0; }
+    #ph-wrap { position: absolute; left: 100px; width: 808px; top: 280px; height: 640px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); overflow: hidden; }
+    #ph-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 55%; }
+    #ph-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,68,.55) 0%, rgba(26,27,34,0) 35%, rgba(26,27,34,.15) 70%, rgba(26,27,34,.75) 100%); }
+    #ph-kicker { position: absolute; left: 30px; top: 26px; font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .16em; color: #F0EBD4; }
+    #ph-stamp { position: absolute; right: 40px; bottom: 44px; border: 6px solid #C41E3A; color: #F0EBD4; background: #C41E3ACC;
+                font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 44px; letter-spacing: .12em; padding: 10px 24px; border-radius: 8px; }
   </style>
   <div id="root" data-composition-id="factory" data-width="1080" data-height="1920">
-    <div id="fa-wrap" class="clip" data-start="0" data-duration="2.41" data-layout-allow-overflow>
-      <svg id="fa-svg" viewBox="0 0 808 640" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <g stroke="#F0EBD4" stroke-width="3">
-          <path id="fa-m0" d="M90 120 H420 V400 H90 Z" stroke-dasharray="1300" stroke-dashoffset="1300"/>
-          <path id="fa-m1" d="M120 150 H390 V300 H120 Z" stroke-dasharray="840" stroke-dashoffset="840" stroke-opacity=".7"/>
-          <path id="fa-m2" d="M255 150 V230 M235 230 H275 L262 262 H248 Z" stroke-dasharray="260" stroke-dashoffset="260"/>
-          <path id="fa-m3" d="M140 335 H220 M140 360 H190 M300 330 h60 v40 h-60 z" stroke-dasharray="400" stroke-dashoffset="400" stroke-opacity=".7"/>
-          <path id="fa-c0" d="M20 500 H790 M20 520 H790" stroke-dasharray="1600" stroke-dashoffset="1600"/>
-          <path id="fa-g0" d="M560 160 H720 V300 H560 Z M600 300 V430 M680 300 V430 M590 200 H690" stroke-dasharray="900" stroke-dashoffset="900"/>
-        </g>
-        <path id="fa-beam" d="M640 300 V432" stroke="#C41E3A" stroke-width="4" stroke-dasharray="8 8" opacity="0"/>
-        <text x="572" y="250" fill="#F0EBD4" font-family="IBM Plex Mono" font-size="28" opacity=".8">GAUGE</text>
-        <g id="fa-p0" transform="translate(-120 0)"><rect x="0" y="440" width="96" height="60" rx="6" fill="#4D382C" stroke="#F0EBD4" stroke-width="3"/><circle cx="48" cy="470" r="14" fill="none" stroke="#F0EBD4" stroke-width="3"/></g><g id="fa-p1" transform="translate(-270 0)"><rect x="0" y="440" width="96" height="60" rx="6" fill="#4D382C" stroke="#F0EBD4" stroke-width="3"/><circle cx="48" cy="470" r="14" fill="none" stroke="#F0EBD4" stroke-width="3"/></g><g id="fa-p2" transform="translate(-420 0)"><rect x="0" y="440" width="96" height="60" rx="6" fill="#4D382C" stroke="#F0EBD4" stroke-width="3"/><circle cx="48" cy="470" r="14" fill="none" stroke="#F0EBD4" stroke-width="3"/></g><g id="fa-p3" transform="translate(-570 0)"><rect x="0" y="440" width="96" height="60" rx="6" fill="#4D382C" stroke="#F0EBD4" stroke-width="3"/><circle cx="48" cy="470" r="14" fill="none" stroke="#F0EBD4" stroke-width="3"/></g><g id="fa-p4" transform="translate(-720 0)"><rect x="0" y="440" width="96" height="60" rx="6" fill="#4D382C" stroke="#F0EBD4" stroke-width="3"/><circle cx="48" cy="470" r="14" fill="none" stroke="#F0EBD4" stroke-width="3"/></g><g id="fa-p5" transform="translate(-870 0)"><rect x="0" y="440" width="96" height="60" rx="6" fill="#4D382C" stroke="#F0EBD4" stroke-width="3"/><circle cx="48" cy="470" r="14" fill="none" stroke="#F0EBD4" stroke-width="3"/></g>
-        <g id="fa-x" stroke="#C41E3A" stroke-width="10"><path d="M600 430 L680 510 M680 430 L600 510"/></g>
-      </svg>
-      <div id="fa-kicker">LINE 3 · INSPECTION</div>
+    <div id="ph-wrap" class="clip" data-start="0" data-duration="2.41" data-layout-allow-overflow>
+      <img id="ph-img" src="assets/broll/factory-floor.jpg" alt="">
+      <div id="ph-shade"></div>
+      <div id="ph-kicker">LINE 3 · INSPECTION</div>
+      <div id="ph-stamp">FAILED</div>
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#fa-wrap", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
-    tl.fromTo("#fa-m0", { attr: { "stroke-dashoffset": 1300 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.1);
-    tl.fromTo("#fa-m1", { attr: { "stroke-dashoffset": 840 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.17);
-    tl.fromTo("#fa-m2", { attr: { "stroke-dashoffset": 260 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.24);
-    tl.fromTo("#fa-m3", { attr: { "stroke-dashoffset": 400 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.31);
-    tl.fromTo("#fa-c0", { attr: { "stroke-dashoffset": 1600 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.38);
-    tl.fromTo("#fa-g0", { attr: { "stroke-dashoffset": 900 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 0.45);
-    tl.fromTo("#fa-p0", { x: -120 }, { x: 640, duration: 1.85, ease: "power1.out" }, 0);
-    tl.fromTo("#fa-p1", { x: -270 }, { x: 490, duration: 1.85, ease: "power1.out" }, 0);
-    tl.fromTo("#fa-p2", { x: -420 }, { x: 340, duration: 1.85, ease: "power1.out" }, 0);
-    tl.fromTo("#fa-p3", { x: -570 }, { x: 190, duration: 1.85, ease: "power1.out" }, 0);
-    tl.fromTo("#fa-p4", { x: -720 }, { x: 40, duration: 1.85, ease: "power1.out" }, 0);
-    tl.fromTo("#fa-p5", { x: -870 }, { x: -110, duration: 1.85, ease: "power1.out" }, 0);
-    tl.fromTo("#fa-beam", { opacity: 0 }, { opacity: 1, duration: 0.1 }, 1.55);
-    tl.fromTo("#fa-x", { opacity: 0, scale: 1.6, transformOrigin: "640px 470px" }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.in" }, 1.85);
-    tl.to("#fa-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.2);
+    tl.fromTo("#ph-wrap", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#ph-img", { scale: 1.02 }, { scale: 1.14, duration: 2.41, ease: "none" }, 0);
+    tl.fromTo("#ph-stamp", { opacity: 0, scale: 1.8, rotation: -6 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.16, ease: "power4.in" }, 1.85);
+    tl.to("#ph-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.2);
 
     window.__timelines["factory"] = tl;
   </script>

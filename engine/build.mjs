@@ -68,6 +68,7 @@ mkdirSync(join(OUT, "assets"), { recursive: true });
 for (const f of ["avatar.png", "avatar.webm", "voice.wav"]) if (existsSync(join(JOB, "assets", f))) cpSync(join(JOB, "assets", f), join(OUT, "assets", f));
 cpSync(join(ENGINE, "sfx"), join(OUT, "assets", "sfx"), { recursive: true });
 cpSync(join(ENGINE, "assets"), join(OUT, "assets", "brand"), { recursive: true });
+if (existsSync(join(JOB, "assets", "broll"))) cpSync(join(JOB, "assets", "broll"), join(OUT, "assets", "broll"), { recursive: true });
 
 const FACE = [540, 1150];
 const SAFE = { x0: 120, x1: 888, y0: 288, y1: 1248 };
@@ -101,13 +102,17 @@ const panel = `background: ${C.midnight_ink}E6; border: 1.5px solid ${C.vintage_
 const FX = {
   "title.hook"(e, L, len) {
     const lines = e.lines.map((l, i) => `<div class="hk-line" id="hook-l${i}">${l.split(" ").map((w) => `<span class="${w.replace(/\W/g, "").toLowerCase() === e.accent_word ? "acc" : ""}">${esc(w)}</span>`).join(" ")}</div>`).join("");
-    const css = `    #hook-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: 470px; text-align: center; }
+    const css = `    #hook-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: 430px; text-align: center; }
+    #hook-ph { position: absolute; left: ${SAFE.x0 - 20}px; width: ${SW + 40}px; top: ${GY - 20}px; height: 520px; border-radius: 22px; overflow: hidden; }
+    #hook-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.55) saturate(.8); transform-origin: 50% 50%; }
     .hk-line { font-family: ${FONT.display}; font-weight: 900; font-size: 104px; line-height: 1.02; letter-spacing: -0.02em; text-shadow: 0 8px 40px rgba(0,0,0,.6); }
     .hk-line .acc { color: ${C.crimson_rouge}; font-style: italic; }
     #hook-rule { width: 120px; height: 4px; background: ${C.crimson_rouge}; margin: 26px auto 0; }`;
-    const body = `    <div id="hook-wrap" class="clip" data-start="0" data-duration="${len}">${lines}<div id="hook-rule"></div></div>`;
+    const photo = e.bg_photo ? `<div id="hook-ph" class="clip" data-start="0" data-duration="${len}"><img id="hook-img" src="assets/broll/${e.bg_photo}" alt=""></div>` : "";
+    const body = `    ${photo}<div id="hook-wrap" class="clip" data-start="0" data-duration="${len}">${lines}<div id="hook-rule"></div></div>`;
     // Frame 0 already shows the title (thumbnail); it only settles slightly.
     let js = `    tl.fromTo("#hook-wrap", { scale: 1.04 }, { scale: 1, duration: 0.6, ease: "expo.out" }, 0);\n`;
+    if (e.bg_photo) js += `    tl.fromTo("#hook-img", { scale: 1.0 }, { scale: 1.12, duration: ${r3(len)}, ease: "none" }, 0);\n    tl.to("#hook-ph", { opacity: 0, duration: 0.2 }, ${r3(len - 0.21)});\n`;
     js += `    tl.fromTo("#hook-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.15);\n`;
     js += leave("#hook-wrap", len);
     return [css, body, js];
@@ -398,7 +403,7 @@ const FX = {
     .ls-dots i { display: inline-block; width: 14px; height: 14px; margin: 0 7px; border-radius: 50%; background: ${C.tweed_grey}; }`;
     let cards = "", js = `    tl.fromTo("#ls-kicker", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);\n`;
     e.apps.forEach((a, i) => {
-      const hero = a.shot ? `<img class="ls-shot" src="assets/brand/shots/${a.shot}" alt="">` : `<div class="ls-hero">${a.hero_logo ? `<img src="assets/brand/logos/${a.hero_logo}" alt="">` : ""}<div class="wm">${esc(a.wordmark ?? "")}</div></div>`;
+      const hero = a.shot ? `<img class="ls-shot" src="assets/${a.shot.startsWith("broll/") ? a.shot : "brand/shots/" + a.shot}" alt="">` : `<div class="ls-hero">${a.hero_logo ? `<img src="assets/brand/logos/${a.hero_logo}" alt="">` : ""}<div class="wm">${esc(a.wordmark ?? "")}</div></div>`;
       cards += `<div class="ls-card" id="ls-c${i}"><div class="ls-bar"><i></i><i></i><i></i><span>${esc(a.url)}</span></div>${hero}<div class="ls-foot">${a.logo ? `<img src="assets/brand/logos/${a.logo}" alt="">` : ""}<b>${esc(a.name)}</b></div></div>`;
       const t = L(a.at), next = i + 1 < e.apps.length ? L(e.apps[i + 1].at) : len;
       js += `    tl.fromTo("#ls-c${i}", { opacity: 0, y: 40, scale: 0.94, filter: "blur(8px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, ${r3(Math.max(0, t - 0.08))});\n`;
@@ -408,6 +413,27 @@ const FX = {
     const dots = e.apps.map((_, i) => `<i id="ls-d${i}"></i>`).join("");
     const body = `    <div id="ls-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-overlap data-layout-allow-occlusion><div id="ls-kicker">${esc(e.kicker)}</div>${cards}<div class="ls-dots">${dots}</div></div>`;
     js += leave("#ls-wrap", len);
+    return [css, body, js];
+  },
+
+  "photo.card"(e, L, len) {
+    // Real photo b-roll in a framed card with a slow push; optional crimson stamp on a spoken word.
+    const css = `    #ph-wrap { position: absolute; left: ${SAFE.x0 - 20}px; width: ${SW + 40}px; top: ${GY - 20}px; height: 640px; ${panel} overflow: hidden; }
+    #ph-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 55%; }
+    #ph-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,68,.55) 0%, rgba(26,27,34,0) 35%, rgba(26,27,34,.15) 70%, rgba(26,27,34,.75) 100%); }
+    #ph-kicker { position: absolute; left: 30px; top: 26px; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}; }
+    #ph-stamp { position: absolute; right: 40px; bottom: 44px; border: 6px solid ${C.crimson_rouge}; color: ${C.vintage_cream}; background: ${C.crimson_rouge}CC;
+                font-family: ${FONT.mono}; font-weight: 700; font-size: 44px; letter-spacing: .12em; padding: 10px 24px; border-radius: 8px; }`;
+    const body = `    <div id="ph-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-overflow>
+      <img id="ph-img" src="assets/broll/${e.src}" alt="">
+      <div id="ph-shade"></div>
+      ${e.kicker ? `<div id="ph-kicker">${esc(e.kicker)}</div>` : ""}
+      ${e.stamp ? `<div id="ph-stamp">${esc(e.stamp.text)}</div>` : ""}
+    </div>`;
+    let js = enter("#ph-wrap");
+    js += `    tl.fromTo("#ph-img", { scale: 1.02 }, { scale: 1.14, duration: ${r3(len)}, ease: "none" }, 0);\n`;
+    if (e.stamp) js += `    tl.fromTo("#ph-stamp", { opacity: 0, scale: 1.8, rotation: -6 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.16, ease: "power4.in" }, ${r3(L(e.stamp.at))});\n`;
+    js += leave("#ph-wrap", len);
     return [css, body, js];
   },
 

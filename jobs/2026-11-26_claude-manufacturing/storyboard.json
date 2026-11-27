@@ -7,8 +7,8 @@
   "avatar": {
     "kind": "video",
     "src": "assets/avatar.webm",
-    "y": 700,
-    "$note": "User recording kazak.mp4 (black sweater), background removed; shifted down so graphics sit above the head"
+    "y": 0,
+    "$note": "siyah_kazzzak.mp4, background removed"
   },
   "tail_hold_sec": 0.7,
   "palette": "../../style/palette-noir.json",
@@ -41,14 +41,14 @@
     {
       "type": "cut",
       "at": {
-        "w": 46
+        "w": 47
       },
       "scale": 1.1
     },
     {
       "type": "ease",
       "at": {
-        "w": 53,
+        "w": 54,
         "o": -0.1
       },
       "scale": 1.0,
@@ -57,14 +57,14 @@
     {
       "type": "cut",
       "at": {
-        "w": 83
+        "w": 85
       },
       "scale": 1.14
     },
     {
       "type": "ease",
       "at": {
-        "w": 100,
+        "w": 102,
         "o": -0.1
       },
       "scale": 1.0,
@@ -73,7 +73,7 @@
     {
       "type": "cut",
       "at": {
-        "w": 117
+        "w": 119
       },
       "scale": 1.1
     }
@@ -98,7 +98,8 @@
           "impact",
           0
         ]
-      ]
+      ],
+      "bg_photo": "factory-hall.jpg"
     },
     {
       "id": "plugin",
@@ -140,18 +141,23 @@
     },
     {
       "id": "factory",
-      "fx": "scene.factory",
+      "fx": "photo.card",
       "from": {
         "w": 21,
         "o": -0.05
       },
       "to": {
-        "w": 27,
+        "w": 28,
         "e": "end",
         "o": 0.3
       },
-      "fail_at": {
-        "w": 27
+      "src": "factory-floor.jpg",
+      "kicker": "LINE 3 · INSPECTION",
+      "stamp": {
+        "text": "FAILED",
+        "at": {
+          "w": 28
+        }
       },
       "sfx": [
         [
@@ -164,7 +170,7 @@
         [
           "stamp",
           {
-            "w": 27
+            "w": 28
           }
         ]
       ]
@@ -173,11 +179,11 @@
       "id": "ncr",
       "fx": "doc.ncr",
       "from": {
-        "w": 28,
+        "w": 29,
         "o": -0.1
       },
       "to": {
-        "w": 45,
+        "w": 46,
         "e": "end",
         "o": 0.35
       },
@@ -186,7 +192,7 @@
       "stamp": {
         "text": "FAILED INSPECTION",
         "at": {
-          "w": 28
+          "w": 29
         }
       },
       "rows": [
@@ -194,20 +200,20 @@
           "label": "Report",
           "value": "Drafted against the requirement",
           "at": {
-            "w": 30
+            "w": 31
           }
         },
         {
           "label": "History",
           "value": "Past failures with the same defect",
           "at": {
-            "w": 35
+            "w": 36
           }
         }
       ],
       "causes_title": "Likely causes, ranked",
       "causes_at": {
-        "w": 38
+        "w": 39
       },
       "causes": [
         "Tool wear",
@@ -217,52 +223,52 @@
       "stamp2": {
         "text": "8D · DRAFT",
         "at": {
-          "w": 43
+          "w": 44
         }
       },
       "sfx": [
         [
           "paper",
           {
-            "w": 28,
+            "w": 29,
             "o": -0.1
           }
         ],
         [
           "stamp",
           {
-            "w": 28,
+            "w": 29,
             "o": 0.15
           }
         ],
         [
           "tick",
           {
-            "w": 30
+            "w": 31
           }
         ],
         [
           "tick",
           {
-            "w": 35
+            "w": 36
           }
         ],
         [
           "tick",
           {
-            "w": 38
+            "w": 39
           }
         ],
         [
           "stamp",
           {
-            "w": 43
+            "w": 44
           }
         ],
         [
           "whoosh",
           {
-            "w": 45,
+            "w": 46,
             "e": "end",
             "o": 0.1
           }
@@ -273,23 +279,23 @@
       "id": "signoff",
       "fx": "card.signature",
       "from": {
-        "w": 46
+        "w": 47
       },
       "to": {
-        "w": 52,
+        "w": 53,
         "e": "end",
         "o": 0.45
       },
       "label": "Quality engineer",
       "line": "Reviewed & signed",
       "sign_at": {
-        "w": 52
+        "w": 53
       },
       "sfx": [
         [
           "pen",
           {
-            "w": 52
+            "w": 53
           }
         ]
       ]
@@ -298,54 +304,54 @@
       "id": "rfq",
       "fx": "doc.rfq",
       "from": {
-        "w": 53,
+        "w": 54,
         "o": -0.1
       },
       "to": {
-        "w": 72,
+        "w": 73,
         "e": "end",
         "o": 0.35
       },
       "flags": [
         {
           "at": {
-            "w": 61
+            "w": 62
           }
         },
         {
           "at": {
-            "w": 64
+            "w": 65
           }
         }
       ],
       "quote": "Quote · draft",
       "quote_at": {
-        "w": 66
+        "w": 67
       },
       "sfx": [
         [
           "paper",
           {
-            "w": 53,
+            "w": 54,
             "o": -0.1
           }
         ],
         [
           "tick",
           {
-            "w": 61
+            "w": 62
           }
         ],
         [
           "tick",
           {
-            "w": 64
+            "w": 65
           }
         ],
         [
           "stamp",
           {
-            "w": 66
+            "w": 67
           }
         ]
       ]
@@ -354,11 +360,11 @@
       "id": "connect",
       "fx": "logos.saas",
       "from": {
-        "w": 73,
+        "w": 74,
         "o": -0.05
       },
       "to": {
-        "w": 82,
+        "w": 84,
         "e": "end",
         "o": 0.4
       },
@@ -368,11 +374,10 @@
           "name": "Autodesk Fusion",
           "url": "autodesk.com/fusion",
           "logo": "autodesk.svg",
-          "hero_logo": "autodesk.svg",
-          "wordmark": "Fusion",
           "at": {
-            "w": 76
-          }
+            "w": 77
+          },
+          "shot": "broll/autodesk-ui.jpg"
         },
         {
           "name": "Infor",
@@ -380,7 +385,7 @@
           "logo": "infor.svg",
           "shot": "infor.png",
           "at": {
-            "w": 78
+            "w": 79
           }
         },
         {
@@ -389,29 +394,23 @@
           "logo": "microsoft.svg",
           "shot": "m365.png",
           "at": {
-            "w": 79
+            "w": 81
           }
         },
         {
           "name": "NetSuite",
           "url": "netsuite.com",
-          "wordmark": "ORACLE NETSUITE",
           "at": {
-            "w": 82
-          }
+            "w": 84
+          },
+          "shot": "broll/netsuite-ui.jpg"
         }
       ],
       "sfx": [
         [
           "tick",
           {
-            "w": 76
-          }
-        ],
-        [
-          "tick",
-          {
-            "w": 78
+            "w": 77
           }
         ],
         [
@@ -423,7 +422,13 @@
         [
           "tick",
           {
-            "w": 82
+            "w": 81
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 84
           }
         ]
       ]
@@ -432,33 +437,33 @@
       "id": "guard",
       "fx": "text.strike_affirm",
       "from": {
-        "w": 83,
+        "w": 85,
         "o": -0.05
       },
       "to": {
-        "w": 94,
+        "w": 96,
         "e": "end",
         "o": 0.35
       },
       "strike": "Machine control",
       "strike_at": {
-        "w": 85
+        "w": 87
       },
       "affirm": "Human sign-off",
       "affirm_at": {
-        "w": 90
+        "w": 92
       },
       "sfx": [
         [
           "slash",
           {
-            "w": 85
+            "w": 87
           }
         ],
         [
           "tick",
           {
-            "w": 90
+            "w": 92
           }
         ]
       ]
@@ -467,23 +472,23 @@
       "id": "folders",
       "fx": "text.behind_subject",
       "from": {
-        "w": 104,
+        "w": 106,
         "o": -0.05
       },
       "to": {
-        "w": 107,
+        "w": 109,
         "e": "end",
         "o": 0.5
       },
       "text": "FOLDERS",
       "at": {
-        "w": 107
+        "w": 109
       },
       "sfx": [
         [
           "whoosh",
           {
-            "w": 106
+            "w": 108
           }
         ]
       ]
@@ -492,17 +497,17 @@
       "id": "skillmd",
       "fx": "doc.skillmd",
       "from": {
-        "w": 108,
+        "w": 110,
         "o": -0.2
       },
       "to": {
-        "w": 116,
+        "w": 118,
         "e": "end",
         "o": 0.35
       },
       "path": "skills/ncr-report/SKILL.md",
       "rewrite_at": {
-        "w": 110
+        "w": 112
       },
       "old": "Use the standard NCR template.",
       "new": "Use OUR template, cite the drawing rev.",
@@ -510,14 +515,14 @@
         [
           "paper",
           {
-            "w": 108,
+            "w": 110,
             "o": -0.2
           }
         ],
         [
           "slash",
           {
-            "w": 110
+            "w": 112
           }
         ]
       ]
@@ -526,20 +531,20 @@
       "id": "cta",
       "fx": "cta.comment",
       "from": {
-        "w": 117,
+        "w": 119,
         "o": -0.05
       },
       "to": "end",
       "line": "Want the build guide?",
       "word": "SKILL",
       "word_at": {
-        "w": 126
+        "w": 128
       },
       "sfx": [
         [
           "impact",
           {
-            "w": 126
+            "w": 128
           }
         ]
       ]

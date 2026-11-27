@@ -58,7 +58,8 @@
      "impact",
      0
     ]
-   ]
+   ],
+   "bg_photo": "factory-hall.jpg"
   },
   {
    "id": "plugin",
@@ -85,10 +86,15 @@
   },
   {
    "id": "factory",
-   "fx": "scene.factory",
+   "fx": "photo.card",
    "from": 8.95,
    "to": 11.36,
-   "fail_at": 10.8,
+   "src": "factory-floor.jpg",
+   "kicker": "LINE 3 · INSPECTION",
+   "stamp": {
+    "text": "FAILED",
+    "at": 10.8
+   },
    "sfx": [
     [
      "whoosh",
@@ -225,9 +231,8 @@
      "name": "Autodesk Fusion",
      "url": "autodesk.com/fusion",
      "logo": "autodesk.svg",
-     "hero_logo": "autodesk.svg",
-     "wordmark": "Fusion",
-     "at": 28.8
+     "at": 28.8,
+     "shot": "broll/autodesk-ui.jpg"
     },
     {
      "name": "Infor",
@@ -246,8 +251,8 @@
     {
      "name": "NetSuite",
      "url": "netsuite.com",
-     "wordmark": "ORACLE NETSUITE",
-     "at": 32.68
+     "at": 32.68,
+     "shot": "broll/netsuite-ui.jpg"
     }
    ],
    "sfx": [

@@ -437,7 +437,7 @@ for (const e of scenes) {
 
 // Captions: cream serif words, active word boxed in Midnight Ink, upcoming words Tweed Grey.
 {
-  const capTop = 735, capLow = 1162;
+  const capTop = 700, capLow = 1162;
   const docWins = events.filter((e) => e.fx.startsWith("doc.")).map((e) => [e.from, e.to]);
   const onDoc = (c) => docWins.some(([a, z]) => c.start < z && c.end > a);
   let body = "", js = "";
@@ -482,7 +482,7 @@ for (const b of behind) {
 const av = sb.avatar;
 const avatarTag0 = 0;
 const avatarTag = av.kind === "video"
-  ? `<video id="avatar" class="clip" src="assets/avatar.webm" muted playsinline data-start="0" data-duration="${r3(speechEnd + 0.35)}" data-track-index="0" data-layout-allow-occlusion></video>`
+  ? `<video id="avatar" class="clip" src="assets/avatar.webm" muted playsinline data-start="0" data-duration="${r3(Math.min(D, parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(JOB, "assets", "avatar.webm")]).toString())))}" data-track-index="0" data-layout-allow-occlusion></video>`
   : `<img id="avatar" class="clip" src="assets/avatar.png" alt="" data-start="0" data-duration="${D}" data-track-index="0" data-layout-allow-occlusion />`;
 const hosts = scenes.map((e) => `      <div id="${e.id}" data-composition-id="${e.id}" data-composition-src="compositions/${e.id}.html" data-start="${e.from}" data-duration="${r3(e.to - e.from)}" data-track-index="${e.fx.startsWith("doc.") ? 3 : 2}" data-track-kind="graphics" data-width="${W}" data-height="${H}" style="z-index:${e.fx.startsWith("doc.") ? 7 : 5}"></div>`).join("\n");
 

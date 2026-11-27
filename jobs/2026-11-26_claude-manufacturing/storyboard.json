@@ -5,12 +5,12 @@
   "words_file": "words.json",
   "voice": "assets/voice.wav",
   "avatar": {
-    "kind": "still",
+    "kind": "video",
     "src": "assets/avatar.webm",
-    "y": 0,
-    "$note": "User recording kazak.mp4, background removed"
+    "y": 700,
+    "$note": "User recording kazak.mp4 (black sweater), background removed; shifted down so graphics sit above the head"
   },
-  "tail_hold_sec": 1.8,
+  "tail_hold_sec": 0.7,
   "palette": "../../style/palette-noir.json",
   "captions": {
     "max_words": 3,

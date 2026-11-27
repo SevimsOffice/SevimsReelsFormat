@@ -1,6 +1,6 @@
 {
  "video_id": "2026-11-26_claude-manufacturing",
- "duration": 48.21,
+ "duration": 47.11,
  "fps": 30,
  "camera": [
   {
@@ -327,7 +327,7 @@
    "id": "cta",
    "fx": "cta.comment",
    "from": 43.93,
-   "to": 48.21,
+   "to": 47.11,
    "line": "Want the build guide?",
    "word": "SKILL",
    "word_at": 45.6,
@@ -412,14 +412,9 @@
      "end": 7.52
     },
     {
-     "text": "ready-",
+     "text": "ready-made",
      "start": 7.52,
      "end": 7.8
-    },
-    {
-     "text": "made",
-     "start": 7.8,
-     "end": 8
     }
    ]
   },
@@ -531,14 +526,9 @@
    "end": 14.5,
    "words": [
     {
-     "text": "non-",
+     "text": "nonconformance",
      "start": 13.06,
      "end": 13.26
-    },
-    {
-     "text": "conformance",
-     "start": 13.26,
-     "end": 13.86
     },
     {
      "text": "report,",
@@ -1257,7 +1247,7 @@
   {
    "id": "cap47",
    "start": 45.54,
-   "end": 48.16,
+   "end": 47.06,
    "words": [
     {
      "text": "Comment",

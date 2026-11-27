@@ -418,7 +418,7 @@ const FX = {
 
   "photo.card"(e, L, len) {
     // Real photo b-roll in a framed card with a slow push; optional crimson stamp on a spoken word.
-    const css = `    #ph-wrap { position: absolute; left: ${SAFE.x0 - 20}px; width: ${SW + 40}px; top: ${GY - 20}px; height: 640px; ${panel} overflow: hidden; }
+    const css = `    #ph-wrap { position: absolute; left: ${SAFE.x0 - 20}px; width: ${SW + 40}px; top: ${GY - 20}px; height: 380px; ${panel} overflow: hidden; }
     #ph-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 55%; }
     #ph-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,68,.55) 0%, rgba(26,27,34,0) 35%, rgba(26,27,34,.15) 70%, rgba(26,27,34,.75) 100%); }
     #ph-kicker { position: absolute; left: 30px; top: 26px; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}; }

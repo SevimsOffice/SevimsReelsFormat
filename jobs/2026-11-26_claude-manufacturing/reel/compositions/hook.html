@@ -9,15 +9,15 @@
     #hook-rule { width: 120px; height: 4px; background: #C41E3A; margin: 26px auto 0; }
   </style>
   <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
-    <div id="hook-ph" class="clip" data-start="0" data-duration="3.25"><img id="hook-img" src="assets/broll/factory-hall.jpg" alt=""></div><div id="hook-wrap" class="clip" data-start="0" data-duration="3.25"><div class="hk-line" id="hook-l0"><span class="">Claude</span> <span class="">got</span></div><div class="hk-line" id="hook-l1"><span class="">a</span> <span class="acc">factory</span> <span class="">job.</span></div><div id="hook-rule"></div></div>
+    <div id="hook-ph" class="clip" data-start="0" data-duration="2.55"><img id="hook-img" src="assets/broll/factory-hall.jpg" alt=""></div><div id="hook-wrap" class="clip" data-start="0" data-duration="2.55"><div class="hk-line" id="hook-l0"><span class="">Claude</span> <span class="">got</span></div><div class="hk-line" id="hook-l1"><span class="">a</span> <span class="acc">factory</span> <span class="">job.</span></div><div id="hook-rule"></div></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#hook-wrap", { scale: 1.04 }, { scale: 1, duration: 0.6, ease: "expo.out" }, 0);
-    tl.fromTo("#hook-img", { scale: 1.0 }, { scale: 1.12, duration: 3.25, ease: "none" }, 0);
-    tl.to("#hook-ph", { opacity: 0, duration: 0.2 }, 3.04);
+    tl.fromTo("#hook-img", { scale: 1.0 }, { scale: 1.12, duration: 2.55, ease: "none" }, 0);
+    tl.to("#hook-ph", { opacity: 0, duration: 0.2 }, 2.34);
     tl.fromTo("#hook-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.15);
-    tl.to("#hook-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 3.04);
+    tl.to("#hook-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.34);
 
     window.__timelines["hook"] = tl;
   </script>

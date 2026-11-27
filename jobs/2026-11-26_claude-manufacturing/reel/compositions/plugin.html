@@ -18,7 +18,7 @@
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#pl-card", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
-    tl.fromTo("#pl-title", { opacity: 0.15, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.01);
+    tl.fromTo("#pl-title", { opacity: 0.15, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.03);
     tl.fromTo("#pl-row", { opacity: 0 }, { opacity: 1, duration: 0.12 }, 3.5);
     const n = { v: 0 }; const el = document.getElementById("pl-num");
     tl.fromTo(n, { v: 0 }, { v: 17, duration: 0.55, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(n.v); } }, 3.55);

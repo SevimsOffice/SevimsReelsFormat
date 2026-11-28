@@ -1,0 +1,719 @@
+{
+  "video_id": "ep02-data-consolidate-en",
+  "topic": "Claude for Manufacturing · 02/17 Data Consolidate (EN)",
+  "segments": [
+    {
+      "avatar": "assets/avatar2.webm",
+      "voice": "assets/voice2.wav",
+      "words": "words2.json",
+      "from": 0,
+      "to": 6.8
+    },
+    {
+      "avatar": "../../01-onboarding/build-en/assets/avatar.webm",
+      "voice": "../../01-onboarding/build-en/assets/voice.wav",
+      "words": "../../01-onboarding/build-en/words.json",
+      "from": 6.0,
+      "to": 37.65
+    },
+    {
+      "avatar": "assets/avatar2.webm",
+      "voice": "assets/voice2.wav",
+      "words": "words2.json",
+      "from": 6.8,
+      "to": 35.7
+    }
+  ],
+  "words_file": "words.timeline.json",
+  "avatar": {
+    "kind": "video",
+    "y": 0
+  },
+  "tail_hold_sec": 0.2,
+  "palette": "../../../../style/palette-noir.json",
+  "captions": {
+    "max_words": 3,
+    "off": [
+      [
+        0,
+        8
+      ]
+    ],
+    "low": [
+      [
+        48,
+        101
+      ]
+    ],
+    "low_y": 1290
+  },
+  "camera": [
+    {
+      "type": "cut",
+      "at": {
+        "w": 3,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.1
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 9,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 26,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.08
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 32,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 48,
+        "e": "start",
+        "o": -0.35
+      },
+      "scale": 0.42,
+      "x": 330,
+      "y": 520,
+      "dur": 0.5
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 102,
+        "e": "start",
+        "o": -0.35
+      },
+      "scale": 1.0,
+      "x": 0,
+      "y": 0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 116,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.1
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 125,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 161,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.12
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 164,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    }
+  ],
+  "events": [
+    {
+      "id": "hook",
+      "fx": "title.hook",
+      "from": 0,
+      "to": {
+        "w": 8,
+        "e": "end",
+        "o": 0.3
+      },
+      "lines": [
+        "Is your data stuck",
+        "in five systems?"
+      ],
+      "accent_word": "systems",
+      "sfx": [
+        [
+          "impact",
+          0
+        ]
+      ]
+    },
+    {
+      "id": "converge",
+      "fx": "fly.converge",
+      "from": {
+        "w": 9,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 16,
+        "e": "end",
+        "o": 0.15
+      },
+      "items": [
+        "ERP",
+        "MES",
+        "QUALITY",
+        "CMMS",
+        "EXCEL",
+        "HISTORIAN"
+      ],
+      "snap_at": {
+        "w": 13,
+        "e": "start",
+        "o": 0
+      },
+      "target": "ONE DATASET",
+      "target_sub": "data-consolidate",
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 9,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "impact",
+          {
+            "w": 13,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "episode",
+      "fx": "badge.episode",
+      "from": {
+        "w": 17,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 47,
+        "e": "end",
+        "o": 0.3
+      },
+      "kicker": "EPISODE 02/17",
+      "title": "Data Consolidate",
+      "dept": "IT & DATA",
+      "name": "Sevim",
+      "role": "Industrial engineer · AI trainer & consultant",
+      "name_at": {
+        "w": 21,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 17,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 21,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "screen",
+      "fx": "screen.recording",
+      "from": {
+        "w": 48,
+        "e": "start",
+        "o": -0.3
+      },
+      "to": {
+        "w": 101,
+        "e": "end",
+        "o": 0.2
+      },
+      "src": "screen.mp4",
+      "rate": 1.06,
+      "tag": "WHERE TO START",
+      "zooms": [
+        {
+          "at": {
+            "w": 77,
+            "e": "start",
+            "o": -0.2
+          },
+          "scale": 1.45,
+          "ox": 540,
+          "oy": 960,
+          "dur": 0.5
+        }
+      ],
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 48,
+            "e": "start",
+            "o": -0.3
+          }
+        ]
+      ]
+    },
+    {
+      "id": "log",
+      "fx": "terminal.log",
+      "from": {
+        "w": 102,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 115,
+        "e": "end",
+        "o": 0.35
+      },
+      "title": "data-consolidate",
+      "lines": [
+        {
+          "text": "import erp_items.csv",
+          "at": {
+            "w": 107,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "import production_orders.csv",
+          "at": {
+            "w": 108,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "import quality_ncr.csv",
+          "at": {
+            "w": 109,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "import maintenance_wo.csv",
+          "at": {
+            "w": 111,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "join → 1 dataset · 4 sources",
+          "at": {
+            "w": 113,
+            "e": "start",
+            "o": 0
+          },
+          "final": true
+        }
+      ],
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 102,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 107,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 108,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 109,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 111,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "impact",
+          {
+            "w": 113,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "table",
+      "fx": "table.rows",
+      "from": {
+        "w": 116,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 124,
+        "e": "end",
+        "o": 0.35
+      },
+      "kicker": "SIDE BY SIDE · EXAMPLE",
+      "cols": [
+        "MACHINE",
+        "LOT",
+        "DATE",
+        "OUTPUT",
+        "NCR",
+        "MAINT"
+      ],
+      "rows": [
+        [
+          "CNC-3",
+          "L-5521",
+          "11-26",
+          "980",
+          "!2",
+          "!spindle"
+        ],
+        [
+          "CNC-3",
+          "L-5520",
+          "11-26",
+          "1130",
+          "0",
+          "—"
+        ],
+        [
+          "CNC-1",
+          "L-5518",
+          "11-26",
+          "812",
+          "0",
+          "—"
+        ]
+      ],
+      "highlight": [
+        {
+          "col": 0,
+          "at": {
+            "w": 117,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "col": 1,
+          "at": {
+            "w": 119,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "col": 2,
+          "at": {
+            "w": 121,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 117,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 119,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 121,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "tiles",
+      "fx": "float.tiles",
+      "from": {
+        "w": 125,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 139,
+        "e": "end",
+        "o": 0.3
+      },
+      "items": [
+        "production.xlsx",
+        "quality.xlsx",
+        "maintenance.xlsx",
+        "erp_export.xlsx",
+        "planning.xlsx"
+      ],
+      "strike_at": {
+        "w": 133,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 125,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "slash",
+          {
+            "w": 133,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "roles",
+      "fx": "duo.roles",
+      "from": {
+        "w": 140,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 144,
+        "e": "end",
+        "o": 0.4
+      },
+      "roles": [
+        {
+          "who": "CLAUDE",
+          "does": "joins",
+          "at": {
+            "w": 141,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "who": "YOU",
+          "does": "interpret",
+          "at": {
+            "w": 144,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 141,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 144,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "result",
+      "fx": "card.counter",
+      "from": {
+        "w": 145,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 160,
+        "e": "end",
+        "o": 0.3
+      },
+      "logo": "claude.svg",
+      "kicker": "THE RESULT",
+      "title": "Your plant's language",
+      "title_at": {
+        "w": 154,
+        "e": "start",
+        "o": 0
+      },
+      "number": 16,
+      "number_at": {
+        "w": 149,
+        "e": "start",
+        "o": 0
+      },
+      "unit": "other skills",
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 149,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "guard",
+      "fx": "text.strike_affirm",
+      "from": {
+        "w": 161,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 163,
+        "e": "end",
+        "o": 0.4
+      },
+      "strike": "Guessing",
+      "strike_at": {
+        "w": 162,
+        "e": "start",
+        "o": 0
+      },
+      "affirm": "Your context",
+      "affirm_at": {
+        "w": 163,
+        "e": "start",
+        "o": 0.1
+      },
+      "sfx": [
+        [
+          "slash",
+          {
+            "w": 162,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 163,
+            "e": "start",
+            "o": 0.1
+          }
+        ]
+      ]
+    },
+    {
+      "id": "cta",
+      "fx": "cta.comment",
+      "from": {
+        "w": 164,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": "end",
+      "line": "Want the link?",
+      "word": "SKILL",
+      "word_at": {
+        "w": 171,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "impact",
+          {
+            "w": 171,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    }
+  ]
+}

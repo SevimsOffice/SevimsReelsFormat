@@ -9,7 +9,21 @@ import { execFileSync } from "node:child_process";
 const ENGINE = dirname(fileURLToPath(import.meta.url));
 const JOB = resolve(process.argv[2] ?? ".");
 const sb = JSON.parse(readFileSync(join(JOB, "storyboard.json"), "utf8"));
-const words = JSON.parse(readFileSync(join(JOB, sb.words_file), "utf8")).words;
+// Segments: stitch several takes (e.g. hook + reusable intro + body) into one timeline.
+// Each segment: {avatar, voice, words, from, to}; paths relative to the job dir. Word ids are re-numbered
+// in timeline order and written to words.timeline.json so storyboard anchors can reference them.
+let words;
+const SEG = [];
+if (sb.segments) {
+  words = []; let t0 = 0;
+  for (const [k, s] of sb.segments.entries()) {
+    const ws = JSON.parse(readFileSync(join(JOB, s.words), "utf8")).words.filter((w) => w.w && w.start >= s.from - 0.01 && w.end <= s.to + 0.05);
+    for (const w of ws) words.push({ i: words.length, w: w.w, start: Math.round((w.start - s.from + t0) * 1000) / 1000, end: Math.round((w.end - s.from + t0) * 1000) / 1000, seg: k });
+    SEG.push({ ...s, k, at: Math.round(t0 * 1000) / 1000, len: Math.round((s.to - s.from) * 1000) / 1000 });
+    t0 += s.to - s.from;
+  }
+  writeFileSync(join(JOB, "words.timeline.json"), JSON.stringify({ words }, null, 1));
+} else words = JSON.parse(readFileSync(join(JOB, sb.words_file), "utf8")).words;
 const pal = JSON.parse(readFileSync(resolve(JOB, sb.palette), "utf8")).colors;
 const C = Object.fromEntries(Object.entries(pal).map(([k, v]) => [k, v.hex]));
 const W = 1080, H = 1920, FPS = 30;
@@ -18,7 +32,8 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const speechEnd = words.at(-1).end;
 let D = r3(speechEnd + 0.35 + (sb.tail_hold_sec ?? 0));
 // Never outlast the avatar footage: the speaker must not vanish before the last frame.
-if (sb.avatar?.kind === "video") {
+if (SEG.length) D = r3(Math.min(D, SEG.at(-1).at + SEG.at(-1).len));
+else if (sb.avatar?.kind === "video") {
   const avDur = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(JOB, "assets", "avatar.webm")]).toString());
   D = r3(Math.min(D, avDur - 0.05));
 }
@@ -494,6 +509,101 @@ const FX = {
     return [css, body, js];
   },
 
+  "fly.converge"(e, L, len) {
+    // System chips fly in from scattered spots (deterministic), drift, then snap into one target box.
+    const spots = [[-260, -140, -14], [300, -170, 10], [-300, 140, 8], [280, 160, -10], [0, -230, 4], [-40, 230, -6]];
+    const cx = SAFE.x0 + SW / 2, cy = GY + 210;
+    const chips = e.items.map((t, i) => `<div class="fc-chip" id="fc-c${i}">${esc(t)}</div>`).join("");
+    const css = `    #fc-wrap { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; }
+    .fc-chip { position: absolute; left: ${cx - 120}px; top: ${cy - 34}px; width: 240px; height: 68px; border-radius: 14px; ${panel}
+               display: flex; align-items: center; justify-content: center; font-family: ${FONT.mono}; font-size: 30px; letter-spacing: .06em; color: ${C.vintage_cream}; }
+    #fc-box { position: absolute; left: ${cx - 230}px; top: ${cy - 70}px; width: 460px; height: 140px; border-radius: 22px; border: 3px solid ${C.crimson_rouge};
+              background: ${C.midnight_ink}F0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #fc-box b { font-family: ${FONT.display}; font-size: 54px; font-weight: 900; } #fc-box span { font-family: ${FONT.mono}; font-size: 28px; color: ${C.vintage_cream}B3; letter-spacing: .12em; }`;
+    const body = `    <div id="fc-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-overlap data-layout-allow-overflow>${chips}<div id="fc-box"><b>${esc(e.target)}</b><span>${esc(e.target_sub ?? "")}</span></div></div>`;
+    let js = "";
+    const snap = L(e.snap_at);
+    e.items.forEach((_, i) => {
+      const [x, y, r] = spots[i % spots.length];
+      js += `    tl.fromTo("#fc-c${i}", { x: ${x * 1.6}, y: ${y * 1.6 - 200}, rotation: ${r * 2}, opacity: 0 }, { x: ${x}, y: ${y}, rotation: ${r}, opacity: 1, duration: 0.5, ease: "expo.out" }, ${r3(0.08 * i)});\n`;
+      js += `    tl.to("#fc-c${i}", { x: ${x * 0.85}, y: ${y * 0.85 + (i % 2 ? 10 : -10)}, duration: ${r3(Math.max(0.3, snap - 0.6 - 0.08 * i))}, ease: "sine.inOut" }, ${r3(0.5 + 0.08 * i)});\n`;
+      js += `    tl.to("#fc-c${i}", { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 0, duration: 0.35, ease: "power3.in" }, ${r3(snap + 0.04 * i)});\n`;
+    });
+    js += `    tl.fromTo("#fc-box", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, ${r3(snap + 0.3)});\n`;
+    js += leave("#fc-wrap", len);
+    return [css, body, js];
+  },
+
+  "terminal.log"(e, L, len) {
+    const css = `    #tl-card { position: absolute; left: ${SAFE.x0 - 20}px; width: ${SW + 40}px; top: ${GY - 20}px; border-radius: 18px; ${panel} overflow: hidden; }
+    #tl-bar { height: 44px; background: #26272F; display: flex; align-items: center; gap: 9px; padding-left: 18px; font-family: ${FONT.mono}; font-size: 22px; color: ${C.vintage_cream}99; }
+    #tl-bar i { width: 13px; height: 13px; border-radius: 50%; background: ${C.tweed_grey}; display: block; } #tl-bar i:first-child { background: ${C.crimson_rouge}; }
+    #tl-body { padding: 20px 26px 24px; font-family: ${FONT.mono}; font-size: 30px; line-height: 1.6; color: ${C.vintage_cream}; }
+    .tl-l { opacity: 0; white-space: nowrap; } .tl-l .ok { color: #7FD18B; } .tl-l .p { color: ${C.crimson_rouge}; }
+    .tl-l.fin { color: ${C.vintage_cream}; font-weight: 700; }`;
+    const lines = e.lines.map((l, i) => `<div class="tl-l${l.final ? " fin" : ""}" id="tl-l${i}"><span class="p">›</span> ${esc(l.text)} ${l.final ? "" : '<span class="ok">✓</span>'}</div>`).join("");
+    const body = `    <div id="tl-card" class="clip" data-start="0" data-duration="${len}"><div id="tl-bar"><i></i><i></i><i></i><span style="margin-left:14px">${esc(e.title)}</span></div><div id="tl-body">${lines}</div></div>`;
+    let js = enter("#tl-card");
+    e.lines.forEach((l, i) => { js += `    tl.fromTo("#tl-l${i}", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.18, ease: "power2.out" }, ${r3(L(l.at))});\n`; });
+    js += leave("#tl-card", len);
+    return [css, body, js];
+  },
+
+  "table.rows"(e, L, len) {
+    const css = `    #tr-card { position: absolute; left: ${SAFE.x0 - 20}px; width: ${SW + 40}px; top: ${GY - 10}px; padding: 20px 18px; ${panel} }
+    #tr-k { font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .14em; color: ${C.vintage_cream}B3; margin: 0 8px 12px; }
+    table { width: 100%; border-collapse: collapse; font-family: ${FONT.mono}; font-size: 26px; color: ${C.vintage_cream}; }
+    th { text-align: left; font-weight: 700; padding: 8px; border-bottom: 2px solid ${C.vintage_cream}55; color: ${C.vintage_cream}B3; }
+    td { padding: 9px 8px; border-bottom: 1px solid ${C.vintage_cream}22; }
+    .hl { background: ${C.crimson_rouge}33; color: #fff; } .bad { color: ${C.crimson_rouge}; font-weight: 700; }`;
+    const head = `<tr>${e.cols.map((c, j) => `<th id="tr-h${j}">${esc(c)}</th>`).join("")}</tr>`;
+    const rows = e.rows.map((r, i) => `<tr id="tr-r${i}">${r.map((v, j) => `<td class="c${j}${String(v).startsWith("!") ? " bad" : ""}">${esc(String(v).replace(/^!/, ""))}</td>`).join("")}</tr>`).join("");
+    const body = `    <div id="tr-card" class="clip" data-start="0" data-duration="${len}"><div id="tr-k">${esc(e.kicker)}</div><table>${head}${rows}</table></div>`;
+    let js = enter("#tr-card");
+    e.rows.forEach((_, i) => { js += `    tl.fromTo("#tr-r${i}", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, ${r3(0.3 + 0.12 * i)});\n`; });
+    (e.highlight ?? []).forEach((h) => { js += `    tl.fromTo("#tr-card .c${h.col}, #tr-h${h.col}", { backgroundColor: "rgba(196,30,58,0)" }, { backgroundColor: "rgba(196,30,58,0.28)", duration: 0.18 }, ${r3(L(h.at))});\n`; });
+    js += leave("#tr-card", len);
+    return [css, body, js];
+  },
+
+  "float.tiles"(e, L, len) {
+    // Spreadsheet tiles hang in the air, drifting; on strike_at each one gets crossed and falls away.
+    const pos = [[150, 330, -8], [560, 300, 6], [330, 470, 3], [130, 600, 7], [600, 580, -5]];
+    const tiles = e.items.map((t, i) => {
+      const [x, y] = pos[i % pos.length];
+      return `<div class="ft-t" id="ft-t${i}" style="left:${x}px;top:${y}px"><div class="ft-g"></div><span>${esc(t)}</span><div class="ft-x" id="ft-x${i}"></div></div>`;
+    }).join("");
+    const css = `    #ft-wrap { position: absolute; inset: 0; }
+    .ft-t { position: absolute; width: 330px; height: 150px; border-radius: 12px; background: ${C.vintage_cream}; color: ${C.midnight_ink}; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    .ft-g { position: absolute; inset: 38px 0 0 0; background-image: linear-gradient(${C.tweed_grey}55 1px, transparent 1px), linear-gradient(90deg, ${C.tweed_grey}55 1px, transparent 1px); background-size: 55px 28px; }
+    .ft-t span { position: absolute; left: 0; right: 0; top: 0; height: 38px; background: #2E7D4F; color: #fff; font-family: ${FONT.mono}; font-size: 24px; padding: 5px 12px; }
+    .ft-x { position: absolute; left: -10px; right: -10px; top: 50%; height: 8px; background: ${C.crimson_rouge}; transform-origin: left; transform: rotate(-12deg) scaleX(0); }`;
+    const body = `    <div id="ft-wrap" class="clip" data-start="0" data-duration="${len}" data-layout-allow-overlap data-layout-allow-overflow>${tiles}</div>`;
+    let js = "";
+    const st = L(e.strike_at);
+    e.items.forEach((_, i) => {
+      const r = pos[i % pos.length][2];
+      js += `    tl.fromTo("#ft-t${i}", { opacity: 0, y: 120, rotation: ${r * 2}, scale: 0.8 }, { opacity: 1, y: 0, rotation: ${r}, scale: 1, duration: 0.5, ease: "expo.out" }, ${r3(0.1 * i)});\n`;
+      js += `    tl.to("#ft-t${i}", { y: ${i % 2 ? -18 : 18}, rotation: ${-r * 0.5}, duration: ${r3(Math.max(0.3, st - 0.6 - 0.1 * i))}, ease: "sine.inOut" }, ${r3(0.5 + 0.1 * i)});\n`;
+      js += `    tl.to("#ft-x${i}", { scaleX: 1, duration: 0.15, ease: "power3.out" }, ${r3(st + 0.06 * i)});\n`;
+      js += `    tl.to("#ft-t${i}", { y: 900, rotation: ${r * 4}, opacity: 0, duration: 0.5, ease: "power3.in" }, ${r3(Math.min(len - 0.55, st + 0.35 + 0.06 * i))});\n`;
+    });
+    return [css, body, js];
+  },
+
+  "duo.roles"(e, L, len) {
+    const css = `    #dr-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY + 20}px; display: flex; gap: 22px; }
+    .dr-c { flex: 1; padding: 26px 20px; ${panel} text-align: center; }
+    .dr-c small { display: block; font-family: ${FONT.mono}; font-size: 28px; letter-spacing: .16em; color: ${C.vintage_cream}B3; }
+    .dr-c b { display: block; font-family: ${FONT.display}; font-weight: 900; font-size: 64px; margin-top: 8px; }
+    #dr-1 { border-color: ${C.crimson_rouge}; } #dr-1 b { color: ${C.crimson_rouge}; }`;
+    const body = `    <div id="dr-wrap" class="clip" data-start="0" data-duration="${len}">${e.roles.map((r, i) => `<div class="dr-c" id="dr-${i}"><small>${esc(r.who)}</small><b>${esc(r.does)}</b></div>`).join("")}</div>`;
+    let js = "";
+    e.roles.forEach((r, i) => { js += `    tl.fromTo("#dr-${i}", { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, ${r3(L(r.at))});\n`; });
+    js += leave("#dr-wrap", len);
+    return [css, body, js];
+  },
+
   "cta.comment"(e, L, len) {
     const css = `    #ct-wrap { position: absolute; left: ${SAFE.x0}px; width: ${SW}px; top: ${GY + 40}px; text-align: center; }
     #ct-line { font-style: italic; font-size: 54px; }
@@ -568,7 +678,11 @@ for (const b of behind) {
 }
 const av = sb.avatar;
 const avatarTag0 = 0;
-const avatarTag = av.kind === "video"
+const segName = (p) => p.replace(/[^a-zA-Z0-9.]+/g, "_").replace(/^_+/, "");
+for (const s of SEG) { cpSync(join(JOB, s.avatar), join(OUT, "assets", segName(s.avatar))); cpSync(join(JOB, s.voice), join(OUT, "assets", segName(s.voice))); }
+const avatarTag = SEG.length
+  ? SEG.map((s) => `<video id="avatar${s.k}" class="clip av" src="assets/${segName(s.avatar)}" muted playsinline data-start="${s.at}" data-media-start="${s.from}" data-duration="${r3(Math.min(s.len, D - s.at))}" data-track-index="0" data-layout-allow-occlusion></video>`).join("\n        ")
+  : av.kind === "video"
   ? `<video id="avatar" class="clip" src="assets/avatar.webm" muted playsinline data-start="0" data-duration="${r3(Math.min(D, parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(JOB, "assets", "avatar.webm")]).toString())))}" data-track-index="0" data-layout-allow-occlusion></video>`
   : `<img id="avatar" class="clip" src="assets/avatar.png" alt="" data-start="0" data-duration="${D}" data-track-index="0" data-layout-allow-occlusion />`;
 const hosts = scenes.map((e) => `      <div id="${e.id}" data-composition-id="${e.id}" data-composition-src="compositions/${e.id}.html" data-start="${e.from}" data-duration="${r3(e.to - e.from)}" data-track-index="${e.fx.startsWith("doc.") ? 3 : 2}" data-track-kind="graphics" data-width="${W}" data-height="${H}" style="z-index:${e.fx.startsWith("doc.") ? 7 : e.fx === "screen.recording" ? 2 : 5}"></div>`).join("\n");
@@ -596,7 +710,7 @@ const index = `<!doctype html>
       .bh { position: absolute; inset: 0; z-index: 2; }
       .bh-t { position: absolute; left: 0; width: 100%; top: 880px; text-align: center; font-family: 'Playfair Display', serif; font-weight: 900;
         font-size: 230px; letter-spacing: -0.03em; color: ${C.crimson_rouge}; margin-left: -36px; }
-      #avatar { position: absolute; left: 0; top: ${av.y ?? 0}px; width: ${W}px; height: ${H}px; object-fit: contain; z-index: 3; -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%); mask-image: linear-gradient(180deg, #000 86%, transparent 100%); }
+      #avatar, .av { position: absolute; left: 0; top: ${av.y ?? 0}px; width: ${W}px; height: ${H}px; object-fit: contain; z-index: 3; -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%); mask-image: linear-gradient(180deg, #000 86%, transparent 100%); }
     </style>
   </head>
   <body>
@@ -606,7 +720,7 @@ const index = `<!doctype html>
       <div id="cam">
 ${behindHtml}        ${avatarTag}
       </div>
-      <audio id="voice" src="assets/voice.wav" data-start="0" data-duration="${r3(Math.min(D, parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(OUT, "assets", "voice.wav")]).toString())))}" data-volume="1" data-track-index="5"></audio>
+${SEG.length ? SEG.map((s) => `      <audio id="voice${s.k}" src="assets/${segName(s.voice)}" data-start="${s.at}" data-media-start="${s.from}" data-duration="${r3(Math.min(s.len, D - s.at))}" data-volume="1" data-track-index="5"></audio>`).join("\n") : `      <audio id="voice" src="assets/voice.wav" data-start="0" data-duration="${r3(Math.min(D, parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", join(OUT, "assets", "voice.wav")]).toString())))}" data-volume="1" data-track-index="5"></audio>`}
 ${hosts}
       <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="${D}" data-track-index="4" data-track-kind="captions" data-width="${W}" data-height="${H}" style="z-index:8"></div>
 ${sfxTags}

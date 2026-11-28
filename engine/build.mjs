@@ -511,7 +511,7 @@ const FX = {
 
   "fly.converge"(e, L, len) {
     // System chips fly in from scattered spots (deterministic), drift, then snap into one target box.
-    const spots = [[-260, -140, -14], [300, -170, 10], [-300, 140, 8], [280, 160, -10], [0, -230, 4], [-40, 230, -6]];
+    const spots = [[-260, -90, -14], [300, -110, 10], [-300, 90, 8], [280, 100, -10], [0, -150, 4], [-40, 140, -6]];
     const cx = SAFE.x0 + SW / 2, cy = GY + 210;
     const chips = e.items.map((t, i) => `<div class="fc-chip" id="fc-c${i}">${esc(t)}</div>`).join("");
     const css = `    #fc-wrap { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; }
@@ -678,7 +678,7 @@ for (const b of behind) {
 }
 const av = sb.avatar;
 const avatarTag0 = 0;
-const segName = (p) => p.replace(/[^a-zA-Z0-9.]+/g, "_").replace(/^_+/, "");
+const segName = (p) => "seg_" + p.replace(/\.[a-z0-9]+$/i, "").replace(/[^a-zA-Z0-9]+/g, "_").replace(/^_+/, "") + p.match(/\.[a-z0-9]+$/i)[0];
 for (const s of SEG) { cpSync(join(JOB, s.avatar), join(OUT, "assets", segName(s.avatar))); cpSync(join(JOB, s.voice), join(OUT, "assets", segName(s.voice))); }
 const avatarTag = SEG.length
   ? SEG.map((s) => `<video id="avatar${s.k}" class="clip av" src="assets/${segName(s.avatar)}" muted playsinline data-start="${s.at}" data-media-start="${s.from}" data-duration="${r3(Math.min(s.len, D - s.at))}" data-track-index="0" data-layout-allow-occlusion></video>`).join("\n        ")

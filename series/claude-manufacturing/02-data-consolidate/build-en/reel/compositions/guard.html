@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #sa-wrap { position: absolute; left: 120px; width: 768px; top: 330px; text-align: center; }
+    #sa-strike { position: relative; display: inline-block; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 84px; color: #6A6B71; }
+    #sa-line { position: absolute; left: -10px; right: -10px; top: 54%; height: 9px; background: #C41E3A; transform-origin: left; }
+    #sa-aff { font-style: italic; font-size: 74px; margin-top: 30px; }
+    #sa-aff span { color: #C41E3A; font-style: normal; font-family: 'Playfair Display', serif; font-weight: 900; }
+  </style>
+  <div id="root" data-composition-id="guard" data-width="1080" data-height="1920">
+    <div id="sa-wrap" class="clip" data-start="0" data-duration="1.85">
+      <div id="sa-strike">Guessing<div id="sa-line"></div></div>
+      <div id="sa-aff"><span>✓</span> Your context</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sa-strike", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#sa-line", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.out" }, 0.81);
+    tl.fromTo("#sa-aff", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 1.23);
+    tl.to("#sa-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 1.64);
+
+    window.__timelines["guard"] = tl;
+  </script>
+</template>

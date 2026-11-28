@@ -1,0 +1,27 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #tr-card { position: absolute; left: 100px; width: 808px; top: 290px; padding: 20px 18px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+    #tr-k { font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .14em; color: #F0EBD4B3; margin: 0 8px 12px; }
+    table { width: 100%; border-collapse: collapse; font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #F0EBD4; }
+    th { text-align: left; font-weight: 700; padding: 8px; border-bottom: 2px solid #F0EBD455; color: #F0EBD4B3; }
+    td { padding: 9px 8px; border-bottom: 1px solid #F0EBD422; }
+    .hl { background: #C41E3A33; color: #fff; } .bad { color: #C41E3A; font-weight: 700; }
+  </style>
+  <div id="root" data-composition-id="table" data-width="1080" data-height="1920">
+    <div id="tr-card" class="clip" data-start="0" data-duration="3.71"><div id="tr-k">SIDE BY SIDE · EXAMPLE</div><table><tr><th id="tr-h0">MACHINE</th><th id="tr-h1">LOT</th><th id="tr-h2">DATE</th><th id="tr-h3">OUTPUT</th><th id="tr-h4">NCR</th><th id="tr-h5">MAINT</th></tr><tr id="tr-r0"><td class="c0">CNC-3</td><td class="c1">L-5521</td><td class="c2">11-26</td><td class="c3">980</td><td class="c4 bad">2</td><td class="c5 bad">spindle</td></tr><tr id="tr-r1"><td class="c0">CNC-3</td><td class="c1">L-5520</td><td class="c2">11-26</td><td class="c3">1130</td><td class="c4">0</td><td class="c5">—</td></tr><tr id="tr-r2"><td class="c0">CNC-1</td><td class="c1">L-5518</td><td class="c2">11-26</td><td class="c3">812</td><td class="c4">0</td><td class="c5">—</td></tr></table></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tr-card", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#tr-r0", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, 0.3);
+    tl.fromTo("#tr-r1", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, 0.42);
+    tl.fromTo("#tr-r2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, 0.54);
+    tl.fromTo("#tr-card .c0, #tr-h0", { backgroundColor: "rgba(196,30,58,0)" }, { backgroundColor: "rgba(196,30,58,0.28)", duration: 0.18 }, 0.26);
+    tl.fromTo("#tr-card .c1, #tr-h1", { backgroundColor: "rgba(196,30,58,0)" }, { backgroundColor: "rgba(196,30,58,0.28)", duration: 0.18 }, 1.26);
+    tl.fromTo("#tr-card .c2, #tr-h2", { backgroundColor: "rgba(196,30,58,0)" }, { backgroundColor: "rgba(196,30,58,0.28)", duration: 0.18 }, 2.02);
+    tl.to("#tr-card", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 3.5);
+
+    window.__timelines["table"] = tl;
+  </script>
+</template>

@@ -1,0 +1,21 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #dr-wrap { position: absolute; left: 120px; width: 768px; top: 320px; display: flex; gap: 22px; }
+    .dr-c { flex: 1; padding: 26px 20px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); text-align: center; }
+    .dr-c small { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .16em; color: #F0EBD4B3; }
+    .dr-c b { display: block; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 64px; margin-top: 8px; }
+    #dr-1 { border-color: #C41E3A; } #dr-1 b { color: #C41E3A; }
+  </style>
+  <div id="root" data-composition-id="roles" data-width="1080" data-height="1920">
+    <div id="dr-wrap" class="clip" data-start="0" data-duration="2.38"><div class="dr-c" id="dr-0"><small>CLAUDE</small><b>joins</b></div><div class="dr-c" id="dr-1"><small>YOU</small><b>interpret</b></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#dr-0", { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 0.4);
+    tl.fromTo("#dr-1", { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 1.5);
+    tl.to("#dr-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.17);
+
+    window.__timelines["roles"] = tl;
+  </script>
+</template>

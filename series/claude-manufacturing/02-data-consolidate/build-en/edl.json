@@ -1,0 +1,1864 @@
+{
+ "video_id": "ep02-data-consolidate-en",
+ "duration": 67.02,
+ "fps": 30,
+ "camera": [
+  {
+   "type": "cut",
+   "at": 1.42,
+   "scale": 1.1
+  },
+  {
+   "type": "ease",
+   "at": 4,
+   "scale": 1,
+   "dur": 0.5
+  },
+  {
+   "type": "cut",
+   "at": 9.06,
+   "scale": 1.08
+  },
+  {
+   "type": "ease",
+   "at": 11.82,
+   "scale": 1,
+   "dur": 0.5
+  },
+  {
+   "type": "ease",
+   "at": 16.83,
+   "scale": 0.42,
+   "x": 330,
+   "y": 520,
+   "dur": 0.5
+  },
+  {
+   "type": "ease",
+   "at": 38.36,
+   "scale": 1,
+   "x": 0,
+   "y": 0,
+   "dur": 0.5
+  },
+  {
+   "type": "cut",
+   "at": 44.05,
+   "scale": 1.1
+  },
+  {
+   "type": "ease",
+   "at": 47.75,
+   "scale": 1,
+   "dur": 0.5
+  },
+  {
+   "type": "cut",
+   "at": 60.25,
+   "scale": 1.12
+  },
+  {
+   "type": "ease",
+   "at": 62.19,
+   "scale": 1,
+   "dur": 0.5
+  }
+ ],
+ "events": [
+  {
+   "id": "hook",
+   "fx": "title.hook",
+   "from": 0,
+   "to": 4.06,
+   "lines": [
+    "Is your data stuck",
+    "in five systems?"
+   ],
+   "accent_word": "systems",
+   "sfx": [
+    [
+     "impact",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "converge",
+   "fx": "fly.converge",
+   "from": 4,
+   "to": 6.81,
+   "items": [
+    "ERP",
+    "MES",
+    "QUALITY",
+    "CMMS",
+    "EXCEL",
+    "HISTORIAN"
+   ],
+   "snap_at": 5.46,
+   "target": "ONE DATASET",
+   "target_sub": "data-consolidate",
+   "sfx": [
+    [
+     "whoosh",
+     4
+    ],
+    [
+     "impact",
+     5.46
+    ]
+   ]
+  },
+  {
+   "id": "episode",
+   "fx": "badge.episode",
+   "from": 6.76,
+   "to": 17.12,
+   "kicker": "EPISODE 02/17",
+   "title": "Data Consolidate",
+   "dept": "IT & DATA",
+   "name": "Sevim",
+   "role": "Industrial engineer · AI trainer & consultant",
+   "name_at": 8.04,
+   "sfx": [
+    [
+     "paper",
+     6.76
+    ],
+    [
+     "tick",
+     8.04
+    ]
+   ]
+  },
+  {
+   "id": "screen",
+   "fx": "screen.recording",
+   "from": 16.88,
+   "to": 38.58,
+   "src": "screen.mp4",
+   "rate": 1.06,
+   "tag": "WHERE TO START",
+   "zooms": [
+    {
+     "at": 28.56,
+     "scale": 1.45,
+     "ox": 540,
+     "oy": 960,
+     "dur": 0.5
+    }
+   ],
+   "sfx": [
+    [
+     "whoosh",
+     16.88
+    ]
+   ]
+  },
+  {
+   "id": "log",
+   "fx": "terminal.log",
+   "from": 38.61,
+   "to": 44.08,
+   "title": "data-consolidate",
+   "lines": [
+    {
+     "text": "import erp_items.csv",
+     "at": 39.89
+    },
+    {
+     "text": "import production_orders.csv",
+     "at": 40.69
+    },
+    {
+     "text": "import quality_ncr.csv",
+     "at": 41.45
+    },
+    {
+     "text": "import maintenance_wo.csv",
+     "at": 42.17
+    },
+    {
+     "text": "join → 1 dataset · 4 sources",
+     "at": 42.85,
+     "final": true
+    }
+   ],
+   "sfx": [
+    [
+     "paper",
+     38.61
+    ],
+    [
+     "tick",
+     39.89
+    ],
+    [
+     "tick",
+     40.69
+    ],
+    [
+     "tick",
+     41.45
+    ],
+    [
+     "tick",
+     42.17
+    ],
+    [
+     "impact",
+     42.85
+    ]
+   ]
+  },
+  {
+   "id": "table",
+   "fx": "table.rows",
+   "from": 43.95,
+   "to": 47.66,
+   "kicker": "SIDE BY SIDE · EXAMPLE",
+   "cols": [
+    "MACHINE",
+    "LOT",
+    "DATE",
+    "OUTPUT",
+    "NCR",
+    "MAINT"
+   ],
+   "rows": [
+    [
+     "CNC-3",
+     "L-5521",
+     "11-26",
+     "980",
+     "!2",
+     "!spindle"
+    ],
+    [
+     "CNC-3",
+     "L-5520",
+     "11-26",
+     "1130",
+     "0",
+     "—"
+    ],
+    [
+     "CNC-1",
+     "L-5518",
+     "11-26",
+     "812",
+     "0",
+     "—"
+    ]
+   ],
+   "highlight": [
+    {
+     "col": 0,
+     "at": 44.21
+    },
+    {
+     "col": 1,
+     "at": 45.21
+    },
+    {
+     "col": 2,
+     "at": 45.97
+    }
+   ],
+   "sfx": [
+    [
+     "tick",
+     44.21
+    ],
+    [
+     "tick",
+     45.21
+    ],
+    [
+     "tick",
+     45.97
+    ]
+   ]
+  },
+  {
+   "id": "tiles",
+   "fx": "float.tiles",
+   "from": 47.75,
+   "to": 52.27,
+   "items": [
+    "production.xlsx",
+    "quality.xlsx",
+    "maintenance.xlsx",
+    "erp_export.xlsx",
+    "planning.xlsx"
+   ],
+   "strike_at": 49.79,
+   "sfx": [
+    [
+     "whoosh",
+     47.75
+    ],
+    [
+     "slash",
+     49.79
+    ]
+   ]
+  },
+  {
+   "id": "roles",
+   "fx": "duo.roles",
+   "from": 52.31,
+   "to": 54.69,
+   "roles": [
+    {
+     "who": "CLAUDE",
+     "does": "joins",
+     "at": 52.71
+    },
+    {
+     "who": "YOU",
+     "does": "interpret",
+     "at": 53.81
+    }
+   ],
+   "sfx": [
+    [
+     "tick",
+     52.71
+    ],
+    [
+     "tick",
+     53.81
+    ]
+   ]
+  },
+  {
+   "id": "result",
+   "fx": "card.counter",
+   "from": 54.85,
+   "to": 60.55,
+   "logo": "claude.svg",
+   "kicker": "THE RESULT",
+   "title": "Your plant's language",
+   "title_at": 57.65,
+   "number": 16,
+   "number_at": 56.31,
+   "unit": "other skills",
+   "sfx": [
+    [
+     "tick",
+     56.31
+    ]
+   ]
+  },
+  {
+   "id": "guard",
+   "fx": "text.strike_affirm",
+   "from": 60.2,
+   "to": 62.05,
+   "strike": "Guessing",
+   "strike_at": 61.01,
+   "affirm": "Your context",
+   "affirm_at": 61.43,
+   "sfx": [
+    [
+     "slash",
+     61.01
+    ],
+    [
+     "tick",
+     61.43
+    ]
+   ]
+  },
+  {
+   "id": "cta",
+   "fx": "cta.comment",
+   "from": 62.24,
+   "to": 67.02,
+   "line": "Want the link?",
+   "word": "SKILL",
+   "word_at": 64.19,
+   "sfx": [
+    [
+     "impact",
+     64.19
+    ]
+   ]
+  }
+ ],
+ "captions": [
+  {
+   "id": "cap0",
+   "start": 4.04,
+   "end": 5.06,
+   "words": [
+    {
+     "text": "The",
+     "start": 4.1,
+     "end": 4.4
+    },
+    {
+     "text": "data",
+     "start": 4.4,
+     "end": 4.58
+    },
+    {
+     "text": "consolidate",
+     "start": 4.58,
+     "end": 5.12
+    }
+   ]
+  },
+  {
+   "id": "cap1",
+   "start": 5.06,
+   "end": 6,
+   "words": [
+    {
+     "text": "skill",
+     "start": 5.12,
+     "end": 5.46
+    },
+    {
+     "text": "pulls",
+     "start": 5.46,
+     "end": 5.8
+    },
+    {
+     "text": "that",
+     "start": 5.8,
+     "end": 6.06
+    }
+   ]
+  },
+  {
+   "id": "cap2",
+   "start": 6,
+   "end": 6.8,
+   "words": [
+    {
+     "text": "mess",
+     "start": 6.06,
+     "end": 6.22
+    },
+    {
+     "text": "together.",
+     "start": 6.22,
+     "end": 6.66
+    }
+   ]
+  },
+  {
+   "id": "cap3",
+   "start": 6.8,
+   "end": 7.42,
+   "words": [
+    {
+     "text": "Hi,",
+     "start": 6.86,
+     "end": 7.18
+    }
+   ]
+  },
+  {
+   "id": "cap4",
+   "start": 7.42,
+   "end": 7.98,
+   "words": [
+    {
+     "text": "my",
+     "start": 7.48,
+     "end": 7.68
+    },
+    {
+     "text": "name",
+     "start": 7.68,
+     "end": 7.84
+    },
+    {
+     "text": "is",
+     "start": 7.84,
+     "end": 8.04
+    }
+   ]
+  },
+  {
+   "id": "cap5",
+   "start": 7.98,
+   "end": 8.5,
+   "words": [
+    {
+     "text": "Sevim,",
+     "start": 8.04,
+     "end": 8.34
+    }
+   ]
+  },
+  {
+   "id": "cap6",
+   "start": 8.5,
+   "end": 8.82,
+   "words": [
+    {
+     "text": "and",
+     "start": 8.56,
+     "end": 8.58
+    },
+    {
+     "text": "I",
+     "start": 8.58,
+     "end": 8.72
+    },
+    {
+     "text": "am",
+     "start": 8.72,
+     "end": 8.88
+    }
+   ]
+  },
+  {
+   "id": "cap7",
+   "start": 8.82,
+   "end": 10.12,
+   "words": [
+    {
+     "text": "an",
+     "start": 8.88,
+     "end": 9.06
+    },
+    {
+     "text": "industrial",
+     "start": 9.06,
+     "end": 9.5
+    },
+    {
+     "text": "engineer,",
+     "start": 9.5,
+     "end": 9.94
+    }
+   ]
+  },
+  {
+   "id": "cap8",
+   "start": 10.12,
+   "end": 10.84,
+   "words": [
+    {
+     "text": "AI",
+     "start": 10.18,
+     "end": 10.42
+    },
+    {
+     "text": "trainer",
+     "start": 10.42,
+     "end": 10.66
+    },
+    {
+     "text": "and",
+     "start": 10.66,
+     "end": 10.9
+    }
+   ]
+  },
+  {
+   "id": "cap9",
+   "start": 10.84,
+   "end": 11.7,
+   "words": [
+    {
+     "text": "consultant.",
+     "start": 10.9,
+     "end": 11.4
+    }
+   ]
+  },
+  {
+   "id": "cap10",
+   "start": 11.86,
+   "end": 12.7,
+   "words": [
+    {
+     "text": "In",
+     "start": 11.92,
+     "end": 12.12
+    },
+    {
+     "text": "this",
+     "start": 12.12,
+     "end": 12.38
+    },
+    {
+     "text": "series,",
+     "start": 12.38,
+     "end": 12.68
+    }
+   ]
+  },
+  {
+   "id": "cap11",
+   "start": 12.7,
+   "end": 13.42,
+   "words": [
+    {
+     "text": "I'm",
+     "start": 12.76,
+     "end": 12.94
+    },
+    {
+     "text": "walking",
+     "start": 12.94,
+     "end": 13.22
+    },
+    {
+     "text": "through",
+     "start": 13.22,
+     "end": 13.48
+    }
+   ]
+  },
+  {
+   "id": "cap12",
+   "start": 13.42,
+   "end": 14.44,
+   "words": [
+    {
+     "text": "the",
+     "start": 13.48,
+     "end": 13.7
+    },
+    {
+     "text": "17",
+     "start": 13.7,
+     "end": 14.1
+    },
+    {
+     "text": "skills",
+     "start": 14.1,
+     "end": 14.5
+    }
+   ]
+  },
+  {
+   "id": "cap13",
+   "start": 14.44,
+   "end": 15.28,
+   "words": [
+    {
+     "text": "Claude",
+     "start": 14.5,
+     "end": 14.9
+    },
+    {
+     "text": "built",
+     "start": 14.9,
+     "end": 15.1
+    },
+    {
+     "text": "for",
+     "start": 15.1,
+     "end": 15.34
+    }
+   ]
+  },
+  {
+   "id": "cap14",
+   "start": 15.28,
+   "end": 16.1,
+   "words": [
+    {
+     "text": "factories,",
+     "start": 15.34,
+     "end": 15.8
+    }
+   ]
+  },
+  {
+   "id": "cap15",
+   "start": 16.12,
+   "end": 17.12,
+   "words": [
+    {
+     "text": "one",
+     "start": 16.18,
+     "end": 16.3
+    },
+    {
+     "text": "by",
+     "start": 16.3,
+     "end": 16.54
+    },
+    {
+     "text": "one.",
+     "start": 16.54,
+     "end": 16.82
+    }
+   ]
+  },
+  {
+   "id": "cap16",
+   "start": 17.12,
+   "end": 17.94,
+   "words": [
+    {
+     "text": "To",
+     "start": 17.18,
+     "end": 17.44
+    },
+    {
+     "text": "start,",
+     "start": 17.44,
+     "end": 17.78
+    }
+   ]
+  },
+  {
+   "id": "cap17",
+   "start": 17.94,
+   "end": 19.14,
+   "words": [
+    {
+     "text": "open",
+     "start": 18,
+     "end": 18.34
+    },
+    {
+     "text": "Customize",
+     "start": 18.34,
+     "end": 19.02
+    },
+    {
+     "text": "in",
+     "start": 19.02,
+     "end": 19.2
+    }
+   ]
+  },
+  {
+   "id": "cap18",
+   "start": 19.14,
+   "end": 20.5,
+   "words": [
+    {
+     "text": "Claude's",
+     "start": 19.2,
+     "end": 19.68
+    },
+    {
+     "text": "left",
+     "start": 19.68,
+     "end": 19.84
+    },
+    {
+     "text": "sidebar,",
+     "start": 19.84,
+     "end": 20.44
+    }
+   ]
+  },
+  {
+   "id": "cap19",
+   "start": 20.5,
+   "end": 21.82,
+   "words": [
+    {
+     "text": "then",
+     "start": 20.56,
+     "end": 20.84
+    },
+    {
+     "text": "Plugins.",
+     "start": 20.84,
+     "end": 21.52
+    }
+   ]
+  },
+  {
+   "id": "cap20",
+   "start": 22.02,
+   "end": 22.86,
+   "words": [
+    {
+     "text": "Find",
+     "start": 22.08,
+     "end": 22.38
+    },
+    {
+     "text": "Claude",
+     "start": 22.38,
+     "end": 22.68
+    },
+    {
+     "text": "for",
+     "start": 22.68,
+     "end": 22.92
+    }
+   ]
+  },
+  {
+   "id": "cap21",
+   "start": 22.86,
+   "end": 24.16,
+   "words": [
+    {
+     "text": "manufacturing",
+     "start": 22.92,
+     "end": 23.64
+    },
+    {
+     "text": "and",
+     "start": 23.64,
+     "end": 24
+    },
+    {
+     "text": "add",
+     "start": 24,
+     "end": 24.22
+    }
+   ]
+  },
+  {
+   "id": "cap22",
+   "start": 24.16,
+   "end": 24.8,
+   "words": [
+    {
+     "text": "it.",
+     "start": 24.22,
+     "end": 24.52
+    }
+   ]
+  },
+  {
+   "id": "cap23",
+   "start": 24.8,
+   "end": 25.42,
+   "words": [
+    {
+     "text": "On",
+     "start": 24.86,
+     "end": 25.06
+    },
+    {
+     "text": "a",
+     "start": 25.06,
+     "end": 25.2
+    },
+    {
+     "text": "company",
+     "start": 25.2,
+     "end": 25.48
+    }
+   ]
+  },
+  {
+   "id": "cap24",
+   "start": 25.42,
+   "end": 26.26,
+   "words": [
+    {
+     "text": "account,",
+     "start": 25.48,
+     "end": 25.96
+    }
+   ]
+  },
+  {
+   "id": "cap25",
+   "start": 26.32,
+   "end": 27.1,
+   "words": [
+    {
+     "text": "your",
+     "start": 26.38,
+     "end": 26.54
+    },
+    {
+     "text": "admin",
+     "start": 26.54,
+     "end": 26.86
+    },
+    {
+     "text": "turns",
+     "start": 26.86,
+     "end": 27.16
+    }
+   ]
+  },
+  {
+   "id": "cap26",
+   "start": 27.1,
+   "end": 27.72,
+   "words": [
+    {
+     "text": "it",
+     "start": 27.16,
+     "end": 27.38
+    },
+    {
+     "text": "on",
+     "start": 27.38,
+     "end": 27.5
+    },
+    {
+     "text": "in",
+     "start": 27.5,
+     "end": 27.78
+    }
+   ]
+  },
+  {
+   "id": "cap27",
+   "start": 27.72,
+   "end": 28.7,
+   "words": [
+    {
+     "text": "organization",
+     "start": 27.78,
+     "end": 28.3
+    },
+    {
+     "text": "settings.",
+     "start": 28.3,
+     "end": 28.76
+    }
+   ]
+  },
+  {
+   "id": "cap28",
+   "start": 28.7,
+   "end": 30.4,
+   "words": [
+    {
+     "text": "Then",
+     "start": 28.76,
+     "end": 29.36
+    },
+    {
+     "text": "type",
+     "start": 29.36,
+     "end": 30.02
+    },
+    {
+     "text": "set",
+     "start": 30.02,
+     "end": 30.46
+    }
+   ]
+  },
+  {
+   "id": "cap29",
+   "start": 30.4,
+   "end": 31.1,
+   "words": [
+    {
+     "text": "us",
+     "start": 30.46,
+     "end": 30.68
+    },
+    {
+     "text": "up",
+     "start": 30.68,
+     "end": 31
+    },
+    {
+     "text": "in",
+     "start": 31,
+     "end": 31.16
+    }
+   ]
+  },
+  {
+   "id": "cap30",
+   "start": 31.1,
+   "end": 31.86,
+   "words": [
+    {
+     "text": "a",
+     "start": 31.16,
+     "end": 31.4
+    },
+    {
+     "text": "chat",
+     "start": 31.4,
+     "end": 31.6
+    },
+    {
+     "text": "Claude",
+     "start": 31.6,
+     "end": 31.92
+    }
+   ]
+  },
+  {
+   "id": "cap31",
+   "start": 31.86,
+   "end": 33.7,
+   "words": [
+    {
+     "text": "asks",
+     "start": 31.92,
+     "end": 32.32
+    },
+    {
+     "text": "which",
+     "start": 32.32,
+     "end": 32.66
+    },
+    {
+     "text": "ERP,",
+     "start": 32.66,
+     "end": 33.58
+    }
+   ]
+  },
+  {
+   "id": "cap32",
+   "start": 33.7,
+   "end": 34.3,
+   "words": [
+    {
+     "text": "CAD,",
+     "start": 33.76,
+     "end": 34
+    }
+   ]
+  },
+  {
+   "id": "cap33",
+   "start": 34.3,
+   "end": 35.16,
+   "words": [
+    {
+     "text": "and",
+     "start": 34.36,
+     "end": 34.58
+    },
+    {
+     "text": "maintenance",
+     "start": 34.58,
+     "end": 34.88
+    },
+    {
+     "text": "systems",
+     "start": 34.88,
+     "end": 35.22
+    }
+   ]
+  },
+  {
+   "id": "cap34",
+   "start": 35.16,
+   "end": 36.1,
+   "words": [
+    {
+     "text": "you",
+     "start": 35.22,
+     "end": 35.48
+    },
+    {
+     "text": "use.",
+     "start": 35.48,
+     "end": 35.8
+    }
+   ]
+  },
+  {
+   "id": "cap35",
+   "start": 36.4,
+   "end": 37.12,
+   "words": [
+    {
+     "text": "After",
+     "start": 36.46,
+     "end": 36.5
+    },
+    {
+     "text": "that,",
+     "start": 36.5,
+     "end": 36.96
+    }
+   ]
+  },
+  {
+   "id": "cap36",
+   "start": 37.12,
+   "end": 37.88,
+   "words": [
+    {
+     "text": "just",
+     "start": 37.18,
+     "end": 37.42
+    },
+    {
+     "text": "describe",
+     "start": 37.42,
+     "end": 37.76
+    },
+    {
+     "text": "what",
+     "start": 37.76,
+     "end": 37.94
+    }
+   ]
+  },
+  {
+   "id": "cap37",
+   "start": 37.88,
+   "end": 38.65,
+   "words": [
+    {
+     "text": "you",
+     "start": 37.94,
+     "end": 38.12
+    },
+    {
+     "text": "need.",
+     "start": 38.12,
+     "end": 38.38
+    }
+   ]
+  },
+  {
+   "id": "cap38",
+   "start": 38.65,
+   "end": 39.27,
+   "words": [
+    {
+     "text": "It",
+     "start": 38.71,
+     "end": 38.81
+    },
+    {
+     "text": "joins",
+     "start": 38.81,
+     "end": 39.05
+    },
+    {
+     "text": "your",
+     "start": 39.05,
+     "end": 39.33
+    }
+   ]
+  },
+  {
+   "id": "cap39",
+   "start": 39.27,
+   "end": 40.63,
+   "words": [
+    {
+     "text": "exports",
+     "start": 39.33,
+     "end": 39.63
+    },
+    {
+     "text": "from",
+     "start": 39.63,
+     "end": 39.89
+    },
+    {
+     "text": "ERP,",
+     "start": 39.89,
+     "end": 40.55
+    }
+   ]
+  },
+  {
+   "id": "cap40",
+   "start": 40.63,
+   "end": 41.39,
+   "words": [
+    {
+     "text": "production,",
+     "start": 40.69,
+     "end": 41.13
+    }
+   ]
+  },
+  {
+   "id": "cap41",
+   "start": 41.39,
+   "end": 41.99,
+   "words": [
+    {
+     "text": "quality,",
+     "start": 41.45,
+     "end": 41.85
+    }
+   ]
+  },
+  {
+   "id": "cap42",
+   "start": 41.99,
+   "end": 42.79,
+   "words": [
+    {
+     "text": "and",
+     "start": 42.05,
+     "end": 42.17
+    },
+    {
+     "text": "maintenance",
+     "start": 42.17,
+     "end": 42.51
+    },
+    {
+     "text": "into",
+     "start": 42.51,
+     "end": 42.85
+    }
+   ]
+  },
+  {
+   "id": "cap43",
+   "start": 42.79,
+   "end": 43.99,
+   "words": [
+    {
+     "text": "one",
+     "start": 42.85,
+     "end": 43.15
+    },
+    {
+     "text": "data",
+     "start": 43.15,
+     "end": 43.45
+    },
+    {
+     "text": "set.",
+     "start": 43.45,
+     "end": 43.73
+    }
+   ]
+  },
+  {
+   "id": "cap44",
+   "start": 43.99,
+   "end": 44.89,
+   "words": [
+    {
+     "text": "Same",
+     "start": 44.05,
+     "end": 44.21
+    },
+    {
+     "text": "machine,",
+     "start": 44.21,
+     "end": 44.73
+    }
+   ]
+  },
+  {
+   "id": "cap45",
+   "start": 44.89,
+   "end": 45.67,
+   "words": [
+    {
+     "text": "same",
+     "start": 44.95,
+     "end": 45.21
+    },
+    {
+     "text": "lot,",
+     "start": 45.21,
+     "end": 45.51
+    }
+   ]
+  },
+  {
+   "id": "cap46",
+   "start": 45.67,
+   "end": 46.59,
+   "words": [
+    {
+     "text": "same",
+     "start": 45.73,
+     "end": 45.97
+    },
+    {
+     "text": "date,",
+     "start": 45.97,
+     "end": 46.29
+    }
+   ]
+  },
+  {
+   "id": "cap47",
+   "start": 46.59,
+   "end": 47.61,
+   "words": [
+    {
+     "text": "side",
+     "start": 46.65,
+     "end": 46.81
+    },
+    {
+     "text": "by",
+     "start": 46.81,
+     "end": 47.01
+    },
+    {
+     "text": "side.",
+     "start": 47.01,
+     "end": 47.31
+    }
+   ]
+  },
+  {
+   "id": "cap48",
+   "start": 47.79,
+   "end": 48.35,
+   "words": [
+    {
+     "text": "To",
+     "start": 47.85,
+     "end": 48.01
+    },
+    {
+     "text": "see",
+     "start": 48.01,
+     "end": 48.21
+    },
+    {
+     "text": "why",
+     "start": 48.21,
+     "end": 48.41
+    }
+   ]
+  },
+  {
+   "id": "cap49",
+   "start": 48.35,
+   "end": 48.81,
+   "words": [
+    {
+     "text": "a",
+     "start": 48.41,
+     "end": 48.53
+    },
+    {
+     "text": "line",
+     "start": 48.53,
+     "end": 48.65
+    },
+    {
+     "text": "fell",
+     "start": 48.65,
+     "end": 48.87
+    }
+   ]
+  },
+  {
+   "id": "cap50",
+   "start": 48.81,
+   "end": 49.59,
+   "words": [
+    {
+     "text": "behind,",
+     "start": 48.87,
+     "end": 49.37
+    }
+   ]
+  },
+  {
+   "id": "cap51",
+   "start": 49.59,
+   "end": 50.19,
+   "words": [
+    {
+     "text": "you",
+     "start": 49.65,
+     "end": 49.79
+    },
+    {
+     "text": "no",
+     "start": 49.79,
+     "end": 50.03
+    },
+    {
+     "text": "longer",
+     "start": 50.03,
+     "end": 50.25
+    }
+   ]
+  },
+  {
+   "id": "cap52",
+   "start": 50.19,
+   "end": 51.31,
+   "words": [
+    {
+     "text": "match",
+     "start": 50.25,
+     "end": 50.55
+    },
+    {
+     "text": "five",
+     "start": 50.55,
+     "end": 50.91
+    },
+    {
+     "text": "spreadsheets",
+     "start": 50.91,
+     "end": 51.37
+    }
+   ]
+  },
+  {
+   "id": "cap53",
+   "start": 51.31,
+   "end": 52.27,
+   "words": [
+    {
+     "text": "by",
+     "start": 51.37,
+     "end": 51.63
+    },
+    {
+     "text": "hand.",
+     "start": 51.63,
+     "end": 51.97
+    }
+   ]
+  },
+  {
+   "id": "cap54",
+   "start": 52.35,
+   "end": 53.55,
+   "words": [
+    {
+     "text": "Claude",
+     "start": 52.41,
+     "end": 52.71
+    },
+    {
+     "text": "joins",
+     "start": 52.71,
+     "end": 53.01
+    },
+    {
+     "text": "them,",
+     "start": 53.01,
+     "end": 53.37
+    }
+   ]
+  },
+  {
+   "id": "cap55",
+   "start": 53.55,
+   "end": 54.59,
+   "words": [
+    {
+     "text": "you",
+     "start": 53.61,
+     "end": 53.81
+    },
+    {
+     "text": "interpret.",
+     "start": 53.81,
+     "end": 54.29
+    }
+   ]
+  },
+  {
+   "id": "cap56",
+   "start": 54.89,
+   "end": 55.79,
+   "words": [
+    {
+     "text": "The",
+     "start": 54.95,
+     "end": 55.19
+    },
+    {
+     "text": "result?",
+     "start": 55.19,
+     "end": 55.49
+    }
+   ]
+  },
+  {
+   "id": "cap57",
+   "start": 55.81,
+   "end": 56.65,
+   "words": [
+    {
+     "text": "The",
+     "start": 55.87,
+     "end": 56.09
+    },
+    {
+     "text": "other",
+     "start": 56.09,
+     "end": 56.31
+    },
+    {
+     "text": "16",
+     "start": 56.31,
+     "end": 56.71
+    }
+   ]
+  },
+  {
+   "id": "cap58",
+   "start": 56.65,
+   "end": 57.41,
+   "words": [
+    {
+     "text": "skills",
+     "start": 56.71,
+     "end": 57.07
+    },
+    {
+     "text": "work",
+     "start": 57.07,
+     "end": 57.35
+    },
+    {
+     "text": "in",
+     "start": 57.35,
+     "end": 57.47
+    }
+   ]
+  },
+  {
+   "id": "cap59",
+   "start": 57.41,
+   "end": 58.65,
+   "words": [
+    {
+     "text": "your",
+     "start": 57.47,
+     "end": 57.65
+    },
+    {
+     "text": "plant's",
+     "start": 57.65,
+     "end": 58.05
+    },
+    {
+     "text": "language,",
+     "start": 58.05,
+     "end": 58.35
+    }
+   ]
+  },
+  {
+   "id": "cap60",
+   "start": 58.69,
+   "end": 59.41,
+   "words": [
+    {
+     "text": "and",
+     "start": 58.75,
+     "end": 58.97
+    },
+    {
+     "text": "you",
+     "start": 58.97,
+     "end": 59.19
+    },
+    {
+     "text": "provide",
+     "start": 59.19,
+     "end": 59.47
+    }
+   ]
+  },
+  {
+   "id": "cap61",
+   "start": 59.41,
+   "end": 60.19,
+   "words": [
+    {
+     "text": "that",
+     "start": 59.47,
+     "end": 59.75
+    },
+    {
+     "text": "context.",
+     "start": 59.75,
+     "end": 60.25
+    }
+   ]
+  },
+  {
+   "id": "cap62",
+   "start": 60.19,
+   "end": 61.95,
+   "words": [
+    {
+     "text": "Claude",
+     "start": 60.25,
+     "end": 61.01
+    },
+    {
+     "text": "doesn't",
+     "start": 61.01,
+     "end": 61.33
+    },
+    {
+     "text": "guess.",
+     "start": 61.33,
+     "end": 61.65
+    }
+   ]
+  },
+  {
+   "id": "cap63",
+   "start": 62.23,
+   "end": 62.75,
+   "words": [
+    {
+     "text": "Would",
+     "start": 62.29,
+     "end": 62.41
+    },
+    {
+     "text": "this",
+     "start": 62.41,
+     "end": 62.67
+    },
+    {
+     "text": "skill",
+     "start": 62.67,
+     "end": 62.81
+    }
+   ]
+  },
+  {
+   "id": "cap64",
+   "start": 62.75,
+   "end": 63.37,
+   "words": [
+    {
+     "text": "help",
+     "start": 62.81,
+     "end": 63.07
+    },
+    {
+     "text": "in",
+     "start": 63.07,
+     "end": 63.21
+    },
+    {
+     "text": "your",
+     "start": 63.21,
+     "end": 63.43
+    }
+   ]
+  },
+  {
+   "id": "cap65",
+   "start": 63.37,
+   "end": 63.93,
+   "words": [
+    {
+     "text": "plant?",
+     "start": 63.43,
+     "end": 63.63
+    }
+   ]
+  },
+  {
+   "id": "cap66",
+   "start": 64.13,
+   "end": 64.79,
+   "words": [
+    {
+     "text": "Comment",
+     "start": 64.19,
+     "end": 64.41
+    },
+    {
+     "text": "skill",
+     "start": 64.41,
+     "end": 64.65
+    },
+    {
+     "text": "for",
+     "start": 64.65,
+     "end": 64.85
+    }
+   ]
+  },
+  {
+   "id": "cap67",
+   "start": 64.79,
+   "end": 65.45,
+   "words": [
+    {
+     "text": "the",
+     "start": 64.85,
+     "end": 64.97
+    },
+    {
+     "text": "link",
+     "start": 64.97,
+     "end": 65.15
+    },
+    {
+     "text": "and",
+     "start": 65.15,
+     "end": 65.51
+    }
+   ]
+  },
+  {
+   "id": "cap68",
+   "start": 65.45,
+   "end": 65.97,
+   "words": [
+    {
+     "text": "follow",
+     "start": 65.51,
+     "end": 65.75
+    },
+    {
+     "text": "for",
+     "start": 65.75,
+     "end": 65.93
+    },
+    {
+     "text": "the",
+     "start": 65.93,
+     "end": 66.03
+    }
+   ]
+  },
+  {
+   "id": "cap69",
+   "start": 65.97,
+   "end": 66.97,
+   "words": [
+    {
+     "text": "next",
+     "start": 66.03,
+     "end": 66.25
+    },
+    {
+     "text": "one.",
+     "start": 66.25,
+     "end": 66.47
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "name": "impact",
+   "t": 0,
+   "ev": "hook"
+  },
+  {
+   "name": "whoosh",
+   "t": 4,
+   "ev": "converge"
+  },
+  {
+   "name": "impact",
+   "t": 5.46,
+   "ev": "converge"
+  },
+  {
+   "name": "paper",
+   "t": 6.76,
+   "ev": "episode"
+  },
+  {
+   "name": "tick",
+   "t": 8.04,
+   "ev": "episode"
+  },
+  {
+   "name": "whoosh",
+   "t": 16.88,
+   "ev": "screen"
+  },
+  {
+   "name": "paper",
+   "t": 38.61,
+   "ev": "log"
+  },
+  {
+   "name": "tick",
+   "t": 39.89,
+   "ev": "log"
+  },
+  {
+   "name": "tick",
+   "t": 40.69,
+   "ev": "log"
+  },
+  {
+   "name": "tick",
+   "t": 41.45,
+   "ev": "log"
+  },
+  {
+   "name": "tick",
+   "t": 42.17,
+   "ev": "log"
+  },
+  {
+   "name": "impact",
+   "t": 42.85,
+   "ev": "log"
+  },
+  {
+   "name": "tick",
+   "t": 44.21,
+   "ev": "table"
+  },
+  {
+   "name": "tick",
+   "t": 45.21,
+   "ev": "table"
+  },
+  {
+   "name": "tick",
+   "t": 45.97,
+   "ev": "table"
+  },
+  {
+   "name": "whoosh",
+   "t": 47.75,
+   "ev": "tiles"
+  },
+  {
+   "name": "slash",
+   "t": 49.79,
+   "ev": "tiles"
+  },
+  {
+   "name": "tick",
+   "t": 52.71,
+   "ev": "roles"
+  },
+  {
+   "name": "tick",
+   "t": 53.81,
+   "ev": "roles"
+  },
+  {
+   "name": "tick",
+   "t": 56.31,
+   "ev": "result"
+  },
+  {
+   "name": "slash",
+   "t": 61.01,
+   "ev": "guard"
+  },
+  {
+   "name": "tick",
+   "t": 61.43,
+   "ev": "guard"
+  },
+  {
+   "name": "impact",
+   "t": 64.19,
+   "ev": "cta"
+  }
+ ]
+}

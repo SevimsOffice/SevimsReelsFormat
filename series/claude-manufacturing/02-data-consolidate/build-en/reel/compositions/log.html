@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #tl-card { position: absolute; left: 100px; width: 808px; top: 280px; border-radius: 18px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); overflow: hidden; }
+    #tl-bar { height: 44px; background: #26272F; display: flex; align-items: center; gap: 9px; padding-left: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 22px; color: #F0EBD499; }
+    #tl-bar i { width: 13px; height: 13px; border-radius: 50%; background: #6A6B71; display: block; } #tl-bar i:first-child { background: #C41E3A; }
+    #tl-body { padding: 20px 26px 24px; font-family: 'IBM Plex Mono', monospace; font-size: 30px; line-height: 1.6; color: #F0EBD4; }
+    .tl-l { opacity: 0; white-space: nowrap; } .tl-l .ok { color: #7FD18B; } .tl-l .p { color: #C41E3A; }
+    .tl-l.fin { color: #F0EBD4; font-weight: 700; }
+  </style>
+  <div id="root" data-composition-id="log" data-width="1080" data-height="1920">
+    <div id="tl-card" class="clip" data-start="0" data-duration="5.47"><div id="tl-bar"><i></i><i></i><i></i><span style="margin-left:14px">data-consolidate</span></div><div id="tl-body"><div class="tl-l" id="tl-l0"><span class="p">›</span> import erp_items.csv <span class="ok">✓</span></div><div class="tl-l" id="tl-l1"><span class="p">›</span> import production_orders.csv <span class="ok">✓</span></div><div class="tl-l" id="tl-l2"><span class="p">›</span> import quality_ncr.csv <span class="ok">✓</span></div><div class="tl-l" id="tl-l3"><span class="p">›</span> import maintenance_wo.csv <span class="ok">✓</span></div><div class="tl-l fin" id="tl-l4"><span class="p">›</span> join → 1 dataset · 4 sources </div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tl-card", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#tl-l0", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.18, ease: "power2.out" }, 1.28);
+    tl.fromTo("#tl-l1", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.18, ease: "power2.out" }, 2.08);
+    tl.fromTo("#tl-l2", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.18, ease: "power2.out" }, 2.84);
+    tl.fromTo("#tl-l3", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.18, ease: "power2.out" }, 3.56);
+    tl.fromTo("#tl-l4", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.18, ease: "power2.out" }, 4.24);
+    tl.to("#tl-card", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 5.26);
+
+    window.__timelines["log"] = tl;
+  </script>
+</template>

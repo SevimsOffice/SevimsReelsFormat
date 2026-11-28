@@ -1,0 +1,22 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #hook-wrap { position: absolute; left: 120px; width: 768px; top: 430px; text-align: center; }
+    #hook-ph { position: absolute; left: 100px; width: 808px; top: 280px; height: 520px; border-radius: 22px; overflow: hidden; }
+    #hook-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.55) saturate(.8); transform-origin: 50% 50%; }
+    .hk-line { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 104px; line-height: 1.02; letter-spacing: -0.02em; text-shadow: 0 8px 40px rgba(0,0,0,.6); }
+    .hk-line .acc { color: #C41E3A; font-style: italic; }
+    #hook-rule { width: 120px; height: 4px; background: #C41E3A; margin: 26px auto 0; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-wrap" class="clip" data-start="0" data-duration="3.94"><div class="hk-line" id="hook-l0"><span class="">No</span> <span class="acc">connector</span> <span class="">for</span></div><div class="hk-line" id="hook-l1"><span class="">your</span> <span class="">plant's</span> <span class="">system?</span></div><div id="hook-rule"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hook-wrap", { scale: 1.04 }, { scale: 1, duration: 0.6, ease: "expo.out" }, 0);
+    tl.fromTo("#hook-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.15);
+    tl.to("#hook-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 3.73);
+
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

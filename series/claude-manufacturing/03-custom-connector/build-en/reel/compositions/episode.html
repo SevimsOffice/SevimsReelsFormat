@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #ep-card { position: absolute; left: 120px; width: 768px; top: 300px; padding: 30px 36px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+    #ep-k { font-family: 'IBM Plex Mono', monospace; font-size: 30px; letter-spacing: .18em; color: #C41E3A; }
+    #ep-t { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 76px; line-height: 1.02; margin-top: 10px; }
+    #ep-d { font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .14em; color: #F0EBD4B3; margin-top: 12px; }
+    #ep-name { margin-top: 22px; padding-top: 18px; border-top: 1.5px solid #F0EBD433; font-style: italic; font-size: 42px; }
+    #ep-name b { font-style: normal; font-family: 'Playfair Display', serif; font-weight: 900; color: #F0EBD4; margin-right: 12px; }
+  </style>
+  <div id="root" data-composition-id="episode" data-width="1080" data-height="1920">
+    <div id="ep-card" class="clip" data-start="0" data-duration="10.36">
+      <div id="ep-k">EPISODE 03/17</div><div id="ep-t">Custom Connector</div><div id="ep-d">IT &amp; DATA</div>
+      <div id="ep-name"><b>Sevim</b>Industrial engineer · AI trainer &amp; consultant</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ep-card", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#ep-name", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 1.28);
+    tl.to("#ep-card", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 10.15);
+
+    window.__timelines["episode"] = tl;
+  </script>
+</template>

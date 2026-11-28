@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #lc-card { position: absolute; left: 120px; width: 768px; top: 290px; padding: 26px 34px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+    #lc-k { font-family: 'IBM Plex Mono', monospace; font-size: 28px; letter-spacing: .16em; color: #F0EBD4B3; margin-bottom: 8px; }
+    .lc-i { display: flex; align-items: center; gap: 18px; font-size: 44px; padding: 7px 0; }
+    .lc-i i { font-style: normal; display: inline-flex; width: 44px; height: 44px; border-radius: 50%; border: 3px solid #C41E3A; align-items: center; justify-content: center; color: #C41E3A; font-size: 28px; font-weight: 900; }
+  </style>
+  <div id="root" data-composition-id="ladder" data-width="1080" data-height="1920">
+    <div id="lc-card" class="clip" data-start="0" data-duration="4.88"><div id="lc-k">ACCESS LADDER · TOP RUNG FIRST</div><div class="lc-i" id="lc-i0"><i>✓</i>1 · Vendor MCP</div><div class="lc-i" id="lc-i1"><i>✓</i>2 · Community MCP</div><div class="lc-i" id="lc-i2"><i>✓</i>3 · Scoped API wrapper</div><div class="lc-i" id="lc-i3"><i>✓</i>4 · Read-only DB view</div><div class="lc-i" id="lc-i4"><i>✓</i>5 · Zapier bridge</div><div class="lc-i" id="lc-i5"><i>✓</i>6 · Screen automation</div><div class="lc-i" id="lc-i6"><i>✓</i>7 · Scheduled export</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#lc-card", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#lc-i0", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 0.62);
+    tl.fromTo("#lc-i1", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 1.34);
+    tl.fromTo("#lc-i2", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 2.16);
+    tl.fromTo("#lc-i3", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 2.68);
+    tl.fromTo("#lc-i4", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 2.96);
+    tl.fromTo("#lc-i5", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 3.66);
+    tl.fromTo("#lc-i6", { opacity: 0.18, x: -12 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 4.14);
+    tl.to("#lc-card", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 4.67);
+
+    window.__timelines["ladder"] = tl;
+  </script>
+</template>

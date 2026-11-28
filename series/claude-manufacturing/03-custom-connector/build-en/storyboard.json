@@ -1,0 +1,705 @@
+{
+  "video_id": "ep03-custom-connector-en",
+  "topic": "Claude for Manufacturing \u00b7 03/17 Custom Connector (EN)",
+  "segments": [
+    {
+      "avatar": "assets/avatar3.webm",
+      "voice": "assets/voice3.wav",
+      "words": "words3.json",
+      "from": 0,
+      "to": 7.1
+    },
+    {
+      "avatar": "../../01-onboarding/build-en/assets/avatar.webm",
+      "voice": "../../01-onboarding/build-en/assets/voice.wav",
+      "words": "../../01-onboarding/build-en/words.json",
+      "from": 6.0,
+      "to": 37.65
+    },
+    {
+      "avatar": "assets/avatar3.webm",
+      "voice": "assets/voice3.wav",
+      "words": "words3.json",
+      "from": 7.1,
+      "to": 30.8
+    }
+  ],
+  "words_file": "words.timeline.json",
+  "avatar": {
+    "kind": "video",
+    "y": 0
+  },
+  "tail_hold_sec": 0.2,
+  "palette": "../../../../style/palette-noir.json",
+  "captions": {
+    "max_words": 3,
+    "off": [
+      [
+        0,
+        12
+      ]
+    ],
+    "low": [
+      [
+        52,
+        105
+      ]
+    ],
+    "low_y": 1290
+  },
+  "camera": [
+    {
+      "type": "cut",
+      "at": {
+        "w": 3,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.1
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 13,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 30,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.08
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 36,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 52,
+        "e": "start",
+        "o": -0.35
+      },
+      "scale": 0.42,
+      "x": 330,
+      "y": 520,
+      "dur": 0.5
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 106,
+        "e": "start",
+        "o": -0.35
+      },
+      "scale": 1.0,
+      "x": 0,
+      "y": 0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 137,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.08
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 150,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    },
+    {
+      "type": "cut",
+      "at": {
+        "w": 154,
+        "e": "start",
+        "o": 0
+      },
+      "scale": 1.12
+    },
+    {
+      "type": "ease",
+      "at": {
+        "w": 162,
+        "e": "start",
+        "o": -0.1
+      },
+      "scale": 1.0,
+      "dur": 0.5
+    }
+  ],
+  "events": [
+    {
+      "id": "hook",
+      "fx": "title.hook",
+      "from": 0,
+      "to": {
+        "w": 12,
+        "e": "end",
+        "o": 0.3
+      },
+      "lines": [
+        "No connector for",
+        "your plant's system?"
+      ],
+      "accent_word": "connector",
+      "sfx": [
+        [
+          "impact",
+          0
+        ]
+      ]
+    },
+    {
+      "id": "answer",
+      "fx": "text.strike_affirm",
+      "from": {
+        "w": 13,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 20,
+        "e": "end",
+        "o": 0.3
+      },
+      "strike": "No connector",
+      "strike_at": {
+        "w": 15,
+        "e": "start",
+        "o": 0
+      },
+      "affirm": "custom-connector",
+      "affirm_at": {
+        "w": 16,
+        "e": "start",
+        "o": 0.1
+      },
+      "sfx": [
+        [
+          "slash",
+          {
+            "w": 15,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 16,
+            "e": "start",
+            "o": 0.1
+          }
+        ]
+      ]
+    },
+    {
+      "id": "episode",
+      "fx": "badge.episode",
+      "from": {
+        "w": 21,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 51,
+        "e": "end",
+        "o": 0.3
+      },
+      "kicker": "EPISODE 03/17",
+      "title": "Custom Connector",
+      "dept": "IT & DATA",
+      "name": "Sevim",
+      "role": "Industrial engineer \u00b7 AI trainer & consultant",
+      "name_at": {
+        "w": 25,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 21,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 25,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "screen",
+      "fx": "screen.recording",
+      "from": {
+        "w": 52,
+        "e": "start",
+        "o": -0.3
+      },
+      "to": {
+        "w": 105,
+        "e": "end",
+        "o": 0.2
+      },
+      "src": "screen.mp4",
+      "rate": 1.06,
+      "tag": "WHERE TO START",
+      "zooms": [
+        {
+          "at": {
+            "w": 81,
+            "e": "start",
+            "o": -0.2
+          },
+          "scale": 1.45,
+          "ox": 540,
+          "oy": 960,
+          "dur": 0.5
+        }
+      ],
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 52,
+            "e": "start",
+            "o": -0.3
+          }
+        ]
+      ]
+    },
+    {
+      "id": "ladder",
+      "fx": "list.check",
+      "from": {
+        "w": 106,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 123,
+        "e": "end",
+        "o": 0.3
+      },
+      "kicker": "ACCESS LADDER \u00b7 TOP RUNG FIRST",
+      "items": [
+        {
+          "text": "1 \u00b7 Vendor MCP",
+          "at": {
+            "w": 108,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "2 \u00b7 Community MCP",
+          "at": {
+            "w": 110,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "3 \u00b7 Scoped API wrapper",
+          "at": {
+            "w": 113,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "4 \u00b7 Read-only DB view",
+          "at": {
+            "w": 116,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "5 \u00b7 Zapier bridge",
+          "at": {
+            "w": 118,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "6 \u00b7 Screen automation",
+          "at": {
+            "w": 121,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "7 \u00b7 Scheduled export",
+          "at": {
+            "w": 123,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 106,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 108,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 110,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 113,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 116,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 118,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 121,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 123,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "routes",
+      "fx": "fly.converge",
+      "from": {
+        "w": 124,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 130,
+        "e": "end",
+        "o": 0.25
+      },
+      "items": [
+        "CSV EXPORT",
+        "REST API",
+        "DB VIEW",
+        "LEGACY ERP",
+        "MES",
+        "CMMS"
+      ],
+      "snap_at": {
+        "w": 130,
+        "e": "start",
+        "o": -0.1
+      },
+      "target": "ROUTE FOUND",
+      "target_sub": "custom-connector",
+      "sfx": [
+        [
+          "whoosh",
+          {
+            "w": 124,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "impact",
+          {
+            "w": 130,
+            "e": "start",
+            "o": -0.1
+          }
+        ]
+      ]
+    },
+    {
+      "id": "draft",
+      "fx": "terminal.log",
+      "from": {
+        "w": 131,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 136,
+        "e": "end",
+        "o": 0.6
+      },
+      "title": "custom-connector \u00b7 draft",
+      "lines": [
+        {
+          "text": "route: read-only DB view",
+          "at": {
+            "w": 132,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "step 1 \u00b7 create read-only user",
+          "at": {
+            "w": 133,
+            "e": "start",
+            "o": 0.1
+          }
+        },
+        {
+          "text": "step 2 \u00b7 expose work-order view",
+          "at": {
+            "w": 134,
+            "e": "start",
+            "o": 0.1
+          }
+        },
+        {
+          "text": "step 3 \u00b7 map to dataset schema",
+          "at": {
+            "w": 135,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "text": "settings drafted \u00b7 no credentials",
+          "at": {
+            "w": 136,
+            "e": "start",
+            "o": 0.15
+          },
+          "final": true
+        }
+      ],
+      "sfx": [
+        [
+          "paper",
+          {
+            "w": 131,
+            "e": "start",
+            "o": -0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 132,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 133,
+            "e": "start",
+            "o": 0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 134,
+            "e": "start",
+            "o": 0.1
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 135,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "impact",
+          {
+            "w": 136,
+            "e": "start",
+            "o": 0.15
+          }
+        ]
+      ]
+    },
+    {
+      "id": "approve",
+      "fx": "card.signature",
+      "from": {
+        "w": 137,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": {
+        "w": 149,
+        "e": "end",
+        "o": 0.35
+      },
+      "label": "IT team approval",
+      "line": "Connection switched on by you",
+      "sign_at": {
+        "w": 148,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "pen",
+          {
+            "w": 148,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "roles",
+      "fx": "duo.roles",
+      "from": {
+        "w": 150,
+        "e": "start",
+        "o": -0.1
+      },
+      "to": {
+        "w": 153,
+        "e": "end",
+        "o": 0.4
+      },
+      "roles": [
+        {
+          "who": "CLAUDE",
+          "does": "maps",
+          "at": {
+            "w": 151,
+            "e": "start",
+            "o": 0
+          }
+        },
+        {
+          "who": "YOU",
+          "does": "approve",
+          "at": {
+            "w": 153,
+            "e": "start",
+            "o": 0
+          }
+        }
+      ],
+      "sfx": [
+        [
+          "tick",
+          {
+            "w": 151,
+            "e": "start",
+            "o": 0
+          }
+        ],
+        [
+          "tick",
+          {
+            "w": 153,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    },
+    {
+      "id": "cta",
+      "fx": "cta.comment",
+      "from": {
+        "w": 154,
+        "e": "start",
+        "o": -0.05
+      },
+      "to": "end",
+      "line": "Want the link?",
+      "word": "SKILL",
+      "word_at": {
+        "w": 162,
+        "e": "start",
+        "o": 0
+      },
+      "sfx": [
+        [
+          "impact",
+          {
+            "w": 162,
+            "e": "start",
+            "o": 0
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #fc-wrap { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .fc-chip { position: absolute; left: 384px; top: 476px; width: 240px; height: 68px; border-radius: 14px; background: #1A1B22E6; border: 1.5px solid #F0EBD433; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55);
+               display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 30px; letter-spacing: .06em; color: #F0EBD4; }
+    #fc-box { position: absolute; left: 274px; top: 440px; width: 460px; height: 140px; border-radius: 22px; border: 3px solid #C41E3A;
+              background: #1A1B22F0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #fc-box b { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 900; } #fc-box span { font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #F0EBD4B3; letter-spacing: .12em; }
+  </style>
+  <div id="root" data-composition-id="routes" data-width="1080" data-height="1920">
+    <div id="fc-wrap" class="clip" data-start="0" data-duration="2.99" data-layout-allow-overlap data-layout-allow-overflow><div class="fc-chip" id="fc-c0">CSV EXPORT</div><div class="fc-chip" id="fc-c1">REST API</div><div class="fc-chip" id="fc-c2">DB VIEW</div><div class="fc-chip" id="fc-c3">LEGACY ERP</div><div class="fc-chip" id="fc-c4">MES</div><div class="fc-chip" id="fc-c5">CMMS</div><div id="fc-box"><b>ROUTE FOUND</b><span>custom-connector</span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#fc-c0", { x: -416, y: -344, rotation: -28, opacity: 0 }, { x: -260, y: -90, rotation: -14, opacity: 1, duration: 0.5, ease: "expo.out" }, 0);
+    tl.to("#fc-c0", { x: -221, y: -86.5, duration: 1.72, ease: "sine.inOut" }, 0.5);
+    tl.to("#fc-c0", { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 0, duration: 0.35, ease: "power3.in" }, 2.32);
+    tl.fromTo("#fc-c1", { x: 480, y: -376, rotation: 20, opacity: 0 }, { x: 300, y: -110, rotation: 10, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.08);
+    tl.to("#fc-c1", { x: 255, y: -83.5, duration: 1.64, ease: "sine.inOut" }, 0.58);
+    tl.to("#fc-c1", { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 0, duration: 0.35, ease: "power3.in" }, 2.36);
+    tl.fromTo("#fc-c2", { x: -480, y: -56, rotation: 16, opacity: 0 }, { x: -300, y: 90, rotation: 8, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.16);
+    tl.to("#fc-c2", { x: -255, y: 66.5, duration: 1.56, ease: "sine.inOut" }, 0.66);
+    tl.to("#fc-c2", { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 0, duration: 0.35, ease: "power3.in" }, 2.4);
+    tl.fromTo("#fc-c3", { x: 448, y: -40, rotation: -20, opacity: 0 }, { x: 280, y: 100, rotation: -10, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.24);
+    tl.to("#fc-c3", { x: 238, y: 95, duration: 1.48, ease: "sine.inOut" }, 0.74);
+    tl.to("#fc-c3", { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 0, duration: 0.35, ease: "power3.in" }, 2.44);
+    tl.fromTo("#fc-c4", { x: 0, y: -440, rotation: 8, opacity: 0 }, { x: 0, y: -150, rotation: 4, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.32);
+    tl.to("#fc-c4", { x: 0, y: -137.5, duration: 1.4, ease: "sine.inOut" }, 0.82);
+    tl.to("#fc-c4", { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 0, duration: 0.35, ease: "power3.in" }, 2.48);
+    tl.fromTo("#fc-c5", { x: -64, y: 24, rotation: -12, opacity: 0 }, { x: -40, y: 140, rotation: -6, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.4);
+    tl.to("#fc-c5", { x: -34, y: 129, duration: 1.32, ease: "sine.inOut" }, 0.9);
+    tl.to("#fc-c5", { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 0, duration: 0.35, ease: "power3.in" }, 2.52);
+    tl.fromTo("#fc-box", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 2.62);
+    tl.to("#fc-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.78);
+
+    window.__timelines["routes"] = tl;
+  </script>
+</template>

@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: 'EB Garamond', serif; color: #F0EBD4; }
+    #ct-wrap { position: absolute; left: 120px; width: 768px; top: 340px; text-align: center; }
+    #ct-line { font-style: italic; font-size: 54px; }
+    #ct-pill { display: inline-block; margin-top: 26px; padding: 18px 44px; border-radius: 60px; background: #C41E3A; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 72px; }
+    #ct-pill small { font-family: 'EB Garamond', serif; font-style: italic; font-weight: 400; font-size: 44px; margin-right: 14px; }
+  </style>
+  <div id="root" data-composition-id="cta" data-width="1080" data-height="1920">
+    <div id="ct-wrap" class="clip" data-start="0" data-duration="6.2"><div id="ct-line">Want the link?</div><div id="ct-pill"><small>Comment</small><span id="ct-k0" style="opacity:0">S</span><span id="ct-k1" style="opacity:0">K</span><span id="ct-k2" style="opacity:0">I</span><span id="ct-k3" style="opacity:0">L</span><span id="ct-k4" style="opacity:0">L</span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ct-line", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.38, ease: "expo.out" }, 0);
+    tl.fromTo("#ct-pill", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 0.3);
+    tl.fromTo("#ct-pill", { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out" }, 0.3);
+    tl.set("#ct-k0", { opacity: 1 }, 2.06);
+    tl.set("#ct-k1", { opacity: 1 }, 2.12);
+    tl.set("#ct-k2", { opacity: 1 }, 2.18);
+    tl.set("#ct-k3", { opacity: 1 }, 2.24);
+    tl.set("#ct-k4", { opacity: 1 }, 2.3);
+
+    window.__timelines["cta"] = tl;
+  </script>
+</template>
